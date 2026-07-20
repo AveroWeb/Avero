@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Krak — Agence de création de sites web</title>
+  <meta name="description" content="Studio Krak crée des sites web qui claquent : sites vitrines, e-commerce, refontes et SEO. Un design qui croustille, une conversion qui décolle." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================
+   STUDIO KRAK — Feuille de style
+   ========================================================== */
+
+:root {
+  --cream:       #F5EFE4;
+  --cream-2:     #EDE4D2;
+  --ink:         #1a1410;
+  --ink-2:       #2a221c;
+  --yellow:      #FFC93C;
+  --yellow-2:    #FFB800;
+  --coral:       #FF5A36;
+  --green:       #2E7D5B;
+  --beige:       #E8DDD0;
+  --white:       #ffffff;
+  --shadow-hard: 8px 8px 0 var(--ink);
+  --shadow-soft: 0 20px 40px -12px rgba(26,20,16,0.18);
+  --radius:      22px;
+  --radius-lg:   36px;
+  --container:   1240px;
+  --easing:      cubic-bezier(.2,.9,.25,1);
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 17px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+h1, h2, h3, h4 {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-weight: 900;
+}
+.text-italic {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.word-outline {
+  color: transparent;
+  -webkit-text-stroke: 3px var(--ink);
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink);
+  padding: 8px 14px; border: 2px solid var(--ink);
+  border-radius: 999px; background: var(--cream);
+}
+.eyebrow__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--coral); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 15px 26px; border-radius: 999px;
+  font-weight: 700; font-size: 15px;
+  border: 2.5px solid var(--ink);
+  transition: transform .18s var(--easing), box-shadow .18s var(--easing), background .2s;
+  white-space: nowrap; cursor: pointer;
+}
+.btn:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.btn:active { transform: translate(0,0); box-shadow: 0 0 0 var(--ink); }
+.btn--yellow { background: var(--yellow); color: var(--ink); }
+.btn--yellow:hover { background: var(--yellow-2); }
+.btn--dark { background: var(--ink); color: var(--cream); }
+.btn--dark:hover { background: #000; }
+.btn--ghost { background: transparent; color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: var(--cream); }
+.btn--block { width: 100%; }
+
+/* NAV */
+.nav { position: sticky; top: 16px; z-index: 50; padding: 0 16px; }
+.nav__inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  background: var(--cream); border: 2.5px solid var(--ink);
+  border-radius: 999px; padding: 10px 12px 10px 22px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Archivo Black', sans-serif; font-size: 20px; letter-spacing: -0.01em;
+}
+.logo em { font-style: normal; color: var(--coral); margin-left: 2px; }
+.nav__links { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
+.nav__links a { position: relative; }
+.nav__links a::after {
+  content: ''; position: absolute; left: 0; bottom: -6px;
+  width: 0; height: 3px; background: var(--coral); border-radius: 2px;
+  transition: width .25s var(--easing);
+}
+.nav__links a:hover::after { width: 100%; }
+.nav__cta { padding: 12px 20px; font-size: 14px; }
+.nav__burger {
+  display: none; width: 44px; height: 44px;
+  border: 2px solid var(--ink); border-radius: 50%; padding: 0;
+  align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+}
+.nav__burger span {
+  width: 18px; height: 2.5px; background: var(--ink);
+  border-radius: 2px; transition: transform .25s, opacity .25s;
+}
+.nav__burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav__burger.is-open span:nth-child(2) { opacity: 0; }
+.nav__burger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* HERO */
+.hero { position: relative; padding: 80px 0 60px; overflow: hidden; }
+.hero__inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+.hero__badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--white); border: 2px solid var(--ink);
+  border-radius: 999px; padding: 8px 18px; font-weight: 600;
+  font-size: 14px; margin-bottom: 28px; box-shadow: 3px 3px 0 var(--ink);
+}
+.hero__badge-dot {
+  width: 10px; height: 10px; background: var(--green);
+  border-radius: 50%; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%     { transform: scale(1.3); opacity: 0.6; }
+}
+.hero__title {
+  font-size: clamp(44px, 8vw, 96px);
+  letter-spacing: -0.03em; margin-bottom: 24px; position: relative;
+}
+.word-underlined { position: relative; display: inline-block; }
+.hero__underline {
+  position: absolute; left: -4%; right: -4%; bottom: -0.18em;
+  width: 108%; height: 0.22em; pointer-events: none;
+}
+.hero__and {
+  display: block; font-family: 'Fraunces', serif; font-style: italic;
+  font-weight: 700; font-size: 0.55em; margin-top: 24px; color: var(--ink-2);
+}
+.hero__lede {
+  font-size: clamp(16px, 1.5vw, 19px); color: var(--ink-2);
+  max-width: 640px; margin: 8px auto 36px;
+}
+.hero__ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+.hero__proof {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  max-width: 780px; margin: 0 auto; padding: 22px 28px;
+  background: var(--white); border: 2.5px solid var(--ink);
+  border-radius: var(--radius); box-shadow: 5px 5px 0 var(--ink);
+}
+.hero__proof li {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  border-right: 1.5px dashed rgba(26,20,16,.2);
+}
+.hero__proof li:last-child { border-right: 0; }
+.hero__proof strong { font-family: 'Archivo Black', sans-serif; font-size: clamp(22px, 3vw, 30px); }
+.hero__proof span {
+  font-size: 12px; color: var(--ink-2); text-transform: uppercase;
+  letter-spacing: .05em; font-weight: 500;
+}
+
+.sparkle { position: absolute; width: 44px; height: 44px; z-index: 1; animation: spin 12s linear infinite; }
+.sparkle--1 { top: 12%; left: 4%;  width: 54px; height: 54px; }
+.sparkle--2 { top: 8%;  right: 5%; width: 46px; height: 46px; animation-duration: 9s; animation-direction: reverse; }
+.sparkle--3 { bottom: 8%; left: 8%; width: 34px; height: 34px; animation-duration: 15s; }
+.sparkle--p1 { top: 5%; right: 6%; width: 70px; height: 70px; }
+.sparkle--cta1 { top: 10%; left: 6%;  width: 56px; height: 56px; }
+.sparkle--cta2 { bottom: 15%; right: 8%; width: 72px; height: 72px; animation-direction: reverse; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hero__card {
+  position: absolute; right: -60px; top: 30%; width: 260px;
+  transform: rotate(12deg); z-index: 0; opacity: 0.85; pointer-events: none;
+}
+.chip {
+  position: relative; background: var(--coral); border: 3px solid var(--ink);
+  border-radius: 28px; padding: 30px 24px; box-shadow: 8px 8px 0 var(--ink);
+  min-height: 320px;
+}
+.chip__top {
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--ink); font-family: 'Archivo Black', sans-serif;
+  font-size: 14px; letter-spacing: .1em;
+}
+.chip__top em {
+  background: var(--ink); color: var(--yellow); padding: 3px 10px;
+  border-radius: 999px; font-style: normal;
+}
+.chip__title {
+  font-family: 'Archivo Black', sans-serif; font-size: 44px; line-height: .95;
+  color: var(--cream); margin-top: 40px; letter-spacing: -0.03em;
+  position: relative; z-index: 2;
+}
+.chip__tag {
+  position: absolute; bottom: 24px; left: 24px;
+  background: var(--yellow); color: var(--ink); padding: 6px 12px;
+  border-radius: 999px; font-weight: 700; font-size: 12px;
+  letter-spacing: .1em; border: 2px solid var(--ink);
+}
+.chip__blob { position: absolute; inset: 0; opacity: 0.18; z-index: 1; }
+
+/* MARQUEE */
+.marquee {
+  overflow: hidden; background: var(--ink); color: var(--cream);
+  padding: 18px 0; border-top: 2.5px solid var(--ink);
+  border-bottom: 2.5px solid var(--ink);
+  transform: rotate(-2deg); margin: 20px -20px;
+}
+.marquee__track {
+  display: flex; gap: 32px; align-items: center; white-space: nowrap;
+  font-family: 'Archivo Black', sans-serif; font-size: 22px;
+  letter-spacing: 0.02em; animation: scroll-x 30s linear infinite; will-change: transform;
+}
+.marquee__track em { font-style: normal; color: var(--yellow); font-size: 26px; }
+@keyframes scroll-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* SECTIONS */
+.section { padding: 100px 0; position: relative; }
+.section__head { margin-bottom: 60px; max-width: 780px; }
+.section__head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.section__head--split {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 32px; max-width: none; flex-wrap: wrap;
+}
+.section__title {
+  font-size: clamp(34px, 5.5vw, 64px); margin-top: 18px; letter-spacing: -0.02em;
+}
+
+/* SERVICES */
+.services__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.service-card {
+  position: relative; background: var(--white);
+  border: 2.5px solid var(--ink); border-radius: var(--radius);
+  padding: 36px;
+  transition: transform .3s var(--easing), box-shadow .3s var(--easing);
+  overflow: hidden;
+}
+.service-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--ink); }
+.service-card--yellow { background: var(--yellow); }
+.service-card--coral  { background: var(--coral); color: var(--cream); }
+.service-card--coral h3, .service-card--coral p, .service-card--coral li, .service-card--coral .service-card__link { color: var(--cream); }
+.service-card--green  { background: var(--green); color: var(--cream); }
+.service-card--green h3, .service-card--green p, .service-card--green li, .service-card--green .service-card__link { color: var(--cream); }
+.service-card--cream  { background: var(--cream-2); }
+.service-card__badge {
+  position: absolute; top: 24px; right: 28px;
+  font-family: 'Archivo Black', sans-serif; font-size: 42px; opacity: 0.15;
+}
+.service-card__icon { width: 72px; height: 72px; margin-bottom: 20px; }
+.service-card h3 { font-size: 28px; margin-bottom: 12px; letter-spacing: -0.02em; }
+.service-card p { margin-bottom: 20px; font-size: 15.5px; opacity: .85; }
+.service-card ul {
+  border-top: 1.5px dashed currentColor; padding-top: 16px;
+  margin-bottom: 24px; display: grid; gap: 8px; opacity: .8;
+}
+.service-card ul li { font-size: 14.5px; padding-left: 18px; position: relative; }
+.service-card ul li::before {
+  content: ''; position: absolute; left: 0; top: 8px;
+  width: 8px; height: 8px; background: currentColor; border-radius: 50%;
+}
+.service-card__link {
+  font-weight: 700; font-size: 15px;
+  border-bottom: 2px solid currentColor; padding-bottom: 2px;
+  transition: transform .2s; display: inline-block;
+}
+.service-card:hover .service-card__link { transform: translateX(4px); }
+
+/* RÉALISATIONS */
+.works { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.work {
+  border-radius: var(--radius); overflow: hidden; border: 2.5px solid var(--ink);
+  background: var(--white); transition: transform .3s var(--easing), box-shadow .3s var(--easing);
+  display: block;
+}
+.work:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--ink); }
+.work__img {
+  aspect-ratio: 16/10; background: var(--bg, var(--cream-2));
+  padding: 24px; display: flex; align-items: center; justify-content: center;
+  border-bottom: 2.5px solid var(--ink);
+}
+.work__img svg { max-width: 100%; height: auto; }
+.work__meta { padding: 24px 28px 28px; }
+.work__tag {
+  display: inline-block; background: var(--ink); color: var(--cream);
+  padding: 4px 12px; border-radius: 999px; font-size: 12px;
+  font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.work__meta h3 { font-size: 24px; margin-bottom: 8px; }
+.work__meta p { font-size: 15px; color: var(--ink-2); }
+
+/* PROCESS */
+.process { background: var(--yellow); }
+.process .eyebrow { background: var(--yellow); }
+.steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; counter-reset: steps;
+}
+.step {
+  background: var(--cream); border: 2.5px solid var(--ink);
+  border-radius: var(--radius); padding: 28px;
+  transition: transform .3s var(--easing);
+}
+.step:nth-child(2) { transform: translateY(20px); }
+.step:nth-child(3) { transform: translateY(40px); }
+.step:nth-child(4) { transform: translateY(60px); }
+.step:hover { transform: translateY(-4px) !important; }
+.step__num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 54px; height: 54px; background: var(--ink); color: var(--yellow);
+  border-radius: 50%; font-family: 'Archivo Black', sans-serif;
+  font-size: 20px; margin-bottom: 18px;
+}
+.step h3 { font-size: 22px; margin-bottom: 8px; }
+.step p { font-size: 14.5px; color: var(--ink-2); }
+
+/* TARIFS */
+.pricing { background: var(--cream); }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+.plan {
+  position: relative; background: var(--white);
+  border: 2.5px solid var(--ink); border-radius: var(--radius);
+  padding: 36px 32px;
+  transition: transform .3s var(--easing), box-shadow .3s var(--easing);
+}
+.plan:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--ink); }
+.plan--featured {
+  background: var(--ink); color: var(--cream);
+  transform: scale(1.03); box-shadow: 6px 6px 0 var(--coral);
+}
+.plan--featured h3, .plan--featured .plan__from, .plan--featured .plan__list { color: var(--cream); }
+.plan--featured:hover { transform: scale(1.03) translate(-3px, -3px); }
+.plan__ribbon {
+  position: absolute; top: -18px; right: 24px;
+  background: var(--yellow); color: var(--ink);
+  border: 2.5px solid var(--ink); padding: 8px 16px;
+  border-radius: 999px; font-weight: 800; font-size: 13px;
+  letter-spacing: .05em; display: inline-flex; align-items: center; gap: 8px;
+}
+.plan__ribbon svg { width: 20px; height: 20px; }
+.plan__head h3 { font-size: 26px; margin-bottom: 6px; }
+.plan__head p { font-size: 14.5px; color: var(--ink-2); margin-bottom: 24px; }
+.plan--featured .plan__head p { color: rgba(245,239,228,.7); }
+.plan__price {
+  display: flex; align-items: baseline; gap: 10px;
+  margin-bottom: 28px; padding-bottom: 24px;
+  border-bottom: 1.5px dashed rgba(26,20,16,.2);
+}
+.plan--featured .plan__price { border-bottom-color: rgba(245,239,228,.2); }
+.plan__from { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-2); }
+.plan--featured .plan__from { color: rgba(245,239,228,.6); }
+.plan__price strong { font-family: 'Archivo Black', sans-serif; font-size: 42px; letter-spacing: -0.02em; }
+.plan__list { display: grid; gap: 10px; margin-bottom: 28px; }
+.plan__list li { padding-left: 28px; position: relative; font-size: 15px; }
+.plan__list li::before {
+  content: ''; position: absolute; left: 0; top: 6px;
+  width: 18px; height: 18px; background: var(--yellow);
+  border-radius: 50%; border: 2px solid var(--ink);
+}
+.plan__list li::after {
+  content: ''; position: absolute; left: 5px; top: 11px;
+  width: 8px; height: 4px;
+  border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+  transform: rotate(-45deg);
+}
+.pricing__note { text-align: center; margin-top: 40px; font-size: 15px; color: var(--ink-2); }
+.pricing__note a { font-weight: 700; border-bottom: 2px solid var(--coral); padding-bottom: 2px; }
+
+/* TÉMOIGNAGES */
+.testimonials { background: var(--beige); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testi {
+  background: var(--cream); border: 2.5px solid var(--ink);
+  border-radius: var(--radius); padding: 32px;
+  transition: transform .3s var(--easing);
+}
+.testi:nth-child(2) { transform: rotate(-1deg); }
+.testi:nth-child(3) { transform: rotate(1deg); }
+.testi:hover { transform: rotate(0) translateY(-4px); }
+.testi p {
+  font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.5;
+  font-style: italic; margin-bottom: 24px;
+}
+.testi footer {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 20px; border-top: 1.5px dashed rgba(26,20,16,.2);
+}
+.testi__avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--ink); display: flex; align-items: center; justify-content: center;
+  font-family: 'Archivo Black', sans-serif; font-size: 18px;
+}
+.testi footer strong { display: block; font-size: 15px; }
+.testi footer span { font-size: 13px; color: var(--ink-2); }
+
+/* FAQ */
+.faq__inner { max-width: 880px; margin: 0 auto; }
+.faq__list { display: grid; gap: 14px; }
+.faq__item {
+  background: var(--white); border: 2.5px solid var(--ink);
+  border-radius: 20px; overflow: hidden; transition: transform .2s;
+}
+.faq__item[open] { background: var(--yellow); }
+.faq__item summary {
+  padding: 22px 28px; font-family: 'Archivo Black', sans-serif;
+  font-size: 18px; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: '+'; font-size: 28px; font-weight: 400;
+  transition: transform .3s var(--easing); flex-shrink: 0;
+}
+.faq__item[open] summary::after { transform: rotate(45deg); }
+.faq__item p { padding: 0 28px 24px; color: var(--ink-2); font-size: 15.5px; }
+
+/* CTA */
+.cta {
+  position: relative; background: var(--coral); color: var(--cream);
+  padding: 100px 0; overflow: hidden; margin-top: 40px;
+}
+.cta__inner { max-width: 720px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+.cta h2 {
+  font-size: clamp(40px, 6vw, 72px); color: var(--cream);
+  letter-spacing: -0.03em; margin-bottom: 20px;
+}
+.cta h2 .text-italic { color: var(--yellow); }
+.cta p { font-size: 18px; margin-bottom: 40px; opacity: .95; }
+.cta__form {
+  background: var(--cream); color: var(--ink);
+  padding: 32px; border-radius: var(--radius);
+  border: 2.5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink);
+  text-align: left;
+}
+.cta__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.cta__form input, .cta__form textarea {
+  width: 100%; padding: 14px 18px; border: 2px solid var(--ink);
+  border-radius: 14px; background: var(--white); font: inherit;
+  color: var(--ink); outline: none; transition: box-shadow .2s;
+}
+.cta__form input:focus, .cta__form textarea:focus { box-shadow: 3px 3px 0 var(--ink); }
+.cta__form textarea { margin-bottom: 18px; resize: vertical; min-height: 80px; }
+.cta__ok {
+  margin-top: 18px; padding: 14px; background: var(--yellow);
+  border: 2px solid var(--ink); border-radius: 12px;
+  text-align: center; font-weight: 700;
+}
+.cta__alt { margin-top: 24px; font-size: 15px; opacity: .95; }
+.cta__alt a { font-weight: 700; border-bottom: 2px solid var(--yellow); padding-bottom: 2px; }
+
+/* FOOTER */
+.footer { background: var(--ink); color: var(--cream); padding: 80px 0 0; }
+.footer__inner { display: grid; grid-template-columns: 1.4fr 2fr; gap: 60px; padding-bottom: 60px; }
+.footer__brand p { margin-top: 16px; max-width: 320px; opacity: .7; font-size: 15px; }
+.logo--light em { color: var(--yellow); }
+.footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.footer__cols h4 {
+  font-family: 'Archivo Black', sans-serif; font-size: 14px;
+  color: var(--yellow); letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.footer__cols a {
+  display: block; padding: 6px 0; opacity: .8; font-size: 15px;
+  transition: opacity .2s, transform .2s;
+}
+.footer__cols a:hover { opacity: 1; transform: translateX(4px); color: var(--yellow); }
+.footer__bar { border-top: 1px solid rgba(245,239,228,.15); padding: 20px 0; }
+.footer__barinner {
+  display: flex; justify-content: space-between; font-size: 13.5px;
+  opacity: .7; flex-wrap: wrap; gap: 12px;
+}
+.footer__barinner a { color: inherit; }
+.footer__barinner a:hover { color: var(--yellow); opacity: 1; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .services__grid, .works, .plans, .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .step:nth-child(2), .step:nth-child(3), .step:nth-child(4) { transform: none; }
+  .hero__card { display: none; }
+  .footer__inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__burger { display: inline-flex; }
+  .nav__links.is-open {
+    display: flex; position: absolute; top: 74px; left: 16px; right: 16px;
+    flex-direction: column; background: var(--cream);
+    border: 2.5px solid var(--ink); border-radius: 20px;
+    padding: 20px 24px; box-shadow: 4px 4px 0 var(--ink);
+  }
+  .hero { padding: 40px 0 40px; }
+  .section { padding: 70px 0; }
+  .section__head { margin-bottom: 40px; }
+  .section__head--split { flex-direction: column; align-items: flex-start; }
+  .hero__proof { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .hero__proof li:nth-child(2) { border-right: 0; }
+  .hero__proof li { border-bottom: 1.5px dashed rgba(26,20,16,.2); padding-bottom: 12px; }
+  .hero__proof li:nth-last-child(-n+2) { border-bottom: 0; padding-bottom: 0; }
+  .services__grid, .works, .plans, .testi-grid, .steps { grid-template-columns: 1fr; }
+  .plan--featured { transform: none; }
+  .plan--featured:hover { transform: translate(-3px, -3px); }
+  .cta__row { grid-template-columns: 1fr; }
+  .footer__cols { grid-template-columns: repeat(2, 1fr); }
+  .marquee__track { font-size: 18px; }
+  .word-outline { -webkit-text-stroke-width: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sparkle, .marquee__track, .hero__badge-dot { animation: none !important; }
+  * { transition: none !important; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="#" class="logo" aria-label="Studio Krak">
+        <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20 2 L24 14 L37 14 L27 22 L31 34 L20 27 L9 34 L13 22 L3 14 L16 14 Z" fill="#FFC93C" stroke="#1a1410" stroke-width="2.2" stroke-linejoin="round"/>
+        </svg>
+        <span>STUDIO<em>KRAK</em></span>
+      </a>
+      <nav class="nav__links" aria-label="Menu principal">
+        <a href="#services">Services</a>
+        <a href="#realisations">Réalisations</a>
+        <a href="#process">Process</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#contact" class="btn btn--dark nav__cta">
+        Démarrer un projet
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="nav__burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <!-- Sparkles décoratifs -->
+    <svg class="sparkle sparkle--1" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FF5A36"/></svg>
+    <svg class="sparkle sparkle--2" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#2E7D5B"/></svg>
+    <svg class="sparkle sparkle--3" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
+
+    <div class="container hero__inner">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Studio disponible · Rentrée 2026
+      </div>
+
+      <h1 class="hero__title">
+        On crée des sites web<br/>
+        qui <span class="word-underlined">
+          <span class="word-outline">claquent</span>
+          <svg class="hero__underline" viewBox="0 0 320 22" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M6 16 C 80 4, 240 4, 314 14" stroke="#FF5A36" stroke-width="8" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="hero__and">&amp; qui convertissent.</span>
+      </h1>
+
+      <p class="hero__lede">
+        Studio Krak, c'est une agence française qui conçoit des sites vitrines,
+        des e-commerces et des refontes taillées pour vos objectifs&nbsp;: design
+        soigné, code propre, résultats mesurables.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#contact" class="btn btn--yellow">
+          Obtenir un devis gratuit
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#realisations" class="btn btn--ghost">
+          Voir nos réalisations
+        </a>
+      </div>
+
+      <ul class="hero__proof" aria-label="Preuves sociales">
+        <li><strong>+120</strong><span>sites livrés</span></li>
+        <li><strong>4,9/5</strong><span>note client</span></li>
+        <li><strong>21 j</strong><span>délai moyen</span></li>
+        <li><strong>100%</strong><span>fait en France</span></li>
+      </ul>
+    </div>
+
+    <!-- Grande "chip card" décorative -->
+    <div class="hero__card" aria-hidden="true">
+      <div class="chip">
+        <div class="chip__top">
+          <span>NEW</span>
+          <em>2026</em>
+        </div>
+        <div class="chip__title">SITE<br/>KROUSTI</div>
+        <div class="chip__tag">EDITION LIMITÉE</div>
+        <svg class="chip__blob" viewBox="0 0 200 200"><path fill="#1a1410" d="M45.6,-58.2C58.8,-49.2,68.6,-33.9,71.8,-17.4C75,-0.8,71.6,17.1,62.6,31.2C53.6,45.3,39.1,55.6,22.6,63.1C6,70.6,-12.7,75.4,-28.9,70.2C-45.2,65.1,-59,50.1,-66.5,32.6C-74,15.2,-75.2,-4.7,-69.4,-21.7C-63.6,-38.7,-50.8,-52.7,-36,-61.3C-21.2,-70,-4.4,-73.2,10.9,-72C26.2,-70.8,32.4,-67.1,45.6,-58.2Z" transform="translate(100 100)"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>SITES VITRINES</span><em>★</em>
+      <span>E-COMMERCE</span><em>★</em>
+      <span>REFONTE</span><em>★</em>
+      <span>SEO</span><em>★</em>
+      <span>WEBFLOW · WORDPRESS · SHOPIFY</span><em>★</em>
+      <span>SITES VITRINES</span><em>★</em>
+      <span>E-COMMERCE</span><em>★</em>
+      <span>REFONTE</span><em>★</em>
+      <span>SEO</span><em>★</em>
+      <span>WEBFLOW · WORDPRESS · SHOPIFY</span><em>★</em>
+    </div>
+  </div>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" class="section services">
+    <div class="container">
+      <header class="section__head">
+        <span class="eyebrow"><span class="eyebrow__dot"></span> Nos services</span>
+        <h2 class="section__title">Quatre saveurs.<br/><span class="text-italic">Un seul objectif&nbsp;: faire décoller votre business.</span></h2>
+      </header>
+
+      <div class="services__grid">
+
+        <article class="service-card service-card--yellow">
+          <div class="service-card__badge">01</div>
+          <svg class="service-card__icon" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="6" y="10" width="52" height="40" rx="4" fill="#1a1410"/>
+            <rect x="10" y="16" width="44" height="4" rx="2" fill="#FFC93C"/>
+            <rect x="10" y="24" width="28" height="18" rx="2" fill="#F5EFE4"/>
+            <rect x="42" y="24" width="12" height="8" rx="2" fill="#FF5A36"/>
+            <rect x="42" y="34" width="12" height="8" rx="2" fill="#2E7D5B"/>
+          </svg>
+          <h3>Sites vitrines</h3>
+          <p>Un site rapide, élégant et pensé pour convertir vos visiteurs en clients. Sur mesure, jamais copié.</p>
+          <ul>
+            <li>Design 100% personnalisé</li>
+            <li>SEO on-page inclus</li>
+            <li>Formulaires &amp; RDV</li>
+          </ul>
+          <a href="#contact" class="service-card__link">En savoir plus →</a>
+        </article>
+
+        <article class="service-card service-card--coral">
+          <div class="service-card__badge">02</div>
+          <svg class="service-card__icon" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M12 18 L52 18 L48 46 L16 46 Z" fill="#1a1410"/>
+            <circle cx="22" cy="52" r="4" fill="#1a1410"/>
+            <circle cx="42" cy="52" r="4" fill="#1a1410"/>
+            <path d="M18 18 L20 10 L30 10" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="32" cy="30" r="4" fill="#FFC93C"/>
+          </svg>
+          <h3>E-commerce</h3>
+          <p>Boutique en ligne performante, gestion produits simple, tunnel de commande optimisé pour vendre 24/7.</p>
+          <ul>
+            <li>Shopify / WooCommerce</li>
+            <li>Paiement sécurisé</li>
+            <li>Analytics &amp; tracking</li>
+          </ul>
+          <a href="#contact" class="service-card__link">En savoir plus →</a>
+        </article>
+
+        <article class="service-card service-card--green">
+          <div class="service-card__badge">03</div>
+          <svg class="service-card__icon" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M32 6 L38 20 L54 22 L42 32 L46 48 L32 40 L18 48 L22 32 L10 22 L26 20 Z" fill="#1a1410"/>
+            <circle cx="32" cy="28" r="4" fill="#FFC93C"/>
+          </svg>
+          <h3>Refonte de site</h3>
+          <p>Votre site a pris un coup de vieux ? On remet tout à plat pour un rendu moderne, rapide et responsive.</p>
+          <ul>
+            <li>Audit UX complet</li>
+            <li>Migration sans perte SEO</li>
+            <li>Design system moderne</li>
+          </ul>
+          <a href="#contact" class="service-card__link">En savoir plus →</a>
+        </article>
+
+        <article class="service-card service-card--cream">
+          <div class="service-card__badge">04</div>
+          <svg class="service-card__icon" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="28" cy="28" r="18" fill="none" stroke="#1a1410" stroke-width="5"/>
+            <path d="M42 42 L54 54" stroke="#1a1410" stroke-width="6" stroke-linecap="round"/>
+            <path d="M20 28 h16 M28 20 v16" stroke="#FF5A36" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <h3>SEO &amp; performance</h3>
+          <p>On booste votre visibilité Google avec du contenu, du netlinking et un site optimisé côté technique.</p>
+          <ul>
+            <li>Audit technique &amp; sémantique</li>
+            <li>Rédaction optimisée</li>
+            <li>Suivi mensuel</li>
+          </ul>
+          <a href="#contact" class="service-card__link">En savoir plus →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RÉALISATIONS ============ -->
+  <section id="realisations" class="section realisations">
+    <div class="container">
+      <header class="section__head section__head--split">
+        <div>
+          <span class="eyebrow"><span class="eyebrow__dot" style="background:#FF5A36"></span> Nos réalisations</span>
+          <h2 class="section__title">Ils nous ont fait<br/>confiance <span class="text-italic">et ne le regrettent pas.</span></h2>
+        </div>
+        <a href="#contact" class="btn btn--dark">
+          Voir tout le portfolio
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </header>
+
+      <div class="works">
+
+        <a href="#" class="work work--1">
+          <div class="work__img" style="--bg:#FFC93C">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <rect x="10" y="10" width="180" height="120" rx="8" fill="#1a1410"/>
+              <rect x="20" y="22" width="160" height="10" rx="3" fill="#FFC93C"/>
+              <rect x="20" y="40" width="100" height="6" rx="2" fill="#F5EFE4"/>
+              <rect x="20" y="52" width="80" height="6" rx="2" fill="#F5EFE4" opacity=".6"/>
+              <rect x="20" y="72" width="70" height="50" rx="4" fill="#FF5A36"/>
+              <rect x="100" y="72" width="80" height="50" rx="4" fill="#2E7D5B"/>
+            </svg>
+          </div>
+          <div class="work__meta">
+            <span class="work__tag">E-commerce</span>
+            <h3>Café&nbsp;Barista</h3>
+            <p>Refonte complète + boutique Shopify — +180% de conversions.</p>
+          </div>
+        </a>
+
+        <a href="#" class="work work--2">
+          <div class="work__img" style="--bg:#FF5A36">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <rect x="10" y="10" width="180" height="120" rx="8" fill="#F5EFE4"/>
+              <circle cx="60" cy="70" r="34" fill="#1a1410"/>
+              <rect x="110" y="40" width="70" height="8" rx="3" fill="#1a1410"/>
+              <rect x="110" y="56" width="60" height="6" rx="2" fill="#1a1410" opacity=".5"/>
+              <rect x="110" y="68" width="60" height="6" rx="2" fill="#1a1410" opacity=".5"/>
+              <rect x="110" y="94" width="40" height="14" rx="7" fill="#FFC93C"/>
+            </svg>
+          </div>
+          <div class="work__meta">
+            <span class="work__tag">Site vitrine</span>
+            <h3>Atelier&nbsp;Nomade</h3>
+            <p>Site portfolio pour un studio de design d'objets.</p>
+          </div>
+        </a>
+
+        <a href="#" class="work work--3">
+          <div class="work__img" style="--bg:#2E7D5B">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <rect x="10" y="10" width="180" height="120" rx="8" fill="#F5EFE4"/>
+              <rect x="20" y="24" width="160" height="60" rx="6" fill="#1a1410"/>
+              <rect x="30" y="34" width="90" height="8" rx="3" fill="#FFC93C"/>
+              <rect x="30" y="48" width="140" height="4" rx="2" fill="#F5EFE4" opacity=".6"/>
+              <rect x="30" y="58" width="120" height="4" rx="2" fill="#F5EFE4" opacity=".4"/>
+              <rect x="30" y="70" width="50" height="8" rx="3" fill="#FF5A36"/>
+              <rect x="20" y="94" width="45" height="30" rx="4" fill="#FFC93C"/>
+              <rect x="72" y="94" width="45" height="30" rx="4" fill="#FF5A36"/>
+              <rect x="124" y="94" width="55" height="30" rx="4" fill="#2E7D5B"/>
+            </svg>
+          </div>
+          <div class="work__meta">
+            <span class="work__tag">Refonte</span>
+            <h3>Clinique&nbsp;Pulse</h3>
+            <p>Refonte UX/UI d'un site médical — parcours patient simplifié.</p>
+          </div>
+        </a>
+
+        <a href="#" class="work work--4">
+          <div class="work__img" style="--bg:#E8DDD0">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <rect x="10" y="10" width="180" height="120" rx="8" fill="#1a1410"/>
+              <path d="M20 100 L60 60 L90 90 L130 40 L180 90" stroke="#FFC93C" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="60" cy="60" r="4" fill="#FF5A36"/>
+              <circle cx="130" cy="40" r="4" fill="#FF5A36"/>
+              <rect x="20" y="24" width="60" height="6" rx="2" fill="#F5EFE4"/>
+              <rect x="20" y="34" width="40" height="4" rx="2" fill="#F5EFE4" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="work__meta">
+            <span class="work__tag">SEO</span>
+            <h3>Immo&nbsp;Alpin</h3>
+            <p>Stratégie SEO locale — passage de la page 4 à la position 2.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section id="process" class="section process">
+    <!-- decorative -->
+    <svg class="sparkle sparkle--p1" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
+
+    <div class="container">
+      <header class="section__head">
+        <span class="eyebrow"><span class="eyebrow__dot" style="background:#2E7D5B"></span> Notre process</span>
+        <h2 class="section__title">Une méthode <span class="text-italic">bien croustillante,</span><br/>de la première idée au go-live.</h2>
+      </header>
+
+      <ol class="steps">
+        <li class="step">
+          <div class="step__num">01</div>
+          <h3>Découverte</h3>
+          <p>Brief, objectifs, cible, analyse concurrentielle. On pose les fondations solides du projet.</p>
+        </li>
+        <li class="step">
+          <div class="step__num">02</div>
+          <h3>Design</h3>
+          <p>Wireframes, direction artistique et maquettes UI. Vous validez, on itère jusqu'au coup de cœur.</p>
+        </li>
+        <li class="step">
+          <div class="step__num">03</div>
+          <h3>Développement</h3>
+          <p>Code propre, animations soignées, responsive parfait. Tout est optimisé pour la vitesse et le SEO.</p>
+        </li>
+        <li class="step">
+          <div class="step__num">04</div>
+          <h3>Mise en ligne</h3>
+          <p>Recette, formation à l'admin, mise en ligne. Puis suivi pendant 30 jours, offert.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ TARIFS ============ -->
+  <section id="tarifs" class="section pricing">
+    <div class="container">
+      <header class="section__head">
+        <span class="eyebrow"><span class="eyebrow__dot" style="background:#FF5A36"></span> Nos formules</span>
+        <h2 class="section__title">Des tarifs clairs,<br/><span class="text-italic">sans mauvaises surprises.</span></h2>
+      </header>
+
+      <div class="plans">
+
+        <article class="plan">
+          <header class="plan__head">
+            <h3>Starter</h3>
+            <p>Idéal pour lancer votre présence en ligne.</p>
+          </header>
+          <div class="plan__price">
+            <span class="plan__from">à partir de</span>
+            <strong>1&nbsp;490&nbsp;€</strong>
+          </div>
+          <ul class="plan__list">
+            <li>Site vitrine 3-5 pages</li>
+            <li>Design sur mesure</li>
+            <li>Responsive mobile/tablette</li>
+            <li>Formulaire de contact</li>
+            <li>SEO on-page de base</li>
+            <li>Livraison en 15 jours</li>
+          </ul>
+          <a href="#contact" class="btn btn--ghost btn--block">Choisir Starter</a>
+        </article>
+
+        <article class="plan plan--featured">
+          <div class="plan__ribbon">
+            <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#1a1410"/></svg>
+            Le + choisi
+          </div>
+          <header class="plan__head">
+            <h3>Pro</h3>
+            <p>Pour les PME qui veulent frapper fort.</p>
+          </header>
+          <div class="plan__price">
+            <span class="plan__from">à partir de</span>
+            <strong>3&nbsp;490&nbsp;€</strong>
+          </div>
+          <ul class="plan__list">
+            <li>Site vitrine 8-12 pages</li>
+            <li>Design haut de gamme + animations</li>
+            <li>Blog / actualités intégré</li>
+            <li>CMS pour tout modifier</li>
+            <li>SEO avancé + Analytics</li>
+            <li>Formation admin incluse</li>
+          </ul>
+          <a href="#contact" class="btn btn--yellow btn--block">Choisir Pro</a>
+        </article>
+
+        <article class="plan">
+          <header class="plan__head">
+            <h3>E-commerce</h3>
+            <p>Pour vendre en ligne, sans limites.</p>
+          </header>
+          <div class="plan__price">
+            <span class="plan__from">à partir de</span>
+            <strong>5&nbsp;900&nbsp;€</strong>
+          </div>
+          <ul class="plan__list">
+            <li>Boutique complète (Shopify/Woo)</li>
+            <li>Design + tunnel optimisé</li>
+            <li>Paiement CB + Apple/Google Pay</li>
+            <li>Gestion stocks &amp; livraison</li>
+            <li>Emails transactionnels</li>
+            <li>Support prioritaire 3 mois</li>
+          </ul>
+          <a href="#contact" class="btn btn--ghost btn--block">Choisir E-commerce</a>
+        </article>
+
+      </div>
+
+      <p class="pricing__note">Besoin d'un projet sur-mesure ? <a href="#contact">Parlons-en →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ TÉMOIGNAGES ============ -->
+  <section class="section testimonials">
+    <div class="container">
+      <header class="section__head section__head--center">
+        <span class="eyebrow"><span class="eyebrow__dot"></span> Ils en parlent mieux que nous</span>
+        <h2 class="section__title">4,9/5 <span class="text-italic">sur 87 avis</span> ★★★★★</h2>
+      </header>
+
+      <div class="testi-grid">
+        <blockquote class="testi">
+          <p>"On cherchait une agence qui comprenne vraiment notre univers. Le résultat dépasse ce qu'on avait imaginé — et surtout, le site vend."</p>
+          <footer>
+            <div class="testi__avatar" style="background:#FFC93C">M</div>
+            <div>
+              <strong>Marion Lefèvre</strong>
+              <span>Fondatrice, Café Barista</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testi">
+          <p>"Équipe hyper réactive, design canon et un vrai sens du détail. On a doublé notre trafic organique en 4 mois."</p>
+          <footer>
+            <div class="testi__avatar" style="background:#FF5A36">T</div>
+            <div>
+              <strong>Thomas Berger</strong>
+              <span>Directeur, Immo Alpin</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testi">
+          <p>"Rare de trouver une agence qui allie créativité et rigueur. Ils ont géré la refonte de A à Z, sans stress."</p>
+          <footer>
+            <div class="testi__avatar" style="background:#2E7D5B">S</div>
+            <div>
+              <strong>Sophie Renaud</strong>
+              <span>Directrice comm', Clinique Pulse</span>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="section faq">
+    <div class="container faq__inner">
+      <header class="section__head">
+        <span class="eyebrow"><span class="eyebrow__dot" style="background:#FFC93C"></span> Questions fréquentes</span>
+        <h2 class="section__title">Les questions <span class="text-italic">qui reviennent souvent.</span></h2>
+      </header>
+
+      <div class="faq__list">
+        <details class="faq__item" open>
+          <summary>Combien de temps pour créer mon site ?</summary>
+          <p>Comptez 2 à 3 semaines pour un site vitrine, 4 à 8 semaines pour un e-commerce. On vous partage un rétro-planning dès le kick-off.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Est-ce que je pourrai modifier mon site tout seul ?</summary>
+          <p>Oui, à 100%. On intègre un CMS clair (WordPress, Shopify, Webflow) et on vous forme pendant 1h à la prise en main. On reste aussi dispo derrière.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Vous vous occupez de l'hébergement et du nom de domaine ?</summary>
+          <p>Oui, on peut tout gérer pour vous : achat du nom de domaine, hébergement rapide (Infomaniak, OVH ou Vercel), configuration DNS et emails pro.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Quel est le tarif d'un site sur-mesure ?</summary>
+          <p>Nos tarifs commencent à 1 490 € pour un site vitrine et 5 900 € pour un e-commerce. Chaque projet fait l'objet d'un devis détaillé et sans surprise.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Et après la mise en ligne ?</summary>
+          <p>On offre 30 jours de suivi. Ensuite, on propose des forfaits maintenance (mises à jour, sauvegardes, petits ajustements) à partir de 49 €/mois.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Travaillez-vous à distance ?</summary>
+          <p>Oui. Nos clients sont partout en France (et parfois plus loin). On travaille en visio, Slack et Notion. Simple, fluide, efficace.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA / CONTACT ============ -->
+  <section id="contact" class="cta">
+    <svg class="sparkle sparkle--cta1" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FF5A36"/></svg>
+    <svg class="sparkle sparkle--cta2" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
+
+    <div class="container cta__inner">
+      <h2>
+        Prêt à créer un site<br/>
+        <span class="text-italic">qui vous ressemble</span>&nbsp;?
+      </h2>
+      <p>Un premier rendez-vous découverte, offert et sans engagement. 30 minutes pour parler de vous, de votre projet, et voir si on est fait pour bosser ensemble.</p>
+
+      <form class="cta__form" onsubmit="event.preventDefault(); this.querySelector('.cta__ok').hidden=false; this.reset();">
+        <div class="cta__row">
+          <input type="text" name="name" placeholder="Votre prénom" required />
+          <input type="email" name="email" placeholder="Votre email" required />
+        </div>
+        <textarea name="message" placeholder="Parlez-nous de votre projet en quelques mots…" rows="3"></textarea>
+        <button type="submit" class="btn btn--yellow btn--block">
+          Envoyer ma demande
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="cta__ok" hidden>✅ Merci, on vous recontacte sous 24h ouvrées&nbsp;!</p>
+      </form>
+
+      <div class="cta__alt">
+        Ou écrivez-nous à <a href="mailto:hello@studiokrak.fr">hello@studiokrak.fr</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="logo logo--light">
+          <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M20 2 L24 14 L37 14 L27 22 L31 34 L20 27 L9 34 L13 22 L3 14 L16 14 Z" fill="#FFC93C" stroke="#F5EFE4" stroke-width="2.2" stroke-linejoin="round"/>
+          </svg>
+          <span>STUDIO<em>KRAK</em></span>
+        </a>
+        <p>Studio de création de sites web. Basé à Lyon, on bosse pour la France entière.</p>
+      </div>
+
+      <div class="footer__cols">
+        <div>
+          <h4>Services</h4>
+          <a href="#services">Sites vitrines</a>
+          <a href="#services">E-commerce</a>
+          <a href="#services">Refonte</a>
+          <a href="#services">SEO</a>
+        </div>
+        <div>
+          <h4>Studio</h4>
+          <a href="#realisations">Réalisations</a>
+          <a href="#process">Process</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:hello@studiokrak.fr">hello@studiokrak.fr</a>
+          <a href="tel:+33400000000">+33 4 00 00 00 00</a>
+          <a href="#">Lyon, France</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <div class="container footer__barinner">
+        <span>© 2026 Studio Krak — Tous droits réservés.</span>
+        <span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+// Menu mobile
+const burger = document.querySelector('.nav__burger');
+const navLinks = document.querySelector('.nav__links');
+if (burger && navLinks) {
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('is-open');
+    navLinks.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      burger.classList.remove('is-open');
+      navLinks.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+    })
+  );
+}
+
+// FAQ accordion : ferme les autres quand on en ouvre une
+document.querySelectorAll('.faq__item').forEach((item) => {
+  item.addEventListener('toggle', () => {
+    if (item.open) {
+      document.querySelectorAll('.faq__item').forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    }
+  });
+});
+
+// Reveal léger au scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.service-card, .work, .plan, .testi, .step, .faq__item').forEach((el) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity .6s ease, transform .6s cubic-bezier(.2,.9,.25,1)';
+  io.observe(el);
+});
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.service-card, .work, .plan, .testi, .step, .faq__item').forEach((el) => {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+    el.style.transition = 'none';
+  });
+}
+  </script>
+</body>
+</html>
