@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio Krak — Agence de création de sites web</title>
-  <meta name="description" content="Studio Krak crée des sites web qui claquent : sites vitrines, e-commerce, refontes et SEO. Un design qui croustille, une conversion qui décolle." />
+  <title>Avero Web — Agence de création de sites web</title>
+  <meta name="description" content="Avero Web crée des sites web qui claquent : sites vitrines, e-commerce, refontes et SEO. Un design qui marque, une conversion qui décolle." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
   <style>
 /* ==========================================================
-   STUDIO KRAK — Feuille de style
+   AVERO WEB — Feuille de style
    ========================================================== */
 
 :root {
@@ -390,6 +390,198 @@ h1, h2, h3, h4 {
 .pricing__note { text-align: center; margin-top: 40px; font-size: 15px; color: var(--ink-2); }
 .pricing__note a { font-weight: 700; border-bottom: 2px solid var(--coral); padding-bottom: 2px; }
 
+/* PROMO */
+.promo-banner {
+  position: relative;
+  background: var(--coral);
+  color: var(--cream);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 22px 32px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+}
+.promo-banner__badge {
+  flex-shrink: 0;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  transform: rotate(-8deg);
+  box-shadow: 3px 3px 0 var(--ink);
+  line-height: 1;
+}
+.promo-banner__text { display: flex; flex-direction: column; gap: 4px; z-index: 1; }
+.promo-banner__text strong {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: -0.01em;
+  color: var(--cream);
+}
+.promo-banner__text span { font-size: 15.5px; opacity: .95; }
+.promo-banner__text em {
+  font-style: normal;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 1px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.promo-banner__spark {
+  position: absolute;
+  width: 40px; height: 40px;
+  animation: spin 10s linear infinite;
+  opacity: .55;
+}
+.promo-banner__spark--l { top: -14px; left: 20%; }
+.promo-banner__spark--r { bottom: -14px; right: 15%; animation-direction: reverse; }
+
+.plan__promo {
+  position: absolute;
+  top: -18px; left: -14px;
+  background: var(--coral);
+  color: var(--cream);
+  border: 2.5px solid var(--ink);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 16px;
+  letter-spacing: .04em;
+  transform: rotate(-10deg);
+  z-index: 3;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.plan--featured .plan__promo { background: var(--yellow); color: var(--ink); }
+
+.plan__price-values { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.plan__price-old {
+  font-size: 15px;
+  opacity: .55;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--coral);
+  font-weight: 600;
+}
+.plan--featured .plan__price-old { color: rgba(245,239,228,.55); text-decoration-color: var(--yellow); }
+.plan__price strong { color: var(--coral); }
+.plan--featured .plan__price strong { color: var(--yellow); }
+
+@media (max-width: 640px) {
+  .promo-banner { flex-direction: column; text-align: center; padding: 24px 20px; }
+  .promo-banner__badge { width: 70px; height: 70px; font-size: 18px; }
+}
+
+/* AFTERCARE (après-livraison) */
+.aftercare { background: var(--ink); color: var(--cream); }
+.aftercare .section__head { max-width: none; }
+.aftercare__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.aftercare-card {
+  position: relative;
+  background: #241d18;
+  border: 2.5px solid var(--cream);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  transition: transform .3s var(--easing), box-shadow .3s var(--easing);
+}
+.aftercare-card:hover {
+  transform: translate(-4px,-4px);
+  box-shadow: 8px 8px 0 var(--yellow);
+}
+.aftercare-card--featured {
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--coral);
+  box-shadow: 6px 6px 0 var(--coral);
+}
+.aftercare-card--featured:hover { box-shadow: 10px 10px 0 var(--coral); }
+
+.aftercare-card__tag {
+  position: absolute;
+  top: -14px; right: 24px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2.5px solid var(--ink);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.aftercare-card__tag--yellow {
+  background: var(--coral);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.aftercare-card__icon { width: 60px; height: 60px; margin-bottom: 22px; }
+.aftercare-card h3 {
+  font-size: clamp(22px, 2.5vw, 28px);
+  color: inherit;
+  line-height: 1.05;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.aftercare-card--featured h3 { color: var(--ink); }
+.aftercare-card__free {
+  color: var(--yellow);
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 700;
+}
+.aftercare-card__price {
+  color: var(--coral);
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 700;
+}
+.aftercare-card p {
+  font-size: 15.5px;
+  opacity: .85;
+  margin-bottom: 20px;
+}
+.aftercare-card ul {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 24px;
+  border-top: 1.5px dashed currentColor;
+  padding-top: 20px;
+  opacity: .9;
+}
+.aftercare-card ul li {
+  padding-left: 24px;
+  position: relative;
+  font-size: 14.5px;
+}
+.aftercare-card ul li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 4px;
+  width: 14px; height: 14px;
+  background: var(--yellow);
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+.aftercare-card--featured ul li::before { background: var(--coral); border-color: var(--ink); }
+
+@media (max-width: 900px) {
+  .aftercare__grid { grid-template-columns: 1fr; }
+}
+
 /* TÉMOIGNAGES */
 .testimonials { background: var(--beige); }
 .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -540,11 +732,11 @@ h1, h2, h3, h4 {
   <!-- ============ NAV ============ -->
   <header class="nav">
     <div class="container nav__inner">
-      <a href="#" class="logo" aria-label="Studio Krak">
+      <a href="#" class="logo" aria-label="Avero Web">
         <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
           <path d="M20 2 L24 14 L37 14 L27 22 L31 34 L20 27 L9 34 L13 22 L3 14 L16 14 Z" fill="#FFC93C" stroke="#1a1410" stroke-width="2.2" stroke-linejoin="round"/>
         </svg>
-        <span>STUDIO<em>KRAK</em></span>
+        <span>AVERO<em>WEB</em></span>
       </a>
       <nav class="nav__links" aria-label="Menu principal">
         <a href="#services">Services</a>
@@ -588,7 +780,7 @@ h1, h2, h3, h4 {
       </h1>
 
       <p class="hero__lede">
-        Studio Krak, c'est une agence française qui conçoit des sites vitrines,
+        Avero Web, c'est une agence française qui conçoit des sites vitrines,
         des e-commerces et des refontes taillées pour vos objectifs&nbsp;: design
         soigné, code propre, résultats mesurables.
       </p>
@@ -618,7 +810,7 @@ h1, h2, h3, h4 {
           <span>NEW</span>
           <em>2026</em>
         </div>
-        <div class="chip__title">SITE<br/>KROUSTI</div>
+        <div class="chip__title">SITE<br/>AVERO</div>
         <div class="chip__tag">EDITION LIMITÉE</div>
         <svg class="chip__blob" viewBox="0 0 200 200"><path fill="#1a1410" d="M45.6,-58.2C58.8,-49.2,68.6,-33.9,71.8,-17.4C75,-0.8,71.6,17.1,62.6,31.2C53.6,45.3,39.1,55.6,22.6,63.1C6,70.6,-12.7,75.4,-28.9,70.2C-45.2,65.1,-59,50.1,-66.5,32.6C-74,15.2,-75.2,-4.7,-69.4,-21.7C-63.6,-38.7,-50.8,-52.7,-36,-61.3C-21.2,-70,-4.4,-73.2,10.9,-72C26.2,-70.8,32.4,-67.1,45.6,-58.2Z" transform="translate(100 100)"/></svg>
       </div>
@@ -817,6 +1009,17 @@ h1, h2, h3, h4 {
           </div>
         </a>
 
+        <a href="https://www.lerelaisadmessaj.fr/" class="work work--5" target="_blank" rel="noopener noreferrer">
+          <div class="work__img" style="--bg:#F5EFE4">
+            <img src="assets/portfolio/lerelaisadmessaj.jpg" alt="Le Relais ADMessaj — Restaurant à Montrozier" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="work__meta">
+            <span class="work__tag">Site vitrine</span>
+            <h3>Le&nbsp;Relais&nbsp;ADMessaj</h3>
+            <p>Site vitrine pour un restaurant &amp; relais routier — menu, galerie et réservation en ligne.</p>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
@@ -829,7 +1032,7 @@ h1, h2, h3, h4 {
     <div class="container">
       <header class="section__head">
         <span class="eyebrow"><span class="eyebrow__dot" style="background:#2E7D5B"></span> Notre process</span>
-        <h2 class="section__title">Une méthode <span class="text-italic">bien croustillante,</span><br/>de la première idée au go-live.</h2>
+        <h2 class="section__title">Une méthode <span class="text-italic">bien rodée,</span><br/>de la première idée au go-live.</h2>
       </header>
 
       <ol class="steps">
@@ -860,21 +1063,37 @@ h1, h2, h3, h4 {
   <!-- ============ TARIFS ============ -->
   <section id="tarifs" class="section pricing">
     <div class="container">
+
+      <!-- BANNIÈRE PROMO -->
+      <div class="promo-banner" role="note">
+        <svg class="promo-banner__spark promo-banner__spark--l" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
+        <svg class="promo-banner__spark promo-banner__spark--r" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
+        <div class="promo-banner__badge">-25%</div>
+        <div class="promo-banner__text">
+          <strong>On fête nos 120 clients !</strong>
+          <span>Toutes les formules à <em>-25 %</em> jusqu'à la fin du mois.</span>
+        </div>
+      </div>
+
       <header class="section__head">
-        <span class="eyebrow"><span class="eyebrow__dot" style="background:#FF5A36"></span> Nos formules</span>
-        <h2 class="section__title">Des tarifs clairs,<br/><span class="text-italic">sans mauvaises surprises.</span></h2>
+        <span class="eyebrow"><span class="eyebrow__dot" style="background:#FF5A36"></span> Nos formules · Promo -25%</span>
+        <h2 class="section__title">Des tarifs clairs,<br/><span class="text-italic">et cassés pour l'occasion.</span></h2>
       </header>
 
       <div class="plans">
 
         <article class="plan">
+          <div class="plan__promo">-25%</div>
           <header class="plan__head">
             <h3>Starter</h3>
             <p>Idéal pour lancer votre présence en ligne.</p>
           </header>
           <div class="plan__price">
             <span class="plan__from">à partir de</span>
-            <strong>1&nbsp;490&nbsp;€</strong>
+            <div class="plan__price-values">
+              <s class="plan__price-old">1&nbsp;490&nbsp;€</s>
+              <strong>1&nbsp;117&nbsp;€</strong>
+            </div>
           </div>
           <ul class="plan__list">
             <li>Site vitrine 3-5 pages</li>
@@ -892,13 +1111,17 @@ h1, h2, h3, h4 {
             <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#1a1410"/></svg>
             Le + choisi
           </div>
+          <div class="plan__promo">-25%</div>
           <header class="plan__head">
             <h3>Pro</h3>
             <p>Pour les PME qui veulent frapper fort.</p>
           </header>
           <div class="plan__price">
             <span class="plan__from">à partir de</span>
-            <strong>3&nbsp;490&nbsp;€</strong>
+            <div class="plan__price-values">
+              <s class="plan__price-old">3&nbsp;490&nbsp;€</s>
+              <strong>2&nbsp;617&nbsp;€</strong>
+            </div>
           </div>
           <ul class="plan__list">
             <li>Site vitrine 8-12 pages</li>
@@ -912,13 +1135,17 @@ h1, h2, h3, h4 {
         </article>
 
         <article class="plan">
+          <div class="plan__promo">-25%</div>
           <header class="plan__head">
             <h3>E-commerce</h3>
             <p>Pour vendre en ligne, sans limites.</p>
           </header>
           <div class="plan__price">
             <span class="plan__from">à partir de</span>
-            <strong>5&nbsp;900&nbsp;€</strong>
+            <div class="plan__price-values">
+              <s class="plan__price-old">5&nbsp;900&nbsp;€</s>
+              <strong>4&nbsp;425&nbsp;€</strong>
+            </div>
           </div>
           <ul class="plan__list">
             <li>Boutique complète (Shopify/Woo)</li>
@@ -934,6 +1161,58 @@ h1, h2, h3, h4 {
       </div>
 
       <p class="pricing__note">Besoin d'un projet sur-mesure ? <a href="#contact">Parlons-en →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ APRÈS LA LIVRAISON ============ -->
+  <section class="section aftercare">
+    <div class="container">
+      <header class="section__head section__head--center">
+        <span class="eyebrow" style="background:#1a1410; color:var(--cream); border-color:var(--yellow)"><span class="eyebrow__dot" style="background:var(--yellow)"></span> Après le lancement</span>
+        <h2 class="section__title" style="color:var(--cream)">On ne vous <span class="text-italic" style="color:var(--yellow)">lâche pas</span> après le go-live.</h2>
+      </header>
+
+      <div class="aftercare__grid">
+
+        <article class="aftercare-card">
+          <div class="aftercare-card__tag">Inclus</div>
+          <svg class="aftercare-card__icon" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="#FFC93C" stroke-width="4"/>
+            <path d="M20 32 L28 40 L46 22" stroke="#FFC93C" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>30 jours de suivi<br/><span class="aftercare-card__free">offerts</span></h3>
+          <p>Après la mise en ligne, on reste dispo un mois complet pour corriger, ajuster, former, répondre à toutes vos questions. Sans surcoût.</p>
+          <ul>
+            <li>Corrections rapides &amp; bugs</li>
+            <li>Ajustements de contenu</li>
+            <li>Formation admin en visio</li>
+            <li>Réponses illimitées par email</li>
+          </ul>
+        </article>
+
+        <article class="aftercare-card aftercare-card--featured">
+          <div class="aftercare-card__tag aftercare-card__tag--yellow">Sur devis</div>
+          <svg class="aftercare-card__icon" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M18 12 L46 12 L52 32 L46 52 L18 52 L12 32 Z" fill="none" stroke="#FF5A36" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="32" cy="32" r="5" fill="#FF5A36"/>
+            <path d="M32 22 L32 14 M32 42 L32 50 M42 32 L50 32 M14 32 L22 32" stroke="#FF5A36" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <h3>Forfaits maintenance<br/><span class="aftercare-card__price">dès&nbsp;49&nbsp;€ /&nbsp;mois</span></h3>
+          <p>Ensuite, on prend soin de votre site sur la durée avec un forfait mensuel simple, sans engagement.</p>
+          <ul>
+            <li>Hébergement</li>
+            <li>Maintenance</li>
+            <li>Nom de domaine</li>
+            <li>Sauvegarde</li>
+            <li>Mises à jour techniques &amp; sécurité</li>
+          </ul>
+          <a href="#contact" class="btn btn--yellow" style="margin-top:8px">
+            Demander un devis
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </article>
+
+      </div>
     </div>
   </section>
 
@@ -1045,7 +1324,7 @@ h1, h2, h3, h4 {
       </form>
 
       <div class="cta__alt">
-        Ou écrivez-nous à <a href="mailto:hello@studiokrak.fr">hello@studiokrak.fr</a>
+        Ou écrivez-nous à <a href="mailto:hello@averoweb.fr">hello@averoweb.fr</a>
       </div>
     </div>
   </section>
@@ -1058,9 +1337,9 @@ h1, h2, h3, h4 {
           <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
             <path d="M20 2 L24 14 L37 14 L27 22 L31 34 L20 27 L9 34 L13 22 L3 14 L16 14 Z" fill="#FFC93C" stroke="#F5EFE4" stroke-width="2.2" stroke-linejoin="round"/>
           </svg>
-          <span>STUDIO<em>KRAK</em></span>
+          <span>AVERO<em>WEB</em></span>
         </a>
-        <p>Studio de création de sites web. Basé à Lyon, on bosse pour la France entière.</p>
+        <p>Agence de création de sites web. Basée à Lyon, on bosse pour la France entière.</p>
       </div>
 
       <div class="footer__cols">
@@ -1080,7 +1359,7 @@ h1, h2, h3, h4 {
         </div>
         <div>
           <h4>Contact</h4>
-          <a href="mailto:hello@studiokrak.fr">hello@studiokrak.fr</a>
+          <a href="mailto:hello@averoweb.fr">hello@averoweb.fr</a>
           <a href="tel:+33400000000">+33 4 00 00 00 00</a>
           <a href="#">Lyon, France</a>
         </div>
@@ -1088,7 +1367,7 @@ h1, h2, h3, h4 {
     </div>
     <div class="footer__bar">
       <div class="container footer__barinner">
-        <span>© 2026 Studio Krak — Tous droits réservés.</span>
+        <span>© 2026 Avero Web — Tous droits réservés.</span>
         <span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
       </div>
     </div>
