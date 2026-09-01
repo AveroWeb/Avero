@@ -248,7 +248,7 @@
      ENDPOINT reste dispo pour un relais JSON générique
      (Formspree…) si besoin un jour.
   ─────────────────────────────────────────────────────── */
-  var WEB3FORMS_KEY = 'REMPLACER-PAR-LA-CLE-WEB3FORMS';
+  var WEB3FORMS_KEY = 'e70f59b2-50e9-422c-9c1f-5b0afbebb8b6';
   var ENDPOINT = null;
   var DEST = 'contact@averoweb.fr';
 
