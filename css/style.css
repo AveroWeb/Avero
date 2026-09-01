@@ -429,6 +429,9 @@ body.lock{overflow:hidden}
 /* réalisation reliée à un vrai site en ligne */
 a.mock{display:block;color:inherit;text-decoration:none}
 a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
+/* fenêtre navigateur avec capture réelle du site */
+.mock--shot{background:#fff}
+.mock__shot{display:block;width:100%;height:auto;aspect-ratio:1200/800;object-fit:cover;object-position:top center}
 .wk__lnk{color:inherit;text-decoration:none}
 .wk__lnk::after{content:"\00a0↗";color:var(--blue)}
 .wk__lnk:hover{text-decoration:underline;text-underline-offset:.1em}
