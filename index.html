@@ -40,7 +40,7 @@
 <header class="hdr" id="hdr">
   <nav class="hdr__pill hdr__pill--l" aria-label="Navigation principale">
     <a href="#services">Services</a>
-    <a href="#realisations">Réalisations</a>
+    <!-- Réalisations masquées temporairement <a href="#realisations">Réalisations</a> -->
     <a href="#tarifs">Tarifs</a>
   </nav>
 
@@ -68,7 +68,7 @@
 <div class="menu" id="menu" hidden>
   <nav class="menu__nav" aria-label="Menu">
     <a href="#services">Services</a>
-    <a href="#realisations">Réalisations</a>
+    <!-- Réalisations masquées temporairement <a href="#realisations">Réalisations</a> -->
     <a href="#methode">Méthode</a>
     <a href="#engagement">Transparence</a>
     <a href="#tarifs">Tarifs</a>
@@ -103,7 +103,7 @@
 
     <div class="hero__cta">
       <a class="btn btn--amber btn--lg" href="#contact"><span>Je veux un devis</span></a>
-      <a class="btn btn--out btn--lg" href="#realisations"><span>Voir nos sites</span></a>
+      <!-- Bouton « Voir nos sites » (href="#realisations") retiré tant que les Réalisations sont masquées. -->
       <span class="hand hand--cta">gratuit, et sans blabla
         <svg viewBox="0 0 70 50" aria-hidden="true"><path d="M64 6 C40 2 12 12 8 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M4 22 L8 35 L20 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
@@ -237,7 +237,8 @@
 </section>
 
 <!-- ═══════════ RÉALISATIONS — carrousel épinglé ═══════════ -->
-<section class="works" id="realisations">
+<!-- Section masquée temporairement : retirer l'attribut « hidden » pour la réafficher. -->
+<section class="works" id="realisations" hidden>
   <div class="works__pin">
     <header class="head head--tight">
       <h2 class="ttl rv"><span class="tick tick--l"></span>Nos réalisations<span class="tick tick--r"></span></h2>
@@ -705,7 +706,7 @@
 
       <div class="foot__cols">
         <div><h4>Services</h4><a href="#services">Sites vitrines</a><a href="#services">Boutiques en ligne</a><a href="#services">Référencement local</a><a href="#services">Identité visuelle</a><a href="#services">Maintenance</a></div>
-        <div><h4>Agence</h4><a href="#methode">Méthode</a><a href="#realisations">Réalisations</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+        <div><h4>Agence</h4><a href="#methode">Méthode</a><!-- <a href="#realisations">Réalisations</a> masqué temporairement --><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
         <div><h4>Secteur</h4><a href="#contact">Rodez</a><a href="#contact">Millau</a><a href="#contact">Villefranche-de-Rouergue</a><a href="#contact">Decazeville</a><a href="#contact">Espalion</a></div>
       </div>
 
