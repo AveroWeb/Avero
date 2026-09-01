@@ -1,1539 +1,591 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Avero Web — Agence création site web Aveyron | Rodez, Millau</title>
-  <meta name="description" content="Agence web basée en Aveyron. Création de sites web professionnels pour PME, commerces et artisans de Rodez, Millau et toute la région. Design sur mesure, SEO local, livraison 21 jours." />
-  <meta name="keywords" content="agence web aveyron, création site aveyron, site web rodez, site web millau, agence web pme aveyron, refonte site web, seo aveyron" />
-  <meta name="geo.region" content="FR-12" />
-  <meta name="geo.placename" content="Aveyron, France" />
-  <meta name="ICBM" content="44.3622,-2.5703" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Avero Web — Création de sites internet en Aveyron</title>
+<meta name="description" content="Studio web installé à Rodez. On conçoit et on développe des sites sur mesure pour les artisans, commerçants et PME de l'Aveyron. Rapides, trouvables sur Google, faits pour ramener des clients.">
+<meta name="theme-color" content="#0A1730">
+<link rel="canonical" href="https://averoweb.fr/">
 
-  <!-- Open Graph pour partage social -->
-  <meta property="og:title" content="Avero Web — Agence création site web Aveyron" />
-  <meta property="og:description" content="Agence web créant des sites professionnels pour PME et commerces en Aveyron. Livraison 21 jours, prix fixe." />
-  <meta property="og:type" content="business.business" />
-  <meta property="og:url" content="https://averoweb.fr" />
-  <meta property="business.contact_data:street_address" content="Rodez, Aveyron" />
-  <meta property="business.contact_data:locality" content="Rodez" />
-  <meta property="business.contact_data:region" content="Aveyron" />
-  <meta property="business.contact_data:postal_code" content="12000" />
-  <meta property="business.contact_data:country_name" content="France" />
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Avero Web">
+<meta property="og:title" content="Avero Web — Création de sites internet en Aveyron">
+<meta property="og:description" content="Des sites sur mesure pour les entreprises de l'Aveyron. Design, développement, référencement local.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
-  <style>
-/* ==========================================================
-   AVERO WEB — Feuille de style
-   ========================================================== */
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23F7F0E1'/%3E%3Cpath d='M12 86 L44 17 L62 52' fill='none' stroke='%230A1730' stroke-width='15' stroke-linejoin='round'/%3E%3Cpath d='M38 48 L50 76 L61 49 L71 76 L87 41' fill='none' stroke='%232E6BFF' stroke-width='14' stroke-linejoin='round'/%3E%3C/svg%3E">
 
-:root {
-  --cream:       #F5EFE4;
-  --cream-2:     #EDE4D2;
-  --ink:         #1a1410;
-  --ink-2:       #2a221c;
-  --yellow:      #FFC93C;
-  --yellow-2:    #FFB800;
-  --coral:       #FF5A36;
-  --green:       #2E7D5B;
-  --beige:       #E8DDD0;
-  --white:       #ffffff;
-  --shadow-hard: 8px 8px 0 var(--ink);
-  --shadow-soft: 0 20px 40px -12px rgba(26,20,16,0.18);
-  --radius:      22px;
-  --radius-lg:   36px;
-  --container:   1240px;
-  --easing:      cubic-bezier(.2,.9,.25,1);
-}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;800;900&family=Figtree:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 
-*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body {
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.55;
-  font-size: 17px;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-img, svg { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-ul, ol { list-style: none; }
-button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
-
-.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
-
-h1, h2, h3, h4 {
-  font-family: 'Archivo Black', 'Inter', sans-serif;
-  line-height: 1.02;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  font-weight: 900;
-}
-.text-italic {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.word-outline {
-  color: transparent;
-  -webkit-text-stroke: 3px var(--ink);
-}
-
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 13px; font-weight: 700; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--ink);
-  padding: 8px 14px; border: 2px solid var(--ink);
-  border-radius: 999px; background: var(--cream);
-}
-.eyebrow__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--coral); }
-
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  gap: 10px; padding: 15px 26px; border-radius: 999px;
-  font-weight: 700; font-size: 15px;
-  border: 2.5px solid var(--ink);
-  transition: transform .18s var(--easing), box-shadow .18s var(--easing), background .2s;
-  white-space: nowrap; cursor: pointer;
-}
-.btn:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
-.btn:active { transform: translate(0,0); box-shadow: 0 0 0 var(--ink); }
-.btn--yellow { background: var(--yellow); color: var(--ink); }
-.btn--yellow:hover { background: var(--yellow-2); }
-.btn--dark { background: var(--ink); color: var(--cream); }
-.btn--dark:hover { background: #000; }
-.btn--ghost { background: transparent; color: var(--ink); }
-.btn--ghost:hover { background: var(--ink); color: var(--cream); }
-.btn--block { width: 100%; }
-
-/* NAV */
-.nav { position: sticky; top: 16px; z-index: 50; padding: 0 16px; }
-.nav__inner {
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
-  background: var(--cream); border: 2.5px solid var(--ink);
-  border-radius: 999px; padding: 10px 12px 10px 22px;
-  box-shadow: 4px 4px 0 var(--ink);
-}
-.logo {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: 'Archivo Black', sans-serif; font-size: 20px; letter-spacing: -0.01em;
-}
-.logo em { font-style: normal; color: var(--coral); margin-left: 2px; }
-.nav__links { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
-.nav__links a { position: relative; }
-.nav__links a::after {
-  content: ''; position: absolute; left: 0; bottom: -6px;
-  width: 0; height: 3px; background: var(--coral); border-radius: 2px;
-  transition: width .25s var(--easing);
-}
-.nav__links a:hover::after { width: 100%; }
-.nav__cta { padding: 12px 20px; font-size: 14px; }
-.nav__burger {
-  display: none; width: 44px; height: 44px;
-  border: 2px solid var(--ink); border-radius: 50%; padding: 0;
-  align-items: center; justify-content: center; flex-direction: column; gap: 4px;
-}
-.nav__burger span {
-  width: 18px; height: 2.5px; background: var(--ink);
-  border-radius: 2px; transition: transform .25s, opacity .25s;
-}
-.nav__burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.nav__burger.is-open span:nth-child(2) { opacity: 0; }
-.nav__burger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-/* HERO */
-.hero { position: relative; padding: 80px 0 60px; overflow: hidden; }
-.hero__inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
-.hero__badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--white); border: 2px solid var(--ink);
-  border-radius: 999px; padding: 8px 18px; font-weight: 600;
-  font-size: 14px; margin-bottom: 28px; box-shadow: 3px 3px 0 var(--ink);
-}
-.hero__badge-dot {
-  width: 10px; height: 10px; background: var(--green);
-  border-radius: 50%; animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100% { transform: scale(1); opacity: 1; }
-  50%     { transform: scale(1.3); opacity: 0.6; }
-}
-.hero__title {
-  font-size: clamp(44px, 8vw, 96px);
-  letter-spacing: -0.03em; margin-bottom: 24px; position: relative;
-}
-.word-underlined { position: relative; display: inline-block; }
-.hero__underline {
-  position: absolute; left: -4%; right: -4%; bottom: -0.18em;
-  width: 108%; height: 0.22em; pointer-events: none;
-}
-.hero__and {
-  display: block; font-family: 'Fraunces', serif; font-style: italic;
-  font-weight: 700; font-size: 0.55em; margin-top: 24px; color: var(--ink-2);
-}
-.hero__lede {
-  font-size: clamp(16px, 1.5vw, 19px); color: var(--ink-2);
-  max-width: 640px; margin: 8px auto 36px;
-}
-.hero__ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
-.hero__proof {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-  max-width: 780px; margin: 0 auto; padding: 22px 28px;
-  background: var(--white); border: 2.5px solid var(--ink);
-  border-radius: var(--radius); box-shadow: 5px 5px 0 var(--ink);
-}
-.hero__proof li {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  border-right: 1.5px dashed rgba(26,20,16,.2);
-}
-.hero__proof li:last-child { border-right: 0; }
-.hero__proof strong { font-family: 'Archivo Black', sans-serif; font-size: clamp(22px, 3vw, 30px); }
-.hero__proof span {
-  font-size: 12px; color: var(--ink-2); text-transform: uppercase;
-  letter-spacing: .05em; font-weight: 500;
-}
-
-.sparkle { position: absolute; width: 44px; height: 44px; z-index: 1; animation: spin 12s linear infinite; }
-.sparkle--1 { top: 12%; left: 4%;  width: 54px; height: 54px; }
-.sparkle--2 { top: 8%;  right: 5%; width: 46px; height: 46px; animation-duration: 9s; animation-direction: reverse; }
-.sparkle--3 { bottom: 8%; left: 8%; width: 34px; height: 34px; animation-duration: 15s; }
-.sparkle--p1 { top: 5%; right: 6%; width: 70px; height: 70px; }
-.sparkle--cta1 { top: 10%; left: 6%;  width: 56px; height: 56px; }
-.sparkle--cta2 { bottom: 15%; right: 8%; width: 72px; height: 72px; animation-direction: reverse; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.hero__card {
-  position: absolute; right: -60px; top: 30%; width: 260px;
-  transform: rotate(12deg); z-index: 0; opacity: 0.85; pointer-events: none;
-}
-.chip {
-  position: relative; background: var(--coral); border: 3px solid var(--ink);
-  border-radius: 28px; padding: 30px 24px; box-shadow: 8px 8px 0 var(--ink);
-  min-height: 320px;
-}
-.chip__top {
-  display: flex; justify-content: space-between; align-items: center;
-  color: var(--ink); font-family: 'Archivo Black', sans-serif;
-  font-size: 14px; letter-spacing: .1em;
-}
-.chip__top em {
-  background: var(--ink); color: var(--yellow); padding: 3px 10px;
-  border-radius: 999px; font-style: normal;
-}
-.chip__title {
-  font-family: 'Archivo Black', sans-serif; font-size: 44px; line-height: .95;
-  color: var(--cream); margin-top: 40px; letter-spacing: -0.03em;
-  position: relative; z-index: 2;
-}
-.chip__tag {
-  position: absolute; bottom: 24px; left: 24px;
-  background: var(--yellow); color: var(--ink); padding: 6px 12px;
-  border-radius: 999px; font-weight: 700; font-size: 12px;
-  letter-spacing: .1em; border: 2px solid var(--ink);
-}
-.chip__blob { position: absolute; inset: 0; opacity: 0.18; z-index: 1; }
-
-/* MARQUEE */
-.marquee {
-  overflow: hidden; background: var(--ink); color: var(--cream);
-  padding: 18px 0; border-top: 2.5px solid var(--ink);
-  border-bottom: 2.5px solid var(--ink);
-  transform: rotate(-2deg); margin: 20px -20px;
-}
-.marquee__track {
-  display: flex; gap: 32px; align-items: center; white-space: nowrap;
-  font-family: 'Archivo Black', sans-serif; font-size: 22px;
-  letter-spacing: 0.02em; animation: scroll-x 30s linear infinite; will-change: transform;
-}
-.marquee__track em { font-style: normal; color: var(--yellow); font-size: 26px; }
-@keyframes scroll-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* SECTIONS */
-.section { padding: 100px 0; position: relative; }
-.section__head { margin-bottom: 60px; max-width: 780px; }
-.section__head--center { margin-left: auto; margin-right: auto; text-align: center; }
-.section__head--split {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 32px; max-width: none; flex-wrap: wrap;
-}
-.section__title {
-  font-size: clamp(34px, 5.5vw, 64px); margin-top: 18px; letter-spacing: -0.02em;
-}
-
-/* SERVICES */
-.services__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.service-card {
-  position: relative; background: var(--white);
-  border: 2.5px solid var(--ink); border-radius: var(--radius);
-  padding: 36px;
-  transition: transform .3s var(--easing), box-shadow .3s var(--easing);
-  overflow: hidden;
-}
-.service-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--ink); }
-.service-card--yellow { background: var(--yellow); }
-.service-card--coral  { background: var(--coral); color: var(--cream); }
-.service-card--coral h3, .service-card--coral p, .service-card--coral li, .service-card--coral .service-card__link { color: var(--cream); }
-.service-card--green  { background: var(--green); color: var(--cream); }
-.service-card--green h3, .service-card--green p, .service-card--green li, .service-card--green .service-card__link { color: var(--cream); }
-.service-card--cream  { background: var(--cream-2); }
-.service-card__badge {
-  position: absolute; top: 24px; right: 28px;
-  font-family: 'Archivo Black', sans-serif; font-size: 42px; opacity: 0.15;
-}
-.service-card__icon { width: 72px; height: 72px; margin-bottom: 20px; }
-.service-card h3 { font-size: 28px; margin-bottom: 12px; letter-spacing: -0.02em; }
-.service-card p { margin-bottom: 20px; font-size: 15.5px; opacity: .85; }
-.service-card ul {
-  border-top: 1.5px dashed currentColor; padding-top: 16px;
-  margin-bottom: 24px; display: grid; gap: 8px; opacity: .8;
-}
-.service-card ul li { font-size: 14.5px; padding-left: 18px; position: relative; }
-.service-card ul li::before {
-  content: ''; position: absolute; left: 0; top: 8px;
-  width: 8px; height: 8px; background: currentColor; border-radius: 50%;
-}
-.service-card__link {
-  font-weight: 700; font-size: 15px;
-  border-bottom: 2px solid currentColor; padding-bottom: 2px;
-  transition: transform .2s; display: inline-block;
-}
-.service-card:hover .service-card__link { transform: translateX(4px); }
-
-/* RÉALISATIONS */
-.works { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
-.work {
-  border-radius: var(--radius); overflow: hidden; border: 2.5px solid var(--ink);
-  background: var(--white); transition: transform .3s var(--easing), box-shadow .3s var(--easing);
-  display: block;
-}
-.work:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--ink); }
-.work__img {
-  aspect-ratio: 16/10; background: var(--bg, var(--cream-2));
-  padding: 24px; display: flex; align-items: center; justify-content: center;
-  border-bottom: 2.5px solid var(--ink);
-}
-.work__img svg { max-width: 100%; height: auto; }
-.work__meta { padding: 24px 28px 28px; }
-.work__tag {
-  display: inline-block; background: var(--ink); color: var(--cream);
-  padding: 4px 12px; border-radius: 999px; font-size: 12px;
-  font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.work__meta h3 { font-size: 24px; margin-bottom: 8px; }
-.work__meta p { font-size: 15px; color: var(--ink-2); }
-
-/* PROCESS */
-.process { background: var(--yellow); }
-.process .eyebrow { background: var(--yellow); }
-.steps {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 20px; counter-reset: steps;
-}
-.step {
-  background: var(--cream); border: 2.5px solid var(--ink);
-  border-radius: var(--radius); padding: 28px;
-  transition: transform .3s var(--easing);
-}
-.step:nth-child(2) { transform: translateY(20px); }
-.step:nth-child(3) { transform: translateY(40px); }
-.step:nth-child(4) { transform: translateY(60px); }
-.step:hover { transform: translateY(-4px) !important; }
-.step__num {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 54px; height: 54px; background: var(--ink); color: var(--yellow);
-  border-radius: 50%; font-family: 'Archivo Black', sans-serif;
-  font-size: 20px; margin-bottom: 18px;
-}
-.step h3 { font-size: 22px; margin-bottom: 8px; }
-.step p { font-size: 14.5px; color: var(--ink-2); }
-
-/* TARIFS */
-.pricing { background: var(--cream); }
-.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
-.plan {
-  position: relative; background: var(--white);
-  border: 2.5px solid var(--ink); border-radius: var(--radius);
-  padding: 36px 32px;
-  transition: transform .3s var(--easing), box-shadow .3s var(--easing);
-}
-.plan:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--ink); }
-.plan--featured {
-  background: var(--ink); color: var(--cream);
-  transform: scale(1.03); box-shadow: 6px 6px 0 var(--coral);
-}
-.plan--featured h3, .plan--featured .plan__from, .plan--featured .plan__list { color: var(--cream); }
-.plan--featured:hover { transform: scale(1.03) translate(-3px, -3px); }
-.plan__ribbon {
-  position: absolute; top: -18px; right: 24px;
-  background: var(--yellow); color: var(--ink);
-  border: 2.5px solid var(--ink); padding: 8px 16px;
-  border-radius: 999px; font-weight: 800; font-size: 13px;
-  letter-spacing: .05em; display: inline-flex; align-items: center; gap: 8px;
-}
-.plan__ribbon svg { width: 20px; height: 20px; }
-.plan__head h3 { font-size: 26px; margin-bottom: 6px; }
-.plan__head p { font-size: 14.5px; color: var(--ink-2); margin-bottom: 24px; }
-.plan--featured .plan__head p { color: rgba(245,239,228,.7); }
-.plan__price {
-  display: flex; align-items: baseline; gap: 10px;
-  margin-bottom: 28px; padding-bottom: 24px;
-  border-bottom: 1.5px dashed rgba(26,20,16,.2);
-}
-.plan--featured .plan__price { border-bottom-color: rgba(245,239,228,.2); }
-.plan__from { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-2); }
-.plan--featured .plan__from { color: rgba(245,239,228,.6); }
-.plan__price strong { font-family: 'Archivo Black', sans-serif; font-size: 42px; letter-spacing: -0.02em; }
-.plan__list { display: grid; gap: 10px; margin-bottom: 28px; }
-.plan__list li { padding-left: 28px; position: relative; font-size: 15px; }
-.plan__list li::before {
-  content: ''; position: absolute; left: 0; top: 6px;
-  width: 18px; height: 18px; background: var(--yellow);
-  border-radius: 50%; border: 2px solid var(--ink);
-}
-.plan__list li::after {
-  content: ''; position: absolute; left: 5px; top: 11px;
-  width: 8px; height: 4px;
-  border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
-  transform: rotate(-45deg);
-}
-.pricing__note { text-align: center; margin-top: 40px; font-size: 15px; color: var(--ink-2); }
-.pricing__note a { font-weight: 700; border-bottom: 2px solid var(--coral); padding-bottom: 2px; }
-
-/* PROMO */
-.promo-banner {
-  position: relative;
-  background: var(--coral);
-  color: var(--cream);
-  border: 2.5px solid var(--ink);
-  border-radius: var(--radius);
-  box-shadow: 6px 6px 0 var(--ink);
-  padding: 22px 32px;
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  overflow: hidden;
-}
-.promo-banner__badge {
-  flex-shrink: 0;
-  background: var(--yellow);
-  color: var(--ink);
-  border: 2.5px solid var(--ink);
-  border-radius: 50%;
-  width: 96px;
-  height: 96px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 20px;
-  letter-spacing: -0.03em;
-  transform: rotate(-8deg);
-  box-shadow: 3px 3px 0 var(--ink);
-  line-height: 1;
-}
-.promo-banner__text { display: flex; flex-direction: column; gap: 4px; z-index: 1; }
-.promo-banner__text strong {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(20px, 2.4vw, 28px);
-  letter-spacing: -0.01em;
-  color: var(--cream);
-}
-.promo-banner__text span { font-size: 15.5px; opacity: .95; }
-.promo-banner__text em {
-  font-style: normal;
-  background: var(--yellow);
-  color: var(--ink);
-  padding: 1px 8px;
-  border-radius: 6px;
-  font-weight: 700;
-}
-.promo-banner__spark {
-  position: absolute;
-  width: 40px; height: 40px;
-  animation: spin 10s linear infinite;
-  opacity: .55;
-}
-.promo-banner__spark--l { top: -14px; left: 20%; }
-.promo-banner__spark--r { bottom: -14px; right: 15%; animation-direction: reverse; }
-
-.plan__promo {
-  position: absolute;
-  top: -18px; left: -14px;
-  background: var(--coral);
-  color: var(--cream);
-  border: 2.5px solid var(--ink);
-  padding: 10px 16px;
-  border-radius: 999px;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 16px;
-  letter-spacing: .04em;
-  transform: rotate(-10deg);
-  z-index: 3;
-  box-shadow: 3px 3px 0 var(--ink);
-}
-.plan--featured .plan__promo { background: var(--yellow); color: var(--ink); }
-
-.plan__price-values { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-.plan__price-old {
-  font-size: 15px;
-  opacity: .55;
-  text-decoration-thickness: 2px;
-  text-decoration-color: var(--coral);
-  font-weight: 600;
-}
-.plan--featured .plan__price-old { color: rgba(245,239,228,.55); text-decoration-color: var(--yellow); }
-.plan__price strong { color: var(--coral); }
-.plan--featured .plan__price strong { color: var(--yellow); }
-
-@media (max-width: 640px) {
-  .promo-banner { flex-direction: column; text-align: center; padding: 24px 20px; }
-  .promo-banner__badge { width: 70px; height: 70px; font-size: 18px; }
-}
-
-/* AFTERCARE (après-livraison) */
-.aftercare { background: var(--ink); color: var(--cream); }
-.aftercare .section__head { max-width: none; }
-.aftercare__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-.aftercare-card {
-  position: relative;
-  background: #241d18;
-  border: 2.5px solid var(--cream);
-  border-radius: var(--radius);
-  padding: 40px 36px;
-  transition: transform .3s var(--easing), box-shadow .3s var(--easing);
-}
-.aftercare-card:hover {
-  transform: translate(-4px,-4px);
-  box-shadow: 8px 8px 0 var(--yellow);
-}
-.aftercare-card--featured {
-  background: var(--cream);
-  color: var(--ink);
-  border-color: var(--coral);
-  box-shadow: 6px 6px 0 var(--coral);
-}
-.aftercare-card--featured:hover { box-shadow: 10px 10px 0 var(--coral); }
-
-.aftercare-card__tag {
-  position: absolute;
-  top: -14px; right: 24px;
-  background: var(--yellow);
-  color: var(--ink);
-  border: 2.5px solid var(--ink);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-.aftercare-card__tag--yellow {
-  background: var(--coral);
-  color: var(--cream);
-  border-color: var(--ink);
-}
-.aftercare-card__icon { width: 60px; height: 60px; margin-bottom: 22px; }
-.aftercare-card h3 {
-  font-size: clamp(22px, 2.5vw, 28px);
-  color: inherit;
-  line-height: 1.05;
-  margin-bottom: 16px;
-  letter-spacing: -0.02em;
-}
-.aftercare-card--featured h3 { color: var(--ink); }
-.aftercare-card__free {
-  color: var(--yellow);
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 700;
-}
-.aftercare-card__price {
-  color: var(--coral);
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 700;
-}
-.aftercare-card p {
-  font-size: 15.5px;
-  opacity: .85;
-  margin-bottom: 20px;
-}
-.aftercare-card ul {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 24px;
-  border-top: 1.5px dashed currentColor;
-  padding-top: 20px;
-  opacity: .9;
-}
-.aftercare-card ul li {
-  padding-left: 24px;
-  position: relative;
-  font-size: 14.5px;
-}
-.aftercare-card ul li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 4px;
-  width: 14px; height: 14px;
-  background: var(--yellow);
-  border: 2px solid currentColor;
-  border-radius: 50%;
-}
-.aftercare-card--featured ul li::before { background: var(--coral); border-color: var(--ink); }
-
-@media (max-width: 900px) {
-  .aftercare__grid { grid-template-columns: 1fr; }
-}
-
-/* TÉMOIGNAGES */
-.testimonials { background: var(--beige); }
-.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.testi {
-  background: var(--cream); border: 2.5px solid var(--ink);
-  border-radius: var(--radius); padding: 32px;
-  transition: transform .3s var(--easing);
-}
-.testi:nth-child(2) { transform: rotate(-1deg); }
-.testi:nth-child(3) { transform: rotate(1deg); }
-.testi:hover { transform: rotate(0) translateY(-4px); }
-.testi p {
-  font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.5;
-  font-style: italic; margin-bottom: 24px;
-}
-.testi footer {
-  display: flex; align-items: center; gap: 12px;
-  padding-top: 20px; border-top: 1.5px dashed rgba(26,20,16,.2);
-}
-.testi__avatar {
-  width: 44px; height: 44px; border-radius: 50%;
-  border: 2px solid var(--ink); display: flex; align-items: center; justify-content: center;
-  font-family: 'Archivo Black', sans-serif; font-size: 18px;
-}
-.testi footer strong { display: block; font-size: 15px; }
-.testi footer span { font-size: 13px; color: var(--ink-2); }
-
-/* FAQ */
-.faq__inner { max-width: 880px; margin: 0 auto; }
-.faq__list { display: grid; gap: 14px; }
-.faq__item {
-  background: var(--white); border: 2.5px solid var(--ink);
-  border-radius: 20px; overflow: hidden; transition: transform .2s;
-}
-.faq__item[open] { background: var(--yellow); }
-.faq__item summary {
-  padding: 22px 28px; font-family: 'Archivo Black', sans-serif;
-  font-size: 18px; cursor: pointer; list-style: none;
-  display: flex; justify-content: space-between; align-items: center; gap: 20px;
-}
-.faq__item summary::-webkit-details-marker { display: none; }
-.faq__item summary::after {
-  content: '+'; font-size: 28px; font-weight: 400;
-  transition: transform .3s var(--easing); flex-shrink: 0;
-}
-.faq__item[open] summary::after { transform: rotate(45deg); }
-.faq__item p { padding: 0 28px 24px; color: var(--ink-2); font-size: 15.5px; }
-
-/* CTA */
-.cta {
-  position: relative; background: var(--coral); color: var(--cream);
-  padding: 100px 0; overflow: hidden; margin-top: 40px;
-}
-.cta__inner { max-width: 720px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
-.cta h2 {
-  font-size: clamp(40px, 6vw, 72px); color: var(--cream);
-  letter-spacing: -0.03em; margin-bottom: 20px;
-}
-.cta h2 .text-italic { color: var(--yellow); }
-.cta p { font-size: 18px; margin-bottom: 40px; opacity: .95; }
-.cta__form {
-  background: var(--cream); color: var(--ink);
-  padding: 32px; border-radius: var(--radius);
-  border: 2.5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink);
-  text-align: left;
-}
-.cta__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-.cta__form input, .cta__form textarea {
-  width: 100%; padding: 14px 18px; border: 2px solid var(--ink);
-  border-radius: 14px; background: var(--white); font: inherit;
-  color: var(--ink); outline: none; transition: box-shadow .2s;
-}
-.cta__form input:focus, .cta__form textarea:focus { box-shadow: 3px 3px 0 var(--ink); }
-.cta__form textarea { margin-bottom: 18px; resize: vertical; min-height: 80px; }
-.cta__ok {
-  margin-top: 18px; padding: 14px; background: var(--yellow);
-  border: 2px solid var(--ink); border-radius: 12px;
-  text-align: center; font-weight: 700;
-}
-.cta__alt { margin-top: 24px; font-size: 15px; opacity: .95; }
-.cta__alt a { font-weight: 700; border-bottom: 2px solid var(--yellow); padding-bottom: 2px; }
-
-/* FOOTER */
-.footer { background: var(--ink); color: var(--cream); padding: 80px 0 0; }
-.footer__inner { display: grid; grid-template-columns: 1.4fr 2fr; gap: 60px; padding-bottom: 60px; }
-.footer__brand p { margin-top: 16px; max-width: 320px; opacity: .7; font-size: 15px; }
-.logo--light em { color: var(--yellow); }
-.footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.footer__cols h4 {
-  font-family: 'Archivo Black', sans-serif; font-size: 14px;
-  color: var(--yellow); letter-spacing: .1em;
-  text-transform: uppercase; margin-bottom: 16px;
-}
-.footer__cols a {
-  display: block; padding: 6px 0; opacity: .8; font-size: 15px;
-  transition: opacity .2s, transform .2s;
-}
-.footer__cols a:hover { opacity: 1; transform: translateX(4px); color: var(--yellow); }
-.footer__bar { border-top: 1px solid rgba(245,239,228,.15); padding: 20px 0; }
-.footer__barinner {
-  display: flex; justify-content: space-between; font-size: 13.5px;
-  opacity: .7; flex-wrap: wrap; gap: 12px;
-}
-.footer__barinner a { color: inherit; }
-.footer__barinner a:hover { color: var(--yellow); opacity: 1; }
-
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-  .services__grid, .works, .plans, .testi-grid { grid-template-columns: repeat(2, 1fr); }
-  .steps { grid-template-columns: repeat(2, 1fr); }
-  .step:nth-child(2), .step:nth-child(3), .step:nth-child(4) { transform: none; }
-  .hero__card { display: none; }
-  .footer__inner { grid-template-columns: 1fr; }
-}
-@media (max-width: 720px) {
-  .nav__links, .nav__cta { display: none; }
-  .nav__burger { display: inline-flex; }
-  .nav__links.is-open {
-    display: flex; position: absolute; top: 74px; left: 16px; right: 16px;
-    flex-direction: column; background: var(--cream);
-    border: 2.5px solid var(--ink); border-radius: 20px;
-    padding: 20px 24px; box-shadow: 4px 4px 0 var(--ink);
-  }
-  .hero { padding: 40px 0 40px; }
-  .section { padding: 70px 0; }
-  .section__head { margin-bottom: 40px; }
-  .section__head--split { flex-direction: column; align-items: flex-start; }
-  .hero__proof { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .hero__proof li:nth-child(2) { border-right: 0; }
-  .hero__proof li { border-bottom: 1.5px dashed rgba(26,20,16,.2); padding-bottom: 12px; }
-  .hero__proof li:nth-last-child(-n+2) { border-bottom: 0; padding-bottom: 0; }
-  .services__grid, .works, .plans, .testi-grid, .steps { grid-template-columns: 1fr; }
-  .plan--featured { transform: none; }
-  .plan--featured:hover { transform: translate(-3px, -3px); }
-  .cta__row { grid-template-columns: 1fr; }
-  .footer__cols { grid-template-columns: repeat(2, 1fr); }
-  .marquee__track { font-size: 18px; }
-  .word-outline { -webkit-text-stroke-width: 2px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sparkle, .marquee__track, .hero__badge-dot { animation: none !important; }
-  * { transition: none !important; }
-}
-  </style>
-
-  <!-- Schema LocalBusiness pour SEO local Aveyron -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Avero Web",
-    "description": "Agence web créant des sites professionnels en Aveyron",
-    "url": "https://averoweb.fr",
-    "telephone": "+33400000000",
-    "email": "hello@averoweb.fr",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Rodez",
-      "addressRegion": "Aveyron",
-      "postalCode": "12000",
-      "addressCountry": "FR"
-    },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Rodez"
-      },
-      {
-        "@type": "City",
-        "name": "Millau"
-      },
-      {
-        "@type": "City",
-        "name": "Villefranche-de-Rouergue"
-      },
-      {
-        "@type": "City",
-        "name": "Decazeville"
-      },
-      {
-        "@type": "State",
-        "name": "Aveyron"
-      }
-    ],
-    "serviceType": ["Création de sites web", "E-commerce", "Refonte web", "SEO"],
-    "priceRange": "€€",
-    "ratingValue": "4.9",
-    "ratingCount": "87",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "87"
-    }
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"ProfessionalService","name":"Avero Web",
+  "description":"Création de sites internet et solutions digitales en Aveyron.",
+  "areaServed":"Aveyron, Occitanie, France",
+  "address":{"@type":"PostalAddress","addressLocality":"Rodez","postalCode":"12000","addressCountry":"FR"},
+  "priceRange":"€€"
+}
+</script>
 </head>
+
 <body>
 
-  <!-- ============ NAV ============ -->
-  <header class="nav">
-    <div class="container nav__inner">
-      <a href="#" class="logo" aria-label="Avero Web">
-        <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
-          <path d="M20 2 L24 14 L37 14 L27 22 L31 34 L20 27 L9 34 L13 22 L3 14 L16 14 Z" fill="#FFC93C" stroke="#1a1410" stroke-width="2.2" stroke-linejoin="round"/>
-        </svg>
-        <span>AVERO<em>WEB</em></span>
-      </a>
-      <nav class="nav__links" aria-label="Menu principal">
-        <a href="#services">Services</a>
-        <a href="#realisations">Réalisations</a>
-        <a href="#process">Process</a>
-        <a href="#tarifs">Tarifs</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a href="#contact" class="btn btn--dark nav__cta">
-        Démarrer un projet
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <button class="nav__burger" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+<a class="skip" href="#main">Aller au contenu</a>
+
+<!-- ═══════════ HEADER — pilules flottantes ═══════════ -->
+<header class="hdr" id="hdr">
+  <nav class="hdr__pill hdr__pill--l" aria-label="Navigation principale">
+    <a href="#services">Services</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#tarifs">Tarifs</a>
+  </nav>
+
+  <a class="hdr__logo" href="#accueil" aria-label="Avero Web, accueil">
+    <!-- LOGO — SVG redessiné d'après ton fichier.
+         Pour brancher ton fichier d'origine :
+         <img src="assets/logo.svg" alt="Avero Web" class="mark"> -->
+    <svg class="mark" viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <path d="M12 86 L44 17 L62 52" fill="none" stroke="currentColor" stroke-width="15" stroke-linejoin="round"/>
+      <path d="M38 48 L50 76 L61 49 L71 76 L87 41" fill="none" stroke="#2E6BFF" stroke-width="14" stroke-linejoin="round"/>
+      <g fill="#2E6BFF"><rect x="67" y="38" width="7" height="7"/><rect x="73" y="31" width="7.5" height="7.5"/><rect x="81" y="31" width="6" height="6"/><rect x="83" y="24" width="6.5" height="6.5"/></g>
+    </svg>
+    <span class="wordmark">AVERO<em>WEB</em></span>
+  </a>
+
+  <div class="hdr__pill hdr__pill--r">
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="hdr__cta">Devis gratuit</a>
+  </div>
+
+  <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
+
+<!-- ═══════════ MENU MOBILE ═══════════ -->
+<div class="menu" id="menu" hidden>
+  <nav class="menu__nav" aria-label="Menu">
+    <a href="#services">Services</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#methode">Méthode</a>
+    <a href="#engagement">Transparence</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--amber" href="tel:+33612913266"><span>06 12 91 32 66</span></a>
+    <p>Rodez — Aveyron</p>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="accueil">
+  <div class="hero__bg" aria-hidden="true">
+    <span class="orb orb--1"></span><span class="orb orb--2"></span><span class="orb orb--3"></span>
+    <span class="px px--1"></span><span class="px px--2"></span><span class="px px--3"></span><span class="px px--4"></span>
+  </div>
+
+  <div class="hero__in">
+    <p class="hero__kick"><i></i>Studio web · Rodez, Aveyron · depuis 2019</p>
+
+    <h1 class="hero__h1">
+      <span class="ln"><b>Le site web</b></span>
+      <span class="ln"><b>qui fait sonner</b></span>
+      <span class="ln"><b>le <em>téléphone</em>&nbsp;!</b></span>
+    </h1>
+
+    <p class="hero__sub">Sites sur mesure pour les artisans, commerçants et PME de l'Aveyron.<br>Pas de gabarit recyclé. Pas de jargon. Du client en plus.</p>
+
+    <div class="hero__cta">
+      <a class="btn btn--amber btn--lg" href="#contact"><span>Je veux un devis</span></a>
+      <a class="btn btn--out btn--lg" href="#realisations"><span>Voir nos sites</span></a>
+      <span class="hand hand--cta">gratuit, et sans blabla
+        <svg viewBox="0 0 70 50" aria-hidden="true"><path d="M64 6 C40 2 12 12 8 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M4 22 L8 35 L20 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
     </div>
-  </header>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <!-- Sparkles décoratifs -->
-    <svg class="sparkle sparkle--1" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FF5A36"/></svg>
-    <svg class="sparkle sparkle--2" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#2E7D5B"/></svg>
-    <svg class="sparkle sparkle--3" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
-
-    <div class="container hero__inner">
-      <div class="hero__badge">
-        <span class="hero__badge-dot"></span>
-        Studio disponible · Rentrée 2026
-      </div>
-
-      <h1 class="hero__title">
-        Agence web en Aveyron<br/>
-        qui crée des sites <span class="word-underlined">
-          <span class="word-outline">qui convertissent</span>
-          <svg class="hero__underline" viewBox="0 0 320 22" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M6 16 C 80 4, 240 4, 314 14" stroke="#FF5A36" stroke-width="8" fill="none" stroke-linecap="round"/>
-          </svg>
-        </span>
-      </h1>
-
-      <p class="hero__lede">
-        Avero Web crée des sites web professionnels pour les PME, commerces et artisans de Rodez, Millau et partout en Aveyron.
-        Sites vitrines, e-commerce, refonte SEO&nbsp;: design sur mesure, livraison en 21 jours, prix fixe.
-      </p>
-
-      <div class="hero__ctas">
-        <a href="#contact" class="btn btn--yellow">
-          Obtenir un devis gratuit
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#realisations" class="btn btn--ghost">
-          Voir nos réalisations
-        </a>
-      </div>
-
-      <ul class="hero__proof" aria-label="Preuves sociales">
-        <li><strong>+120</strong><span>sites livrés</span></li>
-        <li><strong>4,9/5</strong><span>note client</span></li>
-        <li><strong>21 j</strong><span>délai moyen</span></li>
-        <li><strong>100%</strong><span>fait en France</span></li>
-      </ul>
-    </div>
-
-    <!-- Grande "chip card" décorative -->
-    <div class="hero__card" aria-hidden="true">
-      <div class="chip">
-        <div class="chip__top">
-          <span>NEW</span>
-          <em>2026</em>
-        </div>
-        <div class="chip__title">SITE<br/>AVERO</div>
-        <div class="chip__tag">EDITION LIMITÉE</div>
-        <svg class="chip__blob" viewBox="0 0 200 200"><path fill="#1a1410" d="M45.6,-58.2C58.8,-49.2,68.6,-33.9,71.8,-17.4C75,-0.8,71.6,17.1,62.6,31.2C53.6,45.3,39.1,55.6,22.6,63.1C6,70.6,-12.7,75.4,-28.9,70.2C-45.2,65.1,-59,50.1,-66.5,32.6C-74,15.2,-75.2,-4.7,-69.4,-21.7C-63.6,-38.7,-50.8,-52.7,-36,-61.3C-21.2,-70,-4.4,-73.2,10.9,-72C26.2,-70.8,32.4,-67.1,45.6,-58.2Z" transform="translate(100 100)"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ MARQUEE ============ -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span>SITES VITRINES</span><em>★</em>
-      <span>E-COMMERCE</span><em>★</em>
-      <span>REFONTE</span><em>★</em>
-      <span>SEO</span><em>★</em>
-      <span>WEBFLOW · WORDPRESS · SHOPIFY</span><em>★</em>
-      <span>SITES VITRINES</span><em>★</em>
-      <span>E-COMMERCE</span><em>★</em>
-      <span>REFONTE</span><em>★</em>
-      <span>SEO</span><em>★</em>
-      <span>WEBFLOW · WORDPRESS · SHOPIFY</span><em>★</em>
+    <div class="hero__cards" aria-hidden="true">
+      <div class="mini mini--1"><i></i><b></b><b class="s"></b></div>
+      <div class="mini mini--2"><i></i><b></b><b class="s"></b></div>
+      <div class="mini mini--3"><i></i><b></b><b class="s"></b></div>
     </div>
   </div>
 
-  <!-- ============ SERVICES ============ -->
-  <section id="services" class="section services">
-    <div class="container">
-      <header class="section__head">
-        <span class="eyebrow"><span class="eyebrow__dot"></span> Nos services</span>
-        <h2 class="section__title">Quatre saveurs.<br/><span class="text-italic">Un seul objectif&nbsp;: faire décoller votre business.</span></h2>
-      </header>
+  <div class="wave wave--cream" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,66 C150,116 300,124 460,98 C620,72 760,10 900,14 C1040,18 1180,80 1300,98 C1370,109 1410,104 1440,96 L1440,130 L0,130 Z"/></svg></div>
+</section>
 
-      <div class="services__grid">
+<!-- ═══════════ BANDEAU ═══════════ -->
+<div class="strip" aria-hidden="true">
+  <div class="strip__t">
+    <span>Artisans</span><i>★</i><span>Restaurants</span><i>★</i><span>Producteurs fermiers</span><i>★</i><span>Gîtes &amp; chambres d'hôtes</span><i>★</i><span>Bâtiment</span><i>★</i><span>Commerces</span><i>★</i><span>Professions libérales</span><i>★</i><span>PME industrielles</span><i>★</i><span>Artisans</span><i>★</i><span>Restaurants</span><i>★</i><span>Producteurs fermiers</span><i>★</i><span>Gîtes &amp; chambres d'hôtes</span><i>★</i><span>Bâtiment</span><i>★</i><span>Commerces</span><i>★</i><span>Professions libérales</span><i>★</i><span>PME industrielles</span><i>★</i>
+  </div>
+</div>
 
-        <article class="service-card service-card--yellow">
-          <div class="service-card__badge">01</div>
-          <svg class="service-card__icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="6" y="10" width="52" height="40" rx="4" fill="#1a1410"/>
-            <rect x="10" y="16" width="44" height="4" rx="2" fill="#FFC93C"/>
-            <rect x="10" y="24" width="28" height="18" rx="2" fill="#F5EFE4"/>
-            <rect x="42" y="24" width="12" height="8" rx="2" fill="#FF5A36"/>
-            <rect x="42" y="34" width="12" height="8" rx="2" fill="#2E7D5B"/>
-          </svg>
-          <h3>Sites vitrines</h3>
-          <p>Un site rapide, élégant et pensé pour convertir vos visiteurs en clients. Sur mesure, jamais copié.</p>
-          <ul>
-            <li>Design 100% personnalisé</li>
-            <li>SEO on-page inclus</li>
-            <li>Formulaires &amp; RDV</li>
-          </ul>
-          <a href="#contact" class="service-card__link">En savoir plus →</a>
-        </article>
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="sec sec--cream" id="services">
+  <div class="wrap">
+    <header class="head">
+      <h2 class="ttl rv"><span class="tick tick--l"></span>Ce qu'on fabrique<span class="tick tick--r"></span></h2>
+      <p class="sub rv" data-d="1">Cinq prestations. Pas quinze.</p>
+    </header>
 
-        <article class="service-card service-card--coral">
-          <div class="service-card__badge">02</div>
-          <svg class="service-card__icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M12 18 L52 18 L48 46 L16 46 Z" fill="#1a1410"/>
-            <circle cx="22" cy="52" r="4" fill="#1a1410"/>
-            <circle cx="42" cy="52" r="4" fill="#1a1410"/>
-            <path d="M18 18 L20 10 L30 10" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <circle cx="32" cy="30" r="4" fill="#FFC93C"/>
-          </svg>
-          <h3>E-commerce</h3>
-          <p>Boutique en ligne performante, gestion produits simple, tunnel de commande optimisé pour vendre 24/7.</p>
-          <ul>
-            <li>Shopify / WooCommerce</li>
-            <li>Paiement sécurisé</li>
-            <li>Analytics &amp; tracking</li>
-          </ul>
-          <a href="#contact" class="service-card__link">En savoir plus →</a>
-        </article>
-
-        <article class="service-card service-card--green">
-          <div class="service-card__badge">03</div>
-          <svg class="service-card__icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M32 6 L38 20 L54 22 L42 32 L46 48 L32 40 L18 48 L22 32 L10 22 L26 20 Z" fill="#1a1410"/>
-            <circle cx="32" cy="28" r="4" fill="#FFC93C"/>
-          </svg>
-          <h3>Refonte de site</h3>
-          <p>Votre site a pris un coup de vieux ? On remet tout à plat pour un rendu moderne, rapide et responsive.</p>
-          <ul>
-            <li>Audit UX complet</li>
-            <li>Migration sans perte SEO</li>
-            <li>Design system moderne</li>
-          </ul>
-          <a href="#contact" class="service-card__link">En savoir plus →</a>
-        </article>
-
-        <article class="service-card service-card--cream">
-          <div class="service-card__badge">04</div>
-          <svg class="service-card__icon" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="28" cy="28" r="18" fill="none" stroke="#1a1410" stroke-width="5"/>
-            <path d="M42 42 L54 54" stroke="#1a1410" stroke-width="6" stroke-linecap="round"/>
-            <path d="M20 28 h16 M28 20 v16" stroke="#FF5A36" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-          <h3>SEO &amp; performance</h3>
-          <p>On booste votre visibilité Google avec du contenu, du netlinking et un site optimisé côté technique.</p>
-          <ul>
-            <li>Audit technique &amp; sémantique</li>
-            <li>Rédaction optimisée</li>
-            <li>Suivi mensuel</li>
-          </ul>
-          <a href="#contact" class="service-card__link">En savoir plus →</a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ RÉALISATIONS ============ -->
-  <section id="realisations" class="section realisations">
-    <div class="container">
-      <header class="section__head section__head--split">
-        <div>
-          <span class="eyebrow"><span class="eyebrow__dot" style="background:#FF5A36"></span> Nos réalisations</span>
-          <h2 class="section__title">Ils nous ont fait<br/>confiance <span class="text-italic">et ne le regrettent pas.</span></h2>
+    <div class="cards">
+      <article class="card rv">
+        <span class="card__n">01</span>
+        <div class="card__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="12" width="52" height="40" rx="6"/><path d="M6 24h52M14 18.5h3M22 18.5h3"/><path d="M16 33h18M16 40h12"/></svg>
         </div>
-        <a href="#contact" class="btn btn--dark">
-          Voir tout le portfolio
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </header>
+        <h3>Sites vitrines</h3>
+        <p>5 à 12 pages : votre histoire, vos chantiers, vos horaires. La base solide qui inspire confiance en trois secondes.</p>
+        <ul><li>Design sur mesure</li><li>Rédaction</li><li>Photos</li></ul>
+      </article>
 
-      <div class="works">
-
-        <a href="#" class="work work--1">
-          <div class="work__img" style="--bg:#FFC93C">
-            <svg viewBox="0 0 200 140" aria-hidden="true">
-              <rect x="10" y="10" width="180" height="120" rx="8" fill="#1a1410"/>
-              <rect x="20" y="22" width="160" height="10" rx="3" fill="#FFC93C"/>
-              <rect x="20" y="40" width="100" height="6" rx="2" fill="#F5EFE4"/>
-              <rect x="20" y="52" width="80" height="6" rx="2" fill="#F5EFE4" opacity=".6"/>
-              <rect x="20" y="72" width="70" height="50" rx="4" fill="#FF5A36"/>
-              <rect x="100" y="72" width="80" height="50" rx="4" fill="#2E7D5B"/>
-            </svg>
-          </div>
-          <div class="work__meta">
-            <span class="work__tag">E-commerce</span>
-            <h3>Café&nbsp;Barista</h3>
-            <p>Refonte complète + boutique Shopify — +180% de conversions.</p>
-          </div>
-        </a>
-
-        <a href="#" class="work work--2">
-          <div class="work__img" style="--bg:#FF5A36">
-            <svg viewBox="0 0 200 140" aria-hidden="true">
-              <rect x="10" y="10" width="180" height="120" rx="8" fill="#F5EFE4"/>
-              <circle cx="60" cy="70" r="34" fill="#1a1410"/>
-              <rect x="110" y="40" width="70" height="8" rx="3" fill="#1a1410"/>
-              <rect x="110" y="56" width="60" height="6" rx="2" fill="#1a1410" opacity=".5"/>
-              <rect x="110" y="68" width="60" height="6" rx="2" fill="#1a1410" opacity=".5"/>
-              <rect x="110" y="94" width="40" height="14" rx="7" fill="#FFC93C"/>
-            </svg>
-          </div>
-          <div class="work__meta">
-            <span class="work__tag">Site vitrine</span>
-            <h3>Atelier&nbsp;Nomade</h3>
-            <p>Site portfolio pour un studio de design d'objets.</p>
-          </div>
-        </a>
-
-        <a href="#" class="work work--3">
-          <div class="work__img" style="--bg:#2E7D5B">
-            <svg viewBox="0 0 200 140" aria-hidden="true">
-              <rect x="10" y="10" width="180" height="120" rx="8" fill="#F5EFE4"/>
-              <rect x="20" y="24" width="160" height="60" rx="6" fill="#1a1410"/>
-              <rect x="30" y="34" width="90" height="8" rx="3" fill="#FFC93C"/>
-              <rect x="30" y="48" width="140" height="4" rx="2" fill="#F5EFE4" opacity=".6"/>
-              <rect x="30" y="58" width="120" height="4" rx="2" fill="#F5EFE4" opacity=".4"/>
-              <rect x="30" y="70" width="50" height="8" rx="3" fill="#FF5A36"/>
-              <rect x="20" y="94" width="45" height="30" rx="4" fill="#FFC93C"/>
-              <rect x="72" y="94" width="45" height="30" rx="4" fill="#FF5A36"/>
-              <rect x="124" y="94" width="55" height="30" rx="4" fill="#2E7D5B"/>
-            </svg>
-          </div>
-          <div class="work__meta">
-            <span class="work__tag">Refonte</span>
-            <h3>Clinique&nbsp;Pulse</h3>
-            <p>Refonte UX/UI d'un site médical — parcours patient simplifié.</p>
-          </div>
-        </a>
-
-        <a href="#" class="work work--4">
-          <div class="work__img" style="--bg:#E8DDD0">
-            <svg viewBox="0 0 200 140" aria-hidden="true">
-              <rect x="10" y="10" width="180" height="120" rx="8" fill="#1a1410"/>
-              <path d="M20 100 L60 60 L90 90 L130 40 L180 90" stroke="#FFC93C" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="60" cy="60" r="4" fill="#FF5A36"/>
-              <circle cx="130" cy="40" r="4" fill="#FF5A36"/>
-              <rect x="20" y="24" width="60" height="6" rx="2" fill="#F5EFE4"/>
-              <rect x="20" y="34" width="40" height="4" rx="2" fill="#F5EFE4" opacity=".5"/>
-            </svg>
-          </div>
-          <div class="work__meta">
-            <span class="work__tag">SEO</span>
-            <h3>Immo&nbsp;Alpin</h3>
-            <p>Stratégie SEO locale — passage de la page 4 à la position 2.</p>
-          </div>
-        </a>
-
-        <a href="https://www.lerelaisadmessaj.fr/" class="work work--5" target="_blank" rel="noopener noreferrer">
-          <div class="work__img" style="--bg:#F5EFE4">
-            <img src="assets/portfolio/lerelaisadmessaj.jpg" alt="Le Relais ADMessaj — Restaurant à Montrozier" style="width:100%;height:100%;object-fit:cover;">
-          </div>
-          <div class="work__meta">
-            <span class="work__tag">Site vitrine</span>
-            <h3>Le&nbsp;Relais&nbsp;ADMessaj</h3>
-            <p>Site vitrine pour un restaurant &amp; relais routier — menu, galerie et réservation en ligne.</p>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROCESS ============ -->
-  <section id="process" class="section process">
-    <!-- decorative -->
-    <svg class="sparkle sparkle--p1" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
-
-    <div class="container">
-      <header class="section__head">
-        <span class="eyebrow"><span class="eyebrow__dot" style="background:#2E7D5B"></span> Notre process</span>
-        <h2 class="section__title">Une méthode <span class="text-italic">bien rodée,</span><br/>de la première idée au go-live.</h2>
-      </header>
-
-      <ol class="steps">
-        <li class="step">
-          <div class="step__num">01</div>
-          <h3>Découverte</h3>
-          <p>Brief, objectifs, cible, analyse concurrentielle. On pose les fondations solides du projet.</p>
-        </li>
-        <li class="step">
-          <div class="step__num">02</div>
-          <h3>Design</h3>
-          <p>Wireframes, direction artistique et maquettes UI. Vous validez, on itère jusqu'au coup de cœur.</p>
-        </li>
-        <li class="step">
-          <div class="step__num">03</div>
-          <h3>Développement</h3>
-          <p>Code propre, animations soignées, responsive parfait. Tout est optimisé pour la vitesse et le SEO.</p>
-        </li>
-        <li class="step">
-          <div class="step__num">04</div>
-          <h3>Mise en ligne</h3>
-          <p>Recette, formation à l'admin, mise en ligne. Puis suivi pendant 30 jours, offert.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ TARIFS ============ -->
-  <section id="tarifs" class="section pricing">
-    <div class="container">
-
-      <!-- BANNIÈRE PROMO -->
-      <div class="promo-banner" role="note">
-        <svg class="promo-banner__spark promo-banner__spark--l" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
-        <svg class="promo-banner__spark promo-banner__spark--r" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
-        <div class="promo-banner__badge">-25%</div>
-        <div class="promo-banner__text">
-          <strong>On fête nos 120 clients !</strong>
-          <span>Toutes les formules à <em>-25 %</em> jusqu'à la fin du mois.</span>
+      <article class="card rv" data-d="1">
+        <span class="card__n">02</span>
+        <div class="card__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 18h40l-4 26H16z"/><path d="M12 18l-3-8H4"/><circle cx="22" cy="53" r="4"/><circle cx="43" cy="53" r="4"/></svg>
         </div>
-      </div>
+        <h3>Boutiques en ligne</h3>
+        <p>Vendre partout en France sans y passer vos soirées. Stock, livraison, paiement sécurisé, factures automatiques.</p>
+        <ul><li>Click &amp; collect</li><li>Paiement CB</li><li>Transporteurs</li></ul>
+      </article>
 
-      <header class="section__head">
-        <span class="eyebrow"><span class="eyebrow__dot" style="background:#FF5A36"></span> Nos formules · Promo -25%</span>
-        <h2 class="section__title">Des tarifs clairs,<br/><span class="text-italic">et cassés pour l'occasion.</span></h2>
-      </header>
+      <article class="card rv" data-d="2">
+        <span class="card__n">03</span>
+        <div class="card__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="28" cy="28" r="17"/><path d="M40 40l16 16"/><path d="M28 20v16M20 28h16"/></svg>
+        </div>
+        <h3>Référencement local</h3>
+        <p>Être le premier résultat quand on tape « votre métier + votre ville ». Fiche Google, contenu, avis, mots-clés du coin.</p>
+        <ul><li>SEO local</li><li>Google Business</li><li>Suivi mensuel</li></ul>
+      </article>
 
-      <div class="plans">
+      <article class="card rv" data-d="1">
+        <span class="card__n">04</span>
+        <div class="card__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50l10-4 24-24a5 5 0 0 0-7-7L17 39z"/><path d="M38 18l8 8"/><path d="M14 50l3-11"/></svg>
+        </div>
+        <h3>Identité visuelle</h3>
+        <p>Logo, couleurs, cartes de visite, signalétique, marquage du camion. Une image cohérente partout.</p>
+        <ul><li>Logo</li><li>Charte</li><li>Print</li></ul>
+      </article>
 
-        <article class="plan">
-          <div class="plan__promo">-25%</div>
-          <header class="plan__head">
-            <h3>Starter</h3>
-            <p>Idéal pour lancer votre présence en ligne.</p>
-          </header>
-          <div class="plan__price">
-            <span class="plan__from">à partir de</span>
-            <div class="plan__price-values">
-              <s class="plan__price-old">1&nbsp;490&nbsp;€</s>
-              <strong>1&nbsp;117&nbsp;€</strong>
-            </div>
-          </div>
-          <ul class="plan__list">
-            <li>Site vitrine 3-5 pages</li>
-            <li>Design sur mesure</li>
-            <li>Responsive mobile/tablette</li>
-            <li>Formulaire de contact</li>
-            <li>SEO on-page de base</li>
-            <li>Livraison en 15 jours</li>
-          </ul>
-          <a href="#contact" class="btn btn--ghost btn--block">Choisir Starter</a>
-        </article>
+      <article class="card rv" data-d="2">
+        <span class="card__n">05</span>
+        <div class="card__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6l22 9v16c0 14-9 22-22 27C19 53 10 45 10 31V15z"/><path d="M23 32l7 7 13-14"/></svg>
+        </div>
+        <h3>Maintenance</h3>
+        <p>Sauvegardes, mises à jour, sécurité, serveurs en France. On s'en occupe, vous n'y pensez plus jamais.</p>
+        <ul><li>Serveurs FR</li><li>Sauvegarde /jour</li><li>Support 24 h</li></ul>
+      </article>
 
-        <article class="plan plan--featured">
-          <div class="plan__ribbon">
-            <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#1a1410"/></svg>
-            Le + choisi
-          </div>
-          <div class="plan__promo">-25%</div>
-          <header class="plan__head">
-            <h3>Pro</h3>
-            <p>Pour les PME qui veulent frapper fort.</p>
-          </header>
-          <div class="plan__price">
-            <span class="plan__from">à partir de</span>
-            <div class="plan__price-values">
-              <s class="plan__price-old">3&nbsp;490&nbsp;€</s>
-              <strong>2&nbsp;617&nbsp;€</strong>
-            </div>
-          </div>
-          <ul class="plan__list">
-            <li>Site vitrine 8-12 pages</li>
-            <li>Design haut de gamme + animations</li>
-            <li>Blog / actualités intégré</li>
-            <li>CMS pour tout modifier</li>
-            <li>SEO avancé + Analytics</li>
-            <li>Formation admin incluse</li>
-          </ul>
-          <a href="#contact" class="btn btn--yellow btn--block">Choisir Pro</a>
-        </article>
-
-        <article class="plan">
-          <div class="plan__promo">-25%</div>
-          <header class="plan__head">
-            <h3>E-commerce</h3>
-            <p>Pour vendre en ligne, sans limites.</p>
-          </header>
-          <div class="plan__price">
-            <span class="plan__from">à partir de</span>
-            <div class="plan__price-values">
-              <s class="plan__price-old">5&nbsp;900&nbsp;€</s>
-              <strong>4&nbsp;425&nbsp;€</strong>
-            </div>
-          </div>
-          <ul class="plan__list">
-            <li>Boutique complète (Shopify/Woo)</li>
-            <li>Design + tunnel optimisé</li>
-            <li>Paiement CB + Apple/Google Pay</li>
-            <li>Gestion stocks &amp; livraison</li>
-            <li>Emails transactionnels</li>
-            <li>Support prioritaire 3 mois</li>
-          </ul>
-          <a href="#contact" class="btn btn--ghost btn--block">Choisir E-commerce</a>
-        </article>
-
-      </div>
-
-      <p class="pricing__note">Besoin d'un projet sur-mesure ? <a href="#contact">Parlons-en →</a></p>
+      <article class="card card--cta rv">
+        <h3>Un besoin<br>un peu à part&nbsp;?</h3>
+        <p>Configurateur, espace client, appli métier… Dites-nous, on vous dira franchement si c'est pour nous.</p>
+        <a class="btn btn--amber" href="#contact"><span>En parler</span></a>
+      </article>
     </div>
-  </section>
+  </div>
+  <div class="wave wave--blue" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,96 C120,104 260,112 400,92 C540,72 680,16 820,18 C960,20 1100,78 1240,96 C1310,105 1380,104 1440,92 L1440,130 L0,130 Z"/></svg></div>
+</section>
 
-  <!-- ============ APRÈS LA LIVRAISON ============ -->
-  <section class="section aftercare">
-    <div class="container">
-      <header class="section__head section__head--center">
-        <span class="eyebrow" style="background:#1a1410; color:var(--cream); border-color:var(--yellow)"><span class="eyebrow__dot" style="background:var(--yellow)"></span> Après le lancement</span>
-        <h2 class="section__title" style="color:var(--cream)">On ne vous <span class="text-italic" style="color:var(--yellow)">lâche pas</span> après le go-live.</h2>
-      </header>
+<!-- ═══════════ PROMESSES ═══════════ -->
+<section class="sec sec--blue promise">
+  <div class="wrap">
+    <header class="head">
+      <h2 class="ttl rv"><span class="tick tick--l"></span>Pourquoi nous<span class="tick tick--r"></span></h2>
+      <p class="sub rv" data-d="1">Quatre raisons de ne pas signer ailleurs.</p>
+    </header>
 
-      <div class="aftercare__grid">
+    <div class="promise__grid">
+      <article class="pcard rv">
+        <div class="pcard__ic"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s20-15 20-30a20 20 0 1 0-40 0c0 15 20 30 20 30z"/><circle cx="32" cy="27" r="7"/></svg></div>
+        <h3>On habite ici</h3>
+        <p>Pas un standard téléphonique à Paris, pas de site sous-traité à l'autre bout du monde. On est d'ici, et on connaît le terrain où vous travaillez.</p>
+      </article>
+      <article class="pcard rv" data-d="1">
+        <div class="pcard__ic"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="22" r="11"/><path d="M12 55c0-11 9-17 20-17s20 6 20 17"/></svg></div>
+        <h3>Un seul interlocuteur</h3>
+        <p>Ailleurs, un commercial vous signe et un sous-traitant code. Ici, la même personne répond au téléphone, conçoit le site et le met en ligne. Vous avez son portable.</p>
+      </article>
+      <article class="pcard rv" data-d="2">
+        <div class="pcard__ic"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="28" width="40" height="26" rx="5"/><path d="M22 28v-8a10 10 0 0 1 20 0v8"/><path d="M32 38v6"/></svg></div>
+        <h3>Zéro location déguisée</h3>
+        <p>Certains vous « louent » votre propre site et gardent le nom de domaine en otage. Ici, domaine, hébergement et code sont à votre nom. Vous partez avec tout, quand vous voulez.</p>
+      </article>
+      <article class="pcard rv" data-d="3">
+        <div class="pcard__ic"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M36 6L14 36h14l-4 22 22-30H32z"/></svg></div>
+        <h3>Rapide, vraiment</h3>
+        <p>Le site « pas cher » bourré d'extensions met 6 secondes à charger, et Google le sanctionne. Les nôtres : moins d'une seconde, 95+ sur PageSpeed. C'est ça qui vous fait passer devant.</p>
+      </article>
+    </div>
 
-        <article class="aftercare-card">
-          <div class="aftercare-card__tag">Inclus</div>
-          <svg class="aftercare-card__icon" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="26" fill="none" stroke="#FFC93C" stroke-width="4"/>
-            <path d="M20 32 L28 40 L46 22" stroke="#FFC93C" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <h3>30 jours de suivi<br/><span class="aftercare-card__free">offerts</span></h3>
-          <p>Après la mise en ligne, on reste dispo un mois complet pour corriger, ajuster, former, répondre à toutes vos questions. Sans surcoût.</p>
-          <ul>
-            <li>Corrections rapides &amp; bugs</li>
-            <li>Ajustements de contenu</li>
-            <li>Formation admin en visio</li>
-            <li>Réponses illimitées par email</li>
-          </ul>
-        </article>
+    <dl class="stats">
+      <div class="st rv"><dt data-cnt="68">0</dt><dd>sites livrés</dd></div>
+      <div class="st rv" data-d="1"><dt data-cnt="0.9" data-dec="1" data-sfx="s">0</dt><dd>de chargement</dd></div>
+      <div class="st rv" data-d="2"><dt data-cnt="4.9" data-dec="1" data-sfx="/5">0</dt><dd>sur 31 avis</dd></div>
+      <div class="st rv" data-d="3"><dt data-cnt="24" data-sfx=" h">0</dt><dd>pour vous répondre</dd></div>
+    </dl>
+  </div>
+  <div class="wave wave--cream" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,80 C140,110 280,118 420,96 C560,74 700,14 840,20 C980,26 1120,86 1250,100 C1320,108 1390,102 1440,88 L1440,130 L0,130 Z"/></svg></div>
+</section>
 
-        <article class="aftercare-card aftercare-card--featured">
-          <div class="aftercare-card__tag aftercare-card__tag--yellow">Sur devis</div>
-          <svg class="aftercare-card__icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M18 12 L46 12 L52 32 L46 52 L18 52 L12 32 Z" fill="none" stroke="#FF5A36" stroke-width="4" stroke-linejoin="round"/>
-            <circle cx="32" cy="32" r="5" fill="#FF5A36"/>
-            <path d="M32 22 L32 14 M32 42 L32 50 M42 32 L50 32 M14 32 L22 32" stroke="#FF5A36" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-          <h3>Forfaits maintenance<br/><span class="aftercare-card__price">dès&nbsp;49&nbsp;€ /&nbsp;mois</span></h3>
-          <p>Ensuite, on prend soin de votre site sur la durée avec un forfait mensuel simple, sans engagement.</p>
-          <ul>
-            <li>Hébergement</li>
-            <li>Maintenance</li>
-            <li>Nom de domaine</li>
-            <li>Sauvegarde</li>
-            <li>Mises à jour techniques &amp; sécurité</li>
-          </ul>
-          <a href="#contact" class="btn btn--yellow" style="margin-top:8px">
-            Demander un devis
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<!-- ═══════════ RÉALISATIONS — carrousel épinglé ═══════════ -->
+<section class="works" id="realisations">
+  <div class="works__pin">
+    <header class="head head--tight">
+      <h2 class="ttl rv"><span class="tick tick--l"></span>Nos réalisations<span class="tick tick--r"></span></h2>
+      <p class="sub rv" data-d="1">Du Ségala aux Grands Causses.</p>
+    </header>
+
+    <div class="works__rail" id="rail">
+      <article class="wk wk--a">
+        <div class="wk__vis">
+          <div class="mock"><div class="mock__bar"><i></i><i></i><i></i><b>menuiserie-cazals.fr</b></div>
+            <div class="mock__body"><span class="mock__h">Menuiserie<br>Cazals</span><span class="mock__l"></span><span class="mock__l s"></span><span class="mock__btn">Demander un devis</span></div>
+          </div>
+        </div>
+        <div class="wk__txt">
+          <span class="wk__y">2026</span>
+          <h3>Menuiserie Cazals</h3>
+          <p class="wk__p">Villefranche-de-Rouergue</p>
+          <p>Un site vitrine avec demande de devis en ligne, et des pages dédiées à chaque type de menuiserie. Le téléphone n'arrête plus.</p>
+          <ul class="wk__k"><li>Vitrine</li><li>SEO local</li><li>Photos</li></ul>
+          <span class="wk__r">+<span class="cnt" data-cnt="310">0</span> % de demandes de devis</span>
+        </div>
+      </article>
+
+      <article class="wk wk--b">
+        <div class="wk__vis">
+          <a class="mock" href="https://www.lerelaisadmessaj.fr/" target="_blank" rel="noopener" aria-label="Ouvrir le site Le Relais ADMessaj dans un nouvel onglet">
+            <div class="mock__bar"><i></i><i></i><i></i><b>lerelaisadmessaj.fr</b></div>
+            <div class="mock__body"><span class="mock__h">Le Relais<br>ADMessaj</span><span class="mock__l"></span><span class="mock__l s"></span><span class="mock__btn">Voir le menu</span></div>
           </a>
-        </article>
+        </div>
+        <div class="wk__txt">
+          <span class="wk__y">2026</span>
+          <h3><a class="wk__lnk" href="https://www.lerelaisadmessaj.fr/" target="_blank" rel="noopener">Le Relais ADMessaj</a></h3>
+          <p class="wk__p">Montrozier — Aveyron</p>
+          <p>Site vitrine pour ce relais routier à deux pas de Rodez : la carte et le menu du jour se changent en deux minutes, une galerie qui donne faim, et toutes les infos pratiques pour les routiers — horaires, douches, parking.</p>
+          <ul class="wk__k"><li>Vitrine</li><li>Menu du jour</li><li>Galerie</li></ul>
+          <span class="wk__r"><span class="cnt" data-cnt="4.5" data-dec="1">0</span> / 5 sur Truckfly</span>
+        </div>
+      </article>
 
-      </div>
+      <article class="wk wk--c">
+        <div class="wk__vis">
+          <div class="mock"><div class="mock__bar"><i></i><i></i><i></i><b>domaine-marcillac.fr</b></div>
+            <div class="mock__body"><span class="mock__h">Domaine<br>de Marcillac</span><span class="mock__l"></span><span class="mock__l s"></span><span class="mock__btn">Ajouter au panier</span></div>
+          </div>
+        </div>
+        <div class="wk__txt">
+          <span class="wk__y">2025</span>
+          <h3>Domaine de Marcillac</h3>
+          <p class="wk__p">Marcillac-Vallon</p>
+          <p>Boutique complète : cartons panachés, expédition en France, et une identité refaite de la contre-étiquette au site.</p>
+          <ul class="wk__k"><li>E-commerce</li><li>Identité</li></ul>
+          <span class="wk__r"><span class="cnt" data-cnt="41000">0</span> € de ventes la 1ʳᵉ année</span>
+        </div>
+      </article>
+
+      <article class="wk wk--d">
+        <div class="wk__vis">
+          <div class="mock"><div class="mock__bar"><i></i><i></i><i></i><b>coutellerie-rouergue.fr</b></div>
+            <div class="mock__body"><span class="mock__h">Coutellerie<br>du Rouergue</span><span class="mock__l"></span><span class="mock__l s"></span><span class="mock__btn">Personnaliser</span></div>
+          </div>
+        </div>
+        <div class="wk__txt">
+          <span class="wk__y">2024</span>
+          <h3>Coutellerie du Rouergue</h3>
+          <p class="wk__p">Laguiole</p>
+          <p>Un configurateur qui laisse choisir manche, lame et gravure, avec un aperçu en direct. Et l'export à l'international.</p>
+          <ul class="wk__k"><li>E-commerce</li><li>Configurateur</li></ul>
+          <span class="wk__r">Expéditions dans <span class="cnt" data-cnt="14">0</span> pays</span>
+        </div>
+      </article>
+
+      <article class="wk wk--e">
+        <div class="wk__vis">
+          <div class="mock"><div class="mock__bar"><i></i><i></i><i></i><b>gites-du-levezou.fr</b></div>
+            <div class="mock__body"><span class="mock__h">Gîtes<br>du Lévézou</span><span class="mock__l"></span><span class="mock__l s"></span><span class="mock__btn">Vérifier les dates</span></div>
+          </div>
+        </div>
+        <div class="wk__txt">
+          <span class="wk__y">2024</span>
+          <h3>Gîtes du Lévézou</h3>
+          <p class="wk__p">Pont-de-Salars</p>
+          <p>Moteur de réservation en direct, sans commission de plateforme. Les calendriers restent synchronisés automatiquement.</p>
+          <ul class="wk__k"><li>Vitrine</li><li>Réservation</li></ul>
+          <span class="wk__r">Taux d'occupation +<span class="cnt" data-cnt="28">0</span> %</span>
+        </div>
+      </article>
     </div>
-  </section>
 
-  <!-- ============ TÉMOIGNAGES ============ -->
-  <section class="section testimonials">
-    <div class="container">
-      <header class="section__head section__head--center">
-        <span class="eyebrow"><span class="eyebrow__dot"></span> Ils en parlent mieux que nous</span>
-        <h2 class="section__title">4,9/5 <span class="text-italic">sur 87 avis</span> ★★★★★</h2>
-      </header>
-
-      <div class="testi-grid">
-        <blockquote class="testi">
-          <p>"On cherchait une agence qui comprenne vraiment notre univers. Le résultat dépasse ce qu'on avait imaginé — et surtout, le site vend."</p>
-          <footer>
-            <div class="testi__avatar" style="background:#FFC93C">M</div>
-            <div>
-              <strong>Marion Lefèvre</strong>
-              <span>Fondatrice, Café Barista</span>
-            </div>
-          </footer>
-        </blockquote>
-
-        <blockquote class="testi">
-          <p>"Équipe hyper réactive, design canon et un vrai sens du détail. On a doublé notre trafic organique en 4 mois."</p>
-          <footer>
-            <div class="testi__avatar" style="background:#FF5A36">T</div>
-            <div>
-              <strong>Thomas Berger</strong>
-              <span>Directeur, Immo Alpin</span>
-            </div>
-          </footer>
-        </blockquote>
-
-        <blockquote class="testi">
-          <p>"Rare de trouver une agence qui allie créativité et rigueur. Ils ont géré la refonte de A à Z, sans stress."</p>
-          <footer>
-            <div class="testi__avatar" style="background:#2E7D5B">S</div>
-            <div>
-              <strong>Sophie Renaud</strong>
-              <span>Directrice comm', Clinique Pulse</span>
-            </div>
-          </footer>
-        </blockquote>
-      </div>
+    <div class="works__nav">
+      <button class="rnd" id="prev" aria-label="Réalisation précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg></button>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <button class="rnd" id="next" aria-label="Réalisation suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg></button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ FAQ ============ -->
-  <section id="faq" class="section faq">
-    <div class="container faq__inner">
-      <header class="section__head">
-        <span class="eyebrow"><span class="eyebrow__dot" style="background:#FFC93C"></span> Questions fréquentes</span>
-        <h2 class="section__title">Les questions <span class="text-italic">qui reviennent souvent.</span></h2>
-      </header>
+<!-- ═══════════ MÉTHODE ═══════════ -->
+<section class="sec sec--cream" id="methode">
+  <div class="wrap">
+    <header class="head">
+      <h2 class="ttl rv"><span class="tick tick--l"></span>Comment ça se passe<span class="tick tick--r"></span></h2>
+      <p class="sub rv" data-d="1">Cinq étapes, zéro surprise. Le devis signé est le prix final.</p>
+    </header>
 
-      <div class="faq__list">
-        <details class="faq__item" open>
-          <summary>Combien de temps pour créer mon site ?</summary>
-          <p>Comptez 2 à 3 semaines pour un site vitrine, 4 à 8 semaines pour un e-commerce. On vous partage un rétro-planning dès le kick-off.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Est-ce que je pourrai modifier mon site tout seul ?</summary>
-          <p>Oui, à 100%. On intègre un CMS clair (WordPress, Shopify, Webflow) et on vous forme pendant 1h à la prise en main. On reste aussi dispo derrière.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Vous vous occupez de l'hébergement et du nom de domaine ?</summary>
-          <p>Oui, on peut tout gérer pour vous : achat du nom de domaine, hébergement rapide (Infomaniak, OVH ou Vercel), configuration DNS et emails pro.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Quel est le tarif d'un site sur-mesure ?</summary>
-          <p>Nos tarifs commencent à 1 490 € pour un site vitrine et 5 900 € pour un e-commerce. Chaque projet fait l'objet d'un devis détaillé et sans surprise.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Et après la mise en ligne ?</summary>
-          <p>On offre 30 jours de suivi. Ensuite, on propose des forfaits maintenance (mises à jour, sauvegardes, petits ajustements) à partir de 49 €/mois.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Travaillez-vous à distance ?</summary>
-          <p>Oui. Nos clients sont partout en France (et parfois plus loin). On travaille en visio, Slack et Notion. Simple, fluide, efficace.</p>
-        </details>
-        <details class="faq__item">
-          <summary>Vous créez des sites pour les entreprises en Aveyron ?</summary>
-          <p>Oui, c'est notre spécialité ! Basés en Aveyron, nous créons des sites web pour PME, commerces, artisans et services de Rodez, Millau, Villefranche-de-Rouergue, Décazeville et partout en Aveyron. Nous optimisons aussi votre SEO local pour que vous apparaissiez en premier sur Google dans votre région.</p>
-        </details>
-      </div>
+    <ol class="steps">
+      <li class="stp rv"><span class="stp__n">1</span><h3>Premier échange</h3><p>Par téléphone, par mail ou par SMS. On écoute, on note, on pose des questions bêtes.</p><span class="stp__t">45 min</span></li>
+      <li class="stp rv" data-d="1"><span class="stp__n">2</span><h3>Cadrage &amp; devis</h3><p>Objectifs, pages, contenus, budget. Un devis détaillé ligne par ligne sous 72 h.</p><span class="stp__t">3 jours</span></li>
+      <li class="stp rv" data-d="2"><span class="stp__n">3</span><h3>Maquettes</h3><p>On prépare les maquettes ordinateur et mobile avant de coder. On les retravaille autant de fois qu'il faut, jusqu'à ce que ça vous convienne.</p><span class="stp__t">1 à 2 semaines</span></li>
+      <li class="stp rv" data-d="3"><span class="stp__n">4</span><h3>Développement</h3><p>Code propre et rapide. Testé sur téléphone, tablette, et le vieux PC de l'accueil.</p><span class="stp__t">2 à 4 semaines</span></li>
+      <li class="stp rv" data-d="4"><span class="stp__n">5</span><h3>Mise en ligne</h3><p>On publie, on branche Google, et on vous forme une heure pour que vous soyez autonome.</p><span class="stp__t">1 journée</span></li>
+    </ol>
+
+    <p class="hand hand--steps">et on reste joignables après, évidemment</p>
+  </div>
+  <div class="wave wave--navy" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,88 C130,108 270,116 410,94 C550,72 690,12 830,18 C970,24 1110,84 1250,100 C1320,108 1390,102 1440,90 L1440,130 L0,130 Z"/></svg></div>
+</section>
+
+<!-- ═══════════ AVIS ═══════════ -->
+<section class="sec sec--navy say">
+  <div class="wrap">
+    <div class="bubble rv">
+      <p>On avait un site fait par un cousin en 2014. Après la refonte, on a eu plus d'appels en deux mois qu'en deux ans. Et surtout, on comprend enfin ce qu'on paie.</p>
+      <span class="bubble__tail" aria-hidden="true"></span>
     </div>
-  </section>
+    <footer class="say__who rv" data-d="1">
+      <b>Sébastien Cazals</b>
+      <span>Menuiserie Cazals — Villefranche-de-Rouergue</span>
+      <span class="stars" aria-label="5 étoiles sur 5">★★★★★</span>
+    </footer>
+  </div>
+  <div class="wave wave--cream" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,92 C120,102 260,110 400,90 C540,70 680,14 820,18 C960,22 1100,80 1240,96 C1310,104 1380,100 1440,88 L1440,130 L0,130 Z"/></svg></div>
+</section>
 
-  <!-- ============ SECTION LOCALE SEO ============ -->
-  <section class="section" style="background:#F5EFE4;padding:64px 0">
-    <div class="container">
-      <header class="section__head">
-        <span class="eyebrow"><span class="eyebrow__dot" style="background:#2E7D5B"></span> Agence web en Aveyron</span>
-        <h2 class="section__title" style="font-size:clamp(24px,5vw,42px)">Création de sites web<br/>pour les entreprises de l'Aveyron</h2>
-      </header>
-      <p style="font-size:16px;color:#5B6470;max-width:780px;line-height:1.7;margin:20px 0 30px">
-        Avero Web accompagne les PME, commerces et artisans de toute l'Aveyron dans la création de leurs sites web professionnels.
-        Basés en Aveyron, nous connaissons les enjeux locaux et créons des solutions adaptées à votre budget et vos objectifs.
-      </p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin:30px 0">
-        <div style="padding:16px;background:#fff;border-radius:14px;border:1px solid #E4DACA">
-          <strong style="display:block;font-size:18px;color:#1a1410;margin-bottom:4px">Rodez</strong>
-          <span style="color:#5B6470;font-size:14px">Sites web pour commerces et services</span>
+<!-- ═══════════ ENGAGEMENTS — TRANSPARENCE ═══════════ -->
+<section class="sec sec--cream" id="engagement">
+  <div class="wrap">
+    <header class="head">
+      <h2 class="ttl rv"><span class="tick tick--l"></span>Cartes sur table<span class="tick tick--r"></span></h2>
+      <p class="sub rv" data-d="1">Notre engagement transparence : l'inverse des mauvaises habitudes du web.</p>
+    </header>
+
+    <div class="trust__grid">
+      <article class="tcard rv">
+        <span class="tcard__n" aria-hidden="true">01</span>
+        <div class="tcard__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="29" width="36" height="25" rx="5"/><path d="M22 29v-9a10 10 0 0 1 19.6-2.6"/><circle cx="32" cy="40" r="3.4"/><path d="M32 43.4V47"/></svg>
         </div>
-        <div style="padding:16px;background:#fff;border-radius:14px;border:1px solid #E4DACA">
-          <strong style="display:block;font-size:18px;color:#1a1410;margin-bottom:4px">Millau</strong>
-          <span style="color:#5B6470;font-size:14px">E-commerce et sites vitrines</span>
+        <h3>Zéro frais caché, zéro abonnement piège</h3>
+        <p>Le devis est tout compris : le prix signé est le prix final. Le site vous appartient à 100 % dès la livraison — code, domaine et hébergement à votre nom. Aucun contrat de 36 mois.</p>
+        <div class="tcard__vs">
+          <span class="tcard__bad"><b>Ailleurs</b> — mensualités à rallonge, site jamais récupéré</span>
+          <span class="tcard__good"><b>Chez nous</b> — vous payez une fois, vous êtes propriétaire</span>
         </div>
-        <div style="padding:16px;background:#fff;border-radius:14px;border:1px solid #E4DACA">
-          <strong style="display:block;font-size:18px;color:#1a1410;margin-bottom:4px">Villefranche-de-Rouergue</strong>
-          <span style="color:#5B6470;font-size:14px">Refonte et SEO local</span>
+      </article>
+
+      <article class="tcard rv" data-d="1">
+        <span class="tcard__n" aria-hidden="true">02</span>
+        <div class="tcard__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 52h40"/><rect x="15" y="37" width="9" height="13"/><rect x="28" y="29" width="9" height="21"/><rect x="41" y="20" width="9" height="30"/><path d="M13 22l6-6 5 4 9-9"/></svg>
         </div>
-        <div style="padding:16px;background:#fff;border-radius:14px;border:1px solid #E4DACA">
-          <strong style="display:block;font-size:18px;color:#1a1410;margin-bottom:4px">Décazeville</strong>
-          <span style="color:#5B6470;font-size:14px">Solutions web sur mesure</span>
+        <h3>Paiement sécurisé et échelonné</h3>
+        <p>Le règlement suit l'avancement : 30 % à la signature, 40 % à la validation des maquettes, 30 % à la livraison. Entreprise immatriculée en France, facture avec TVA à l'appui.</p>
+        <div class="tcard__vs">
+          <span class="tcard__bad"><b>Ailleurs</b> — tout réglé d'avance, sans garantie</span>
+          <span class="tcard__good"><b>Chez nous</b> — vous payez à mesure que le site avance</span>
         </div>
-      </div>
-      <p style="font-size:15px;color:#5B6470;max-width:780px">
-        <strong>Pourquoi choisir Avero Web&nbsp;?</strong> Nous sommes basés en Aveyron, nous comprenons votre marché local,
-        et nous créons des sites optimisés pour le référencement local (SEO). Livraison en 21 jours, prix fixe, sans surprise.
-        Déjà 120+ sites créés. 4,9/5 de satisfaction.
-      </p>
+      </article>
+
+      <article class="tcard rv" data-d="2">
+        <span class="tcard__n" aria-hidden="true">03</span>
+        <div class="tcard__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 12 6 23l26 11 26-11z"/><path d="M17 30v13c0 3.6 6.7 6.5 15 6.5s15-2.9 15-6.5V30"/><path d="M58 23v13"/></svg>
+        </div>
+        <h3>Proximité et pédagogie</h3>
+        <p>Entreprise aveyronnaise : on parle votre langage, sans jargon technique, par téléphone, mail ou WhatsApp. À la livraison, on vous forme pour que vous gériez votre site en toute autonomie.</p>
+        <div class="tcard__vs">
+          <span class="tcard__bad"><b>Ailleurs</b> — interlocuteur injoignable, réponses en jargon</span>
+          <span class="tcard__good"><b>Chez nous</b> — un contact local qui vous explique tout</span>
+        </div>
+      </article>
+
+      <article class="tcard rv" data-d="3">
+        <span class="tcard__n" aria-hidden="true">04</span>
+        <div class="tcard__ic">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="15" width="44" height="39" rx="5"/><path d="M10 25h44M22 11v8M42 11v8"/><path d="M22 39l7 7 13-14"/></svg>
+        </div>
+        <h3>Délais tenus et visibilité locale</h3>
+        <p>Un planning clair est fixé dès le devis, et il est respecté. Site optimisé pour Google et le référencement local : Rodez, Millau, Villefranche et vos communes cibles.</p>
+        <div class="tcard__vs">
+          <span class="tcard__bad"><b>Ailleurs</b> — livraison repoussée, site introuvable sur Google</span>
+          <span class="tcard__good"><b>Chez nous</b> — date de livraison tenue, trouvable dans votre secteur</span>
+        </div>
+      </article>
     </div>
-  </section>
 
-  <!-- ============ CTA / CONTACT ============ -->
-  <section id="contact" class="cta">
-    <svg class="sparkle sparkle--cta1" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FF5A36"/></svg>
-    <svg class="sparkle sparkle--cta2" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24 Z" fill="#FFC93C"/></svg>
+    <p class="hand trust__hand">tout est écrit noir sur blanc dans le devis</p>
+  </div>
+</section>
 
-    <div class="container cta__inner">
-      <h2>
-        Prêt à créer un site<br/>
-        <span class="text-italic">qui vous ressemble</span>&nbsp;?
-      </h2>
-      <p>Un premier rendez-vous découverte, offert et sans engagement. 30 minutes pour parler de vous, de votre projet, et voir si on est fait pour bosser ensemble.</p>
+<!-- ═══════════ TARIFS ═══════════ -->
+<section class="sec sec--cream" id="tarifs">
+  <div class="wrap">
+    <header class="head">
+      <h2 class="ttl rv"><span class="tick tick--l"></span>Nos tarifs<span class="tick tick--r"></span></h2>
+      <p class="sub rv" data-d="1">Affichés. Comme chez le boucher.</p>
+    </header>
 
-      <form class="cta__form" onsubmit="event.preventDefault(); this.querySelector('.cta__ok').hidden=false; this.reset();">
-        <div class="cta__row">
-          <input type="text" name="name" placeholder="Votre prénom" required />
-          <input type="email" name="email" placeholder="Votre email" required />
-        </div>
-        <textarea name="message" placeholder="Parlez-nous de votre projet en quelques mots…" rows="3"></textarea>
-        <button type="submit" class="btn btn--yellow btn--block">
-          Envoyer ma demande
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <p class="cta__ok" hidden>✅ Merci, on vous recontacte sous 24h ouvrées&nbsp;!</p>
-      </form>
+    <div class="plans">
+      <article class="plan rv">
+        <h3>Essentiel</h3>
+        <p class="plan__for">Pour exister proprement, et vite.</p>
+        <div class="plan__p"><b data-cnt="600">0</b><i>€ HT</i></div>
+        <ul><li>Jusqu'à 5 pages</li><li>Design personnalisé</li><li>Mobile &amp; tablette</li><li>Formulaire de contact</li><li>Fiche Google Business</li><li>Livré en 3 semaines</li></ul>
+        <a class="btn btn--out" href="#contact"><span>Choisir Essentiel</span></a>
+      </article>
 
-      <div class="cta__alt">
-        Ou écrivez-nous à <a href="mailto:hello@averoweb.fr">hello@averoweb.fr</a>
-      </div>
+      <article class="plan plan--hi rv" data-d="1">
+        <span class="sticker">le plus choisi</span>
+        <h3>Sur mesure</h3>
+        <p class="plan__for">Pour se démarquer sérieusement.</p>
+        <div class="plan__p"><em>dès</em><b data-cnt="1500">0</b><i>€ HT</i></div>
+        <ul><li>Pages illimitées</li><li>Direction artistique dédiée</li><li>Animations &amp; interactions</li><li>Rédaction des textes</li><li>Reportage photo (½ journée)</li><li>Référencement local avancé</li><li>Formation 2 h</li></ul>
+        <a class="btn btn--amber" href="#contact"><span>Demander un devis</span></a>
+      </article>
+
+      <article class="plan rv" data-d="2">
+        <h3>Boutique</h3>
+        <p class="plan__for">Pour vendre en ligne pour de vrai.</p>
+        <div class="plan__p"><em>dès</em><b data-cnt="3400">0</b><i>€ HT</i></div>
+        <ul><li>Tout « Sur mesure »</li><li>Catalogue &amp; stocks</li><li>Paiement CB sécurisé</li><li>Transporteurs &amp; retrait</li><li>Factures automatiques</li><li>Formation gestion 3 h</li></ul>
+        <a class="btn btn--out" href="#contact"><span>Choisir Boutique</span></a>
+      </article>
     </div>
-  </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <a href="#" class="logo logo--light">
-          <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
-            <path d="M20 2 L24 14 L37 14 L27 22 L31 34 L20 27 L9 34 L13 22 L3 14 L16 14 Z" fill="#FFC93C" stroke="#F5EFE4" stroke-width="2.2" stroke-linejoin="round"/>
-          </svg>
-          <span>AVERO<em>WEB</em></span>
-        </a>
-        <p>Agence web basée en Aveyron. Création de sites pour PME, commerces et artisans de Rodez, Millau et toute la région. Livraison en 21 jours.</p>
-      </div>
+    <p class="plans__f rv">Et après ? <b>Maintenance 39 € / mois</b> — hébergement en France, sauvegardes quotidiennes, mises à jour et une heure de modifications incluse. Sans engagement.</p>
+    <p class="hand hand--price">paiement en 3 fois, sans frais</p>
+  </div>
+</section>
 
-      <div class="footer__cols">
-        <div>
-          <h4>Services</h4>
-          <a href="#services">Sites vitrines</a>
-          <a href="#services">E-commerce</a>
-          <a href="#services">Refonte</a>
-          <a href="#services">SEO</a>
-        </div>
-        <div>
-          <h4>Studio</h4>
-          <a href="#realisations">Réalisations</a>
-          <a href="#process">Process</a>
-          <a href="#tarifs">Tarifs</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <a href="mailto:hello@averoweb.fr">hello@averoweb.fr</a>
-          <a href="tel:+33400000000">+33 4 00 00 00 00</a>
-          <a href="#">Lyon, France</a>
-        </div>
-      </div>
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="sec sec--cream faq" id="faq">
+  <div class="wrap">
+    <header class="head">
+      <h2 class="ttl rv"><span class="tick tick--l"></span>Vos questions<span class="tick tick--r"></span></h2>
+    </header>
+
+    <div class="acc">
+      <details class="ac rv" open><summary><span>Combien de temps pour avoir mon site ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>Comptez 3 semaines pour une formule Essentiel, 5 à 7 semaines pour du sur-mesure, 8 à 10 pour une boutique. Le principal facteur, c'est la vitesse à laquelle vous nous transmettez textes et photos — et on peut s'en charger si vous préférez.</p></div></details>
+      <details class="ac rv"><summary><span>Pourrai-je modifier mon site moi-même ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>Oui. On installe une interface simple et on vous forme dessus, avec des vidéos de rappel. Changer un horaire, ajouter une photo ou publier une actualité ne demande aucune compétence technique. Et si vous n'avez pas le temps, la maintenance inclut une heure de modifications par mois.</p></div></details>
+      <details class="ac rv"><summary><span>À qui appartient le site une fois payé ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>À vous, entièrement. Nom de domaine déposé à votre nom, accès à l'hébergement, code source livré. Aucune formule de location, aucun fichier retenu en otage. Si un jour vous voulez travailler avec quelqu'un d'autre, vous partez avec tout.</p></div></details>
+      <details class="ac rv"><summary><span>Comment se passent les échanges ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>À distance, simplement : téléphone, e-mail, SMS ou WhatsApp. Pas de rendez-vous à caler ni de déplacement à prévoir — vous nous joignez quand ça vous arrange, on répond sous 24 h ouvrées.</p></div></details>
+      <details class="ac rv"><summary><span>Et pour apparaître sur Google ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>Le référencement local est intégré à chaque projet : structure technique propre, pages dédiées à vos villes et à vos métiers, fiche Google Business optimisée, collecte d'avis. Les premiers effets se voient entre 6 et 12 semaines après la mise en ligne. Aucune agence sérieuse ne vous promettra la première place en une semaine.</p></div></details>
+      <details class="ac rv"><summary><span>Comment se passe le paiement ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>30 % à la signature du devis, 40 % à la validation des maquettes, 30 % à la mise en ligne, sans frais supplémentaires. Virement, chèque ou carte. Entreprise française immatriculée en Aveyron, facture avec TVA à l'appui.</p></div></details>
     </div>
-    <div class="footer__bar">
-      <div class="container footer__barinner">
-        <span>© 2026 Avero Web — Tous droits réservés.</span>
-        <span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
-      </div>
+  </div>
+  <div class="wave wave--navy" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,84 C140,110 280,118 420,94 C560,70 700,12 840,18 C980,24 1120,86 1250,100 C1320,108 1390,102 1440,88 L1440,130 L0,130 Z"/></svg></div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="sec sec--navy contact" id="contact">
+  <div class="wrap contact__in">
+    <div class="contact__l">
+      <h2 class="ttl ttl--l rv">Racontez-nous<br>votre projet&nbsp;!</h2>
+      <p class="sub sub--l rv" data-d="1">On répond à tout le monde sous 24 h ouvrées, même quand le projet n'est pas pour nous.</p>
+      <ul class="cinfo rv" data-d="2">
+        <li><span>Téléphone</span><a href="tel:+33612913266">06 12 91 32 66</a></li>
+        <li><span>E-mail</span><a href="mailto:contact@averoweb.fr">contact@averoweb.fr</a></li>
+        <li><span>Secteur</span><p>Basés à Rodez — toute l'Aveyron et les départements voisins</p></li>
+        <li><span>Horaires</span><p>7j/7</p></li>
+      </ul>
     </div>
-  </footer>
 
-  <script>
-// Menu mobile
-const burger = document.querySelector('.nav__burger');
-const navLinks = document.querySelector('.nav__links');
-if (burger && navLinks) {
-  burger.addEventListener('click', () => {
-    const open = burger.classList.toggle('is-open');
-    navLinks.classList.toggle('is-open');
-    burger.setAttribute('aria-expanded', String(open));
-  });
-  navLinks.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => {
-      burger.classList.remove('is-open');
-      navLinks.classList.remove('is-open');
-      burger.setAttribute('aria-expanded', 'false');
-    })
-  );
-}
+    <form class="form rv" data-d="1" id="form" novalidate>
+      <div class="form__r">
+        <div class="fd"><label for="f-nom">Votre nom <i>*</i></label><input id="f-nom" name="nom" type="text" required autocomplete="name" placeholder="Jean Delmas"></div>
+        <div class="fd"><label for="f-ent">Entreprise</label><input id="f-ent" name="entreprise" type="text" autocomplete="organization" placeholder="Menuiserie Delmas"></div>
+      </div>
+      <div class="form__r">
+        <div class="fd"><label for="f-mail">E-mail <i>*</i></label><input id="f-mail" name="email" type="email" required autocomplete="email" placeholder="jean@exemple.fr"></div>
+        <div class="fd"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="06 00 00 00 00"></div>
+      </div>
 
-// FAQ accordion : ferme les autres quand on en ouvre une
-document.querySelectorAll('.faq__item').forEach((item) => {
-  item.addEventListener('toggle', () => {
-    if (item.open) {
-      document.querySelectorAll('.faq__item').forEach((other) => {
-        if (other !== item) other.open = false;
-      });
-    }
-  });
-});
+      <fieldset class="chips">
+        <legend>Votre besoin</legend>
+        <label><input type="checkbox" name="besoin" value="Site vitrine"><span>Site vitrine</span></label>
+        <label><input type="checkbox" name="besoin" value="Refonte"><span>Refonte</span></label>
+        <label><input type="checkbox" name="besoin" value="Boutique en ligne"><span>Boutique</span></label>
+        <label><input type="checkbox" name="besoin" value="Référencement"><span>Référencement</span></label>
+        <label><input type="checkbox" name="besoin" value="Logo / identité"><span>Logo / identité</span></label>
+      </fieldset>
 
-// Reveal léger au scroll
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      <div class="fd"><label for="f-msg">Le projet en quelques lignes <i>*</i></label><textarea id="f-msg" name="message" rows="4" required placeholder="Ce que vous faites, ce que vous attendez du site, votre délai idéal…"></textarea></div>
 
-document.querySelectorAll('.service-card, .work, .plan, .testi, .step, .faq__item').forEach((el) => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity .6s ease, transform .6s cubic-bezier(.2,.9,.25,1)';
-  io.observe(el);
-});
+      <label class="rgpd"><input type="checkbox" name="rgpd" required><span>J'accepte que mes informations soient utilisées pour être recontacté. Elles ne seront jamais transmises à un tiers.</span></label>
 
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('.service-card, .work, .plan, .testi, .step, .faq__item').forEach((el) => {
-    el.style.opacity = '1';
-    el.style.transform = 'none';
-    el.style.transition = 'none';
-  });
-}
-  </script>
+      <input type="text" name="societe_web" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button class="btn btn--amber btn--lg" type="submit"><span>Envoyer ma demande</span></button>
+      <p class="form__m" id="formMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════ BULLE WHATSAPP ═══════════ -->
+<a class="wa" id="wa"
+   href="https://wa.me/33612913266?text=Bonjour%2C%20je%20vous%20contacte%20car%20un%20de%20vos%20services%20m%27int%C3%A9resse."
+   target="_blank" rel="noopener"
+   aria-label="Nous écrire sur WhatsApp">
+  <span class="wa__ring" aria-hidden="true"></span>
+  <span class="wa__tip" aria-hidden="true">Une question&nbsp;? Écrivez-nous</span>
+  <svg class="wa__ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .103 5.359.1 11.947c0 2.096.546 4.142 1.588 5.945L0 24l6.335-1.652a11.882 11.882 0 005.71 1.464h.005c6.581 0 11.941-5.359 11.944-11.949A11.821 11.821 0 0020.52 3.449"/>
+  </svg>
+</a>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <a class="foot__brand" href="#accueil" aria-label="Avero Web, retour en haut">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M12 86 L44 17 L62 52" fill="none" stroke="currentColor" stroke-width="15" stroke-linejoin="round"/>
+          <path d="M38 48 L50 76 L61 49 L71 76 L87 41" fill="none" stroke="#5B8CFF" stroke-width="14" stroke-linejoin="round"/>
+          <g fill="#5B8CFF"><rect x="67" y="38" width="7" height="7"/><rect x="73" y="31" width="7.5" height="7.5"/><rect x="81" y="31" width="6" height="6"/><rect x="83" y="24" width="6.5" height="6.5"/></g>
+        </svg>
+        <span class="wordmark">AVERO<em>WEB</em></span>
+        <span class="foot__sig">Sites internet &amp; solutions digitales</span>
+      </a>
+
+      <div class="foot__cols">
+        <div><h4>Services</h4><a href="#services">Sites vitrines</a><a href="#services">Boutiques en ligne</a><a href="#services">Référencement local</a><a href="#services">Identité visuelle</a><a href="#services">Maintenance</a></div>
+        <div><h4>Agence</h4><a href="#methode">Méthode</a><a href="#realisations">Réalisations</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+        <div><h4>Secteur</h4><a href="#contact">Rodez</a><a href="#contact">Millau</a><a href="#contact">Villefranche-de-Rouergue</a><a href="#contact">Decazeville</a><a href="#contact">Espalion</a></div>
+      </div>
+
+      <div class="foot__say" aria-hidden="true"><span>à bientôt&nbsp;!</span></div>
+    </div>
+
+    <div class="foot__bot">
+      <p>© <span id="year">2026</span> Avero Web — SIRET 000 000 000 00000</p>
+      <nav aria-label="Liens légaux"><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">Cookies</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
 </body>
 </html>
