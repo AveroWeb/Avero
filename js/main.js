@@ -232,19 +232,27 @@
   });
 
   /* ─── 7. Formulaire ───────────────────────────────────
-     Par défaut : ouvre le logiciel de messagerie avec le
-     message pré-rempli — fonctionnel dès la mise en ligne,
-     sans serveur.
+     Envoi réel de la demande de devis par e-mail vers
+     contact@averoweb.fr, via Web3Forms — aucun serveur à
+     héberger.
 
-     POUR RECEVOIR LES DEMANDES DIRECTEMENT PAR E-MAIL :
-     crée un compte gratuit sur formspree.io (ou active les
-     « Netlify Forms »), puis remplace la ligne
-        var ENDPOINT = null;
-     par
-        var ENDPOINT = 'https://formspree.io/f/TON_ID';
+     MISE EN SERVICE (une seule fois) :
+       1. aller sur https://web3forms.com
+       2. saisir contact@averoweb.fr, valider le lien reçu
+          par e-mail
+       3. coller la clé fournie dans WEB3FORMS_KEY ci-dessous
+     Tant que la clé n'est pas renseignée, le formulaire
+     bascule automatiquement sur l'ouverture du logiciel de
+     messagerie (fonctionnel, mais moins fluide).
+
+     ENDPOINT reste dispo pour un relais JSON générique
+     (Formspree…) si besoin un jour.
   ─────────────────────────────────────────────────────── */
+  var WEB3FORMS_KEY = 'REMPLACER-PAR-LA-CLE-WEB3FORMS';
   var ENDPOINT = null;
   var DEST = 'contact@averoweb.fr';
+
+  var hasWeb3 = WEB3FORMS_KEY && WEB3FORMS_KEY.indexOf('REMPLACER') === -1;
 
   var form = $('#form');
   var msg = $('#formMsg');
@@ -311,12 +319,30 @@
         }
       };
 
-      if (ENDPOINT) {
-        fetch(ENDPOINT, {
+      if (hasWeb3 || ENDPOINT) {
+        var url = hasWeb3 ? 'https://api.web3forms.com/submit' : ENDPOINT;
+        var payload = hasWeb3 ? {
+          access_key: WEB3FORMS_KEY,
+          subject: 'Demande de devis — ' + (data.entreprise || data.nom),
+          from_name: 'Site averoweb.fr',
+          replyto: data.email,
+          'Nom': data.nom,
+          'Entreprise': data.entreprise || '—',
+          'E-mail': data.email,
+          'Téléphone': data.telephone || '—',
+          'Besoin': data.besoins,
+          'Message': data.message
+        } : data;
+
+        fetch(url, {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        }).then(function (r) { done(r.ok); }).catch(function () { done(false); });
+          body: JSON.stringify(payload)
+        }).then(function (r) {
+          return r.json().then(function (j) { return j; }, function () { return { success: r.ok }; });
+        }).then(function (j) {
+          done(j && (j.success === true || j.ok === true));
+        }).catch(function () { done(false); });
       } else {
         var body = [
           'Nom : ' + data.nom,

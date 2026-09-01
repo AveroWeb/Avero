@@ -30,8 +30,20 @@ Puis ouvrir http://localhost:4321.
 Héberger le contenu du dossier tel quel (GitHub Pages, Netlify, serveur classique).
 Aucune étape de compilation.
 
-## Formulaire de contact
+## Formulaire de contact / devis
 
-Par défaut, le formulaire ouvre le logiciel de messagerie avec un message pré-rempli
-(voir `js/main.js`, section 7). Pour recevoir les demandes directement par e-mail,
-renseigner un `ENDPOINT` Formspree ou activer les Netlify Forms.
+Chaque demande envoyée depuis le formulaire est relayée par e-mail vers
+**contact@averoweb.fr** via [Web3Forms](https://web3forms.com) (pas de serveur à héberger).
+
+Mise en service, une seule fois :
+
+1. sur [web3forms.com](https://web3forms.com), saisir `contact@averoweb.fr` et valider le lien reçu par e-mail ;
+2. copier la clé d'accès fournie ;
+3. la coller dans `js/main.js`, section 7 :
+   ```js
+   var WEB3FORMS_KEY = 'la-cle-recuperee';
+   ```
+
+Tant que la clé n'est pas renseignée, le formulaire bascule automatiquement sur
+l'ouverture du logiciel de messagerie du visiteur avec un message pré-rempli.
+`ENDPOINT` reste disponible pour un relais JSON générique (Formspree…) au besoin.
