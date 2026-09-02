@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable — Avero Web</title>
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#0A1730">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23F7F0E1'/%3E%3Cpath d='M12 86 L44 17 L62 52' fill='none' stroke='%230A1730' stroke-width='15' stroke-linejoin='round'/%3E%3Cpath d='M38 48 L50 76 L61 49 L71 76 L87 41' fill='none' stroke='%232E6BFF' stroke-width='14' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/fonts.css">
+<style>
+  :root{--navy:#0A1730;--blue:#2E6BFF;--blue-2:#5B8CFF;--cream:#F7F0E1;--amber:#FFC24D;--amber-2:#FFB01F;
+    --display:"Gabarito","Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;padding:2rem;
+    background:var(--navy);color:var(--cream);font-family:var(--body);text-align:center}
+  .wrap{max-width:560px}
+  svg.mark{width:64px;height:64px;margin:0 auto 1.4rem}
+  h1{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;
+    font-size:clamp(2.6rem,9vw,4.5rem);line-height:1;margin:0}
+  p{color:var(--blue-2);font-family:var(--display);font-weight:700;margin:.8rem 0 2rem;
+    font-size:clamp(1rem,2vw,1.25rem)}
+  a.btn{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.9rem;border-radius:100px;
+    background:var(--amber);color:var(--navy);text-decoration:none;
+    font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.02em;
+    box-shadow:0 5px 0 0 var(--amber-2);transition:transform .15s,box-shadow .15s}
+  a.btn:hover{transform:translateY(-3px);box-shadow:0 8px 0 0 var(--amber-2)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M12 86 L44 17 L62 52" fill="none" stroke="currentColor" stroke-width="15" stroke-linejoin="round"/>
+      <path d="M38 48 L50 76 L61 49 L71 76 L87 41" fill="none" stroke="#5B8CFF" stroke-width="14" stroke-linejoin="round"/>
+    </svg>
+    <h1>404</h1>
+    <p>Cette page a déménagé, ou n'a jamais existé.</p>
+    <a class="btn" href="/">Retour à l'accueil</a>
+  </div>
+</body>
+</html>

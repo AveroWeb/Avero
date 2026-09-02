@@ -270,8 +270,8 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // piège à robots
-      if (form.societe_web.value) {
+      // pièges à robots : champ texte + case à cocher cachés (botcheck = filtre natif Web3Forms)
+      if (form.societe_web.value || (form.botcheck && form.botcheck.checked)) {
         msg.textContent = 'Merci, votre message a bien été envoyé.';
         msg.className = 'form__m ok';
         return;
@@ -326,6 +326,7 @@
           subject: 'Demande de devis — ' + (data.entreprise || data.nom),
           from_name: 'Site averoweb.fr',
           replyto: data.email,
+          botcheck: false,
           'Nom': data.nom,
           'Entreprise': data.entreprise || '—',
           'E-mail': data.email,
