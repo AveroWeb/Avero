@@ -486,7 +486,7 @@ a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
 .stars{color:var(--amber);letter-spacing:.22em;margin-top:.4rem;font-size:1.05rem}
 
 /* ═══════════ TARIFS ═══════════ */
-.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,1.8vw,1.6rem);align-items:start}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,1.8vw,1.6rem);align-items:start;max-width:1080px;margin-inline:auto}
 .plan{
   position:relative;display:flex;flex-direction:column;gap:1rem;
   background:var(--cream-2);border-radius:var(--r);padding:clamp(1.6rem,2.8vw,2.4rem);
@@ -514,7 +514,7 @@ a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
 .plan .btn{width:100%;margin-top:.5rem}
 
 .plan--hi{background:var(--navy);color:var(--cream)}
-.plan--hi .btn{--bg:var(--amber);--fg:var(--navy);--sh:var(--amber-2);box-shadow:0 5px 0 0 var(--sh)}
+.plan--hi .btn{--bg:var(--amber);--fg:var(--navy);--sh:var(--amber-2);border:0;box-shadow:0 5px 0 0 var(--sh);padding-block:1.05rem;font-size:1rem}
 .plan--hi .btn:hover{--bg:#FFCE6B}
 .plan--hi .plan__for{color:var(--sky)}
 .plan--hi .plan__p{border-color:rgba(247,240,225,.25)}
@@ -540,7 +540,7 @@ a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
 @media (prefers-reduced-motion:reduce){
   .plan{transition:none}
 }
-.plans__f{text-align:center;margin-top:clamp(2rem,3.5vw,3rem);color:var(--dim)}
+.plans__f{text-align:center;margin:clamp(2rem,3.5vw,3rem) auto 0;max-width:1080px;color:var(--dim)}
 .plans__f b{color:var(--navy);font-family:var(--display);font-weight:800}
 .hand--price{display:block;text-align:center;margin-top:.6rem;transform:rotate(-2deg)}
 
