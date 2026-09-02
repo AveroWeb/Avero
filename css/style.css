@@ -486,13 +486,15 @@ a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
 .stars{color:var(--amber);letter-spacing:.22em;margin-top:.4rem;font-size:1.05rem}
 
 /* ═══════════ TARIFS ═══════════ */
-.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(1rem,1.8vw,1.6rem);align-items:start}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,1.8vw,1.6rem);align-items:start}
 .plan{
   position:relative;display:flex;flex-direction:column;gap:1rem;
   background:var(--cream-2);border-radius:var(--r);padding:clamp(1.6rem,2.8vw,2.4rem);
-  transition:transform .35s var(--pop);
+  cursor:pointer;
+  transition:transform .38s var(--pop),box-shadow .38s var(--pop),background .3s,color .3s;
 }
 .plan:hover{transform:translateY(-7px)}
+.plan:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
 .plan h3{font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,2.4vw,2rem);text-transform:uppercase;letter-spacing:-.025em;line-height:1}
 .plan__for{color:var(--dim);margin-top:-.55rem}
 .plan__p{display:flex;flex-wrap:wrap;align-items:baseline;gap:.35rem;padding-bottom:1.1rem;border-bottom:2.5px dashed rgba(10,23,48,.15)}
@@ -511,8 +513,9 @@ a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
 }
 .plan .btn{width:100%;margin-top:.5rem}
 
-.plan--hi{background:var(--navy);color:var(--cream);transform:translateY(-16px)}
-.plan--hi:hover{transform:translateY(-24px)}
+.plan--hi{background:var(--navy);color:var(--cream)}
+.plan--hi .btn{--bg:var(--amber);--fg:var(--navy);--sh:var(--amber-2);box-shadow:0 5px 0 0 var(--sh)}
+.plan--hi .btn:hover{--bg:#FFCE6B}
 .plan--hi .plan__for{color:var(--sky)}
 .plan--hi .plan__p{border-color:rgba(247,240,225,.25)}
 .plan--hi .plan__p i,.plan--hi .plan__p em{color:var(--sky)}
@@ -523,6 +526,19 @@ a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
   padding:.5rem .95rem;border-radius:100px;background:var(--amber);color:var(--navy);
   font-family:var(--hand);font-weight:700;font-size:1.15rem;line-height:1;
   transform:rotate(7deg);box-shadow:0 4px 0 0 var(--amber-2);
+}
+.plan .sticker{display:none}
+.plan--hi .sticker{display:block}
+
+/* la carte choisie vient au premier plan ; les autres reculent un peu */
+@media (min-width:981px){
+  .plan.in:not(.plan--hi){transform:scale(.955)}
+  .plan.in:not(.plan--hi):hover{transform:scale(.985) translateY(-6px);z-index:2}
+  .plan.plan--hi.in{transform:translateY(-14px) scale(1.05);z-index:3;box-shadow:0 34px 58px -26px rgba(10,23,48,.5)}
+  .plan.plan--hi.in:hover{transform:translateY(-20px) scale(1.05)}
+}
+@media (prefers-reduced-motion:reduce){
+  .plan{transition:none}
 }
 .plans__f{text-align:center;margin-top:clamp(2rem,3.5vw,3rem);color:var(--dim)}
 .plans__f b{color:var(--navy);font-family:var(--display);font-weight:800}
@@ -661,7 +677,6 @@ a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
   .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .promise__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .trust__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .plans{grid-template-columns:repeat(2,minmax(0,1fr))}
   .steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 1rem}
   .steps::before{display:none}
 }

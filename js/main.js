@@ -460,4 +460,29 @@
     }, { passive: true });
   })();
 
+  /* ─── 10. Tarifs : la carte choisie passe au premier plan ─── */
+  var plansBox = $('.plans');
+  if (plansBox) {
+    var planCards = $$('.plan', plansBox);
+
+    var pickPlan = function (card) {
+      planCards.forEach(function (c) {
+        var on = c === card;
+        c.classList.toggle('plan--hi', on);
+        c.setAttribute('aria-current', on ? 'true' : 'false');
+      });
+    };
+
+    planCards.forEach(function (c) {
+      c.setAttribute('tabindex', '0');
+      c.setAttribute('aria-current', c.classList.contains('plan--hi') ? 'true' : 'false');
+      // le clic sur le bouton « Choisir … » sélectionne aussi la carte,
+      // puis laisse l'ancre #contact faire son travail
+      c.addEventListener('click', function () { pickPlan(c); });
+      c.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickPlan(c); }
+      });
+    });
+  }
+
 })();
