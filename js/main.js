@@ -781,9 +781,9 @@
        dans confidentialite.html.
     ─────────────────────────────────────────────────────── */
     var EMAILJS = {
-      publicKey:  'REMPLACER_PUBLIC_KEY',
-      serviceId:  'REMPLACER_SERVICE_ID',
-      templateId: 'REMPLACER_TEMPLATE_ID'
+      publicKey:  'k8DyViou5RVrc2AaY',
+      serviceId:  'service_bfb6ppm',
+      templateId: 'template_zj1pk7r'
     };
     var hasEmailJS = EMAILJS.publicKey.indexOf('REMPLACER') === -1 &&
                      EMAILJS.serviceId.indexOf('REMPLACER') === -1 &&
@@ -890,8 +890,16 @@
       writeOtp({ mail: pend.mail, ent: pend.ent, code: code, exp: Date.now() + OTP_TTL, tries: 0 });
       loadEmailJS(function () {
         if (!hasEmailJS || !window.emailjs) { onSendResult(false); return; }
+        // On couvre le modèle « One-Time Password » d'EmailJS ({{email}},
+        // {{passcode}}, {{time}}, {{company}}) comme un modèle sur mesure.
         window.emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, {
-          to_email: pend.mail, passcode: code, company: pend.ent, site: 'averoweb.fr'
+          email: pend.mail,
+          to_email: pend.mail,
+          passcode: code,
+          time: '10 minutes',
+          company: 'Avero Web',
+          site: 'averoweb.fr',
+          visitor_company: pend.ent
         }, { publicKey: EMAILJS.publicKey }).then(
           function () { onSendResult(true); },
           function () { onSendResult(false); }
