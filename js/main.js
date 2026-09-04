@@ -520,6 +520,12 @@
     var K_RELAY = 'avero.chat.relay';
     var MAILRE  = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+    /* Proxy Claude (Cloudflare Worker — voir worker/avero-chat-proxy.js).
+       La clé API n'est jamais ici : le Worker la garde en secret côté
+       serveur. Vide = le mode Assistant répond depuis la base de
+       connaissances locale ci-dessous (aucun appel, aucun coût). */
+    var AI_ENDPOINT = '';
+
     var lead = null, history = [], started = false, relaying = false, relayDirty = false;
     try { lead = JSON.parse(localStorage.getItem(K_LEAD) || 'null'); } catch (e) {}
     try { history = JSON.parse(localStorage.getItem(K_LOG) || '[]') || []; } catch (e) {}
@@ -706,6 +712,61 @@
       }
       botSay(FALLBACK);
       offerHandoff();
+    }
+
+    /* — assistant IA (proxy Claude, saisie libre uniquement) ─────
+       Convertit l'historique en messages user/assistant pour l'API
+       (alternance stricte, débute par « user »), avec repli sur la
+       base de connaissances locale si AI_ENDPOINT est vide, injoignable
+       ou renvoie une erreur. */
+    function toApiMessages(hist) {
+      var out = [];
+      hist.forEach(function (m) {
+        var role = m.w === 'user' ? 'user' : 'assistant';
+        if (out.length && out[out.length - 1].role === role) {
+          out[out.length - 1].content += '\n' + m.t;
+        } else {
+          out.push({ role: role, content: m.t });
+        }
+      });
+      while (out.length && out[0].role !== 'user') out.shift();
+      return out;
+    }
+
+    function askAI(userText) {
+      if (!AI_ENDPOINT) { respond(userText); return; }
+      var msgs = toApiMessages(history.slice(-16));
+      if (!msgs.length) { respond(userText); return; }
+
+      var settled = false;
+      var to = setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        respond(userText);
+      }, 20000);
+
+      fetch(AI_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: msgs, company: (lead && lead.ent) || '' })
+      }).then(function (r) {
+        return r.json().then(function (j) { return j; }, function () { return null; });
+      }).then(function (j) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(to);
+        if (j && j.reply) {
+          botSay(j.reply);
+          if (/\b(conseiller|humain|quelqu'un|rappel(er)?|rendez-vous|\brdv\b)\b/i.test(userText)) offerHandoff();
+        } else {
+          respond(userText);
+        }
+      }).catch(function () {
+        if (settled) return;
+        settled = true;
+        clearTimeout(to);
+        respond(userText);
+      });
     }
 
     /* — puces pré-remplies — */
@@ -1121,7 +1182,7 @@
       input.value = ''; autoGrow();
       userSay(v);
       relayDirty = true;
-      typing(function () { respond(v); });
+      typing(function () { askAI(v); });
     }
     input.addEventListener('input', autoGrow);
     input.addEventListener('keydown', function (e) {
