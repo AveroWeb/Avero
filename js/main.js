@@ -774,7 +774,12 @@
     gate.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      if (gate.chat_site && gate.chat_site.value) { startConversation(true); return; }
+      // leurre à robots : on ouvre un chat inerte, sans relais ni enregistrement
+      if (gate.chat_site && gate.chat_site.value) {
+        lead = { mail: (gate.email.value || '').trim() || 'visiteur', ent: (gate.entreprise.value || '').trim() || '—', ts: Date.now() };
+        startConversation(true);
+        return;
+      }
 
       var m1 = gate.email.value.trim();
       var m2 = gate.email2.value.trim();
