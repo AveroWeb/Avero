@@ -761,20 +761,229 @@
       toBottom();
     }
 
-    /* — porte d'accès — */
+    /* — porte d'accès ─────────────────────────────────
+       Vérification de l'e-mail par code à 6 chiffres, envoyé
+       dans la boîte du visiteur via EmailJS (100 % côté client,
+       aucun serveur à héberger).
+
+       MISE EN SERVICE (une seule fois) :
+         1. créer un compte sur https://www.emailjs.com
+         2. y connecter un service d'envoi (Gmail, OVH, SMTP…)
+         3. créer un modèle : champ « To Email » = {{to_email}},
+            corps contenant le code {{passcode}} (et, au besoin,
+            {{company}} / {{site}})
+         4. reporter les 3 identifiants ci-dessous
+       Tant qu'ils ne sont pas renseignés, la porte demande une
+       simple ressaisie de l'e-mail (aucun envoi). Le code est
+       vérifié côté navigateur : cela bloque les adresses
+       fantaisistes, sans prétendre à l'inviolabilité.
+       Un e-mail transitant par EmailJS, penser à le mentionner
+       dans confidentialite.html.
+    ─────────────────────────────────────────────────────── */
+    var EMAILJS = {
+      publicKey:  'REMPLACER_PUBLIC_KEY',
+      serviceId:  'REMPLACER_SERVICE_ID',
+      templateId: 'REMPLACER_TEMPLATE_ID'
+    };
+    var hasEmailJS = EMAILJS.publicKey.indexOf('REMPLACER') === -1 &&
+                     EMAILJS.serviceId.indexOf('REMPLACER') === -1 &&
+                     EMAILJS.templateId.indexOf('REMPLACER') === -1;
+
+    var K_OTP = 'avero.chat.otp';
+    var OTP_TTL = 10 * 60 * 1000;   // validité du code
+    var OTP_MAX = 5;                // essais avant d'exiger un nouveau code
+    var RESEND_WAIT = 30;           // secondes entre deux envois
+
+    var stepId   = $('#chatStepId', root);
+    var stepCode = $('#chatStepCode', root);
+    var fdMail2  = $('#chatFdMail2', root);
+    var codeInp  = $('#chatCode', root);
+    var codeDest = $('#chatCodeDest', root);
+    var gateBtn  = $('#chatGateBtn', root);
+    var idBtn    = $('#chatStepId button[type="submit"]', root);
+    var codeBtn  = $('#chatStepCode button[type="submit"]', root);
+    var resendB  = $('#chatResend', root);
+    var editB    = $('#chatEditMail', root);
+
+    var pend = null;           // { mail, ent } en cours de vérification
+    var sendFails = 0, resendCount = 0, resendTimer = null;
+
+    function loadEmailJS(cb) {
+      cb = cb || function () {};
+      if (window.emailjs) { cb(); return; }
+      if (loadEmailJS._q) { loadEmailJS._q.push(cb); return; }
+      loadEmailJS._q = [cb];
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      s.async = true;
+      var done = function () {
+        try { if (hasEmailJS && window.emailjs && window.emailjs.init) window.emailjs.init({ publicKey: EMAILJS.publicKey }); } catch (e) {}
+        var q = loadEmailJS._q || []; loadEmailJS._q = null;
+        q.forEach(function (f) { try { f(); } catch (e) {} });
+      };
+      s.onload = done;
+      s.onerror = done;
+      document.head.appendChild(s);
+    }
+
+    function makeCode() {
+      try {
+        var a = new Uint32Array(1);
+        (window.crypto || window.msCrypto).getRandomValues(a);
+        return String(100000 + (a[0] % 900000));
+      } catch (e) {
+        return String(Math.floor(100000 + Math.random() * 900000));
+      }
+    }
+
+    function readOtp()  { try { return JSON.parse(sessionStorage.getItem(K_OTP) || 'null'); } catch (e) { return null; } }
+    function writeOtp(o) { try { o ? sessionStorage.setItem(K_OTP, JSON.stringify(o)) : sessionStorage.removeItem(K_OTP); } catch (e) {} }
+
     function fieldErr(el, on) {
       var fd = el.closest('.chat__fd') || el.closest('.chat__rgpd');
       if (fd) fd.classList.toggle('err', on);
     }
 
+    function gateInfo(txt, kind) {
+      gateMsg.textContent = txt || '';
+      gateMsg.className = 'chat__gate-msg' + (kind ? ' ' + kind : '');
+    }
+
+    function busy(btn, on, label) {
+      if (!btn) return;
+      var span = btn.querySelector('span') || btn;
+      btn.disabled = on;
+      if (on) { span.dataset.rest = span.dataset.rest || span.textContent; span.textContent = label || 'Envoi…'; }
+      else if (span.dataset.rest) { span.textContent = span.dataset.rest; delete span.dataset.rest; }
+    }
+
+    function showStep(which) {
+      gate.dataset.step = which;
+      stepId.hidden   = which === 'code';
+      stepCode.hidden = which !== 'code';
+      var sk = $('#chatSkip', root); if (sk) sk.remove();
+      if (which === 'code') {
+        codeDest.textContent = pend ? pend.mail : '';
+        setTimeout(function () { codeInp.focus(); }, 60);
+      }
+    }
+
+    function resendCooldown() {
+      var left = RESEND_WAIT;
+      clearInterval(resendTimer);
+      resendB.disabled = true;
+      resendB.textContent = 'Renvoyer le code (' + left + ' s)';
+      resendTimer = setInterval(function () {
+        left -= 1;
+        if (left <= 0) {
+          clearInterval(resendTimer);
+          resendB.disabled = false;
+          resendB.textContent = 'Renvoyer le code';
+        } else {
+          resendB.textContent = 'Renvoyer le code (' + left + ' s)';
+        }
+      }, 1000);
+    }
+
+    function dispatchCode() {
+      var code = makeCode();
+      writeOtp({ mail: pend.mail, ent: pend.ent, code: code, exp: Date.now() + OTP_TTL, tries: 0 });
+      loadEmailJS(function () {
+        if (!hasEmailJS || !window.emailjs) { onSendResult(false); return; }
+        window.emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, {
+          to_email: pend.mail, passcode: code, company: pend.ent, site: 'averoweb.fr'
+        }, { publicKey: EMAILJS.publicKey }).then(
+          function () { onSendResult(true); },
+          function () { onSendResult(false); }
+        );
+      });
+    }
+
+    function onSendResult(ok) {
+      busy(idBtn, false);
+      busy(codeBtn, false);
+      if (ok) {
+        sendFails = 0;
+        showStep('code');
+        gateInfo('Code envoyé — valable 10 minutes.', 'ok');
+        resendCooldown();
+      } else {
+        sendFails += 1;
+        gateInfo(sendFails >= 2
+          ? "Envoi du code impossible pour le moment."
+          : "L'envoi a échoué, réessayez dans un instant.", 'ko');
+        if (sendFails >= 2 || resendCount >= 3) offerSkip();
+      }
+    }
+
+    function offerSkip() {
+      if ($('#chatSkip', root) || !pend) return;
+      var host = stepCode.hidden ? stepId : stepCode;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.id = 'chatSkip';
+      b.className = 'btn btn--out btn--sm';
+      b.style.marginTop = '.5rem';
+      b.innerHTML = '<span>Continuer sans le code</span>';
+      b.addEventListener('click', function () { finishGate(pend.mail, pend.ent); });
+      host.appendChild(b);
+    }
+
+    function finishGate(mail, ent) {
+      clearInterval(resendTimer);
+      writeOtp(null);
+      pend = null; sendFails = 0; resendCount = 0;
+      gateInfo('');
+      lead = { mail: mail, ent: ent, ts: Date.now() };
+      try { localStorage.setItem(K_LEAD, JSON.stringify(lead)); } catch (e) {}
+      relay('nouveau contact');
+      startConversation(true);
+    }
+
+    function verifyStep() {
+      var otp = readOtp();
+      var v = (codeInp.value || '').replace(/\D/g, '');
+      if (!otp || !pend) { gateInfo("Session expirée, recommencez.", 'ko'); showStep('id'); return; }
+      if (Date.now() > otp.exp) { gateInfo("Code expiré. Demandez-en un nouveau.", 'ko'); return; }
+      if (otp.tries >= OTP_MAX) { gateInfo("Trop d'essais. Demandez un nouveau code.", 'ko'); return; }
+      if (v.length !== 6 || v !== otp.code) {
+        otp.tries += 1; writeOtp(otp);
+        fieldErr(codeInp, true);
+        var rest = OTP_MAX - otp.tries;
+        gateInfo(rest > 0
+          ? "Code incorrect — " + rest + " essai" + (rest > 1 ? 's' : '') + " restant" + (rest > 1 ? 's' : '') + "."
+          : "Trop d'essais. Demandez un nouveau code.", 'ko');
+        return;
+      }
+      finishGate(pend.mail, pend.ent);
+    }
+
+    /* mode dégradé : EmailJS non configuré → ressaisie de l'e-mail */
+    if (!hasEmailJS) {
+      fdMail2.hidden = false;
+      gate.dataset.step = 'retype';
+      if (gateBtn) gateBtn.textContent = 'Démarrer la discussion';
+    } else {
+      loadEmailJS();
+      var otp0 = readOtp();
+      if (otp0 && otp0.mail && Date.now() < otp0.exp) {
+        pend = { mail: otp0.mail, ent: otp0.ent || '—' };
+        showStep('code');
+      }
+    }
+
     gate.addEventListener('input', function (e) {
       if (e.target.value || e.target.checked) fieldErr(e.target, false);
+      if (e.target === codeInp) codeInp.value = codeInp.value.replace(/\D/g, '').slice(0, 6);
     });
 
     gate.addEventListener('submit', function (e) {
       e.preventDefault();
+      var step = gate.dataset.step;
 
-      // leurre à robots : on ouvre un chat inerte, sans relais ni enregistrement
+      if (step === 'code') { verifyStep(); return; }
+
+      // leurre à robots : chat inerte, sans relais ni enregistrement
       if (gate.chat_site && gate.chat_site.value) {
         lead = { mail: (gate.email.value || '').trim() || 'visiteur', ent: (gate.entreprise.value || '').trim() || '—', ts: Date.now() };
         startConversation(true);
@@ -782,44 +991,70 @@
       }
 
       var m1 = gate.email.value.trim();
-      var m2 = gate.email2.value.trim();
       var en = gate.entreprise.value.trim();
+      var m2 = (!fdMail2.hidden && gate.email2) ? gate.email2.value.trim() : m1;
       var bad = [];
 
       if (!MAILRE.test(m1)) bad.push(gate.email);
-      if (!m2 || m2 !== m1) bad.push(gate.email2);
+      if (!fdMail2.hidden && (!m2 || m2 !== m1)) bad.push(gate.email2);
       if (en.length < 2) bad.push(gate.entreprise);
       if (!gate.rgpd.checked) bad.push(gate.rgpd);
 
       [gate.email, gate.email2, gate.entreprise, gate.rgpd].forEach(function (f) {
-        fieldErr(f, bad.indexOf(f) > -1);
+        if (f) fieldErr(f, bad.indexOf(f) > -1);
       });
 
       if (bad.length) {
-        gateMsg.textContent = (m1 && m2 && m1 !== m2)
+        gateInfo((!fdMail2.hidden && m1 && m2 && m1 !== m2)
           ? "Les deux e-mails ne correspondent pas."
-          : "Il manque une information pour démarrer.";
-        gateMsg.className = 'chat__gate-msg ko';
+          : "Il manque une information pour démarrer.", 'ko');
         bad[0].focus();
         return;
       }
 
-      gateMsg.textContent = '';
-      gateMsg.className = 'chat__gate-msg';
-      lead = { mail: m1, ent: en, ts: Date.now() };
-      try { localStorage.setItem(K_LEAD, JSON.stringify(lead)); } catch (er) {}
-      relay('nouveau contact');
-      startConversation(true);
+      gateInfo('');
+
+      if (step === 'retype') { finishGate(m1, en); return; }
+
+      // étape « id » : on envoie le code (les échecs s'accumulent tant que
+      // l'adresse ne change pas → propose « continuer sans le code » au 2e)
+      if (!pend || pend.mail !== m1) { sendFails = 0; resendCount = 0; }
+      pend = { mail: m1, ent: en };
+      busy(idBtn, true, 'Envoi du code…');
+      dispatchCode();
+    });
+
+    resendB.addEventListener('click', function () {
+      if (resendB.disabled || !pend) return;
+      resendCount += 1;
+      gateInfo('Nouveau code en route…');
+      busy(codeBtn, true, 'Envoi…');
+      dispatchCode();
+    });
+
+    editB.addEventListener('click', function () {
+      clearInterval(resendTimer);
+      writeOtp(null);
+      pend = null; sendFails = 0; resendCount = 0;
+      var sk = $('#chatSkip', root); if (sk) sk.remove();
+      gateInfo('');
+      showStep(fdMail2.hidden ? 'id' : 'retype');
+      var f = $('#chatMail', root);
+      if (f) f.focus();
     });
 
     resetB.addEventListener('click', function () {
       try { localStorage.removeItem(K_LEAD); localStorage.removeItem(K_LOG); } catch (e) {}
-      lead = null; history = []; started = false;
+      clearInterval(resendTimer);
+      writeOtp(null);
+      lead = null; history = []; started = false; pend = null;
+      sendFails = 0; resendCount = 0;
       log.innerHTML = ''; log.hidden = true;
       quick.hidden = true; compose.hidden = true;
       swBar.hidden = true; resetB.hidden = true;
       gate.hidden = false;
       gate.reset();
+      showStep(fdMail2.hidden ? 'id' : 'retype');
       var f = $('#chatMail', root);
       if (f) f.focus();
     });
@@ -858,7 +1093,10 @@
           gate.hidden = false;
           log.hidden = true; swBar.hidden = true; resetB.hidden = true;
           quick.hidden = true; compose.hidden = true;
-          setTimeout(function () { var f = $('#chatMail', root); if (f) f.focus(); }, 80);
+          setTimeout(function () {
+            var f = gate.dataset.step === 'code' ? $('#chatCode', root) : $('#chatMail', root);
+            if (f) f.focus();
+          }, 80);
         } else if (!started) {
           startConversation(false);
         } else {

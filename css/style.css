@@ -872,8 +872,14 @@ a.mock:focus-visible{outline:3px solid var(--navy);outline-offset:5px}
 .chat__scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 
 .chat__gate{display:flex;flex-direction:column;gap:.7rem;padding:1rem}
+.chat__gate-step{display:flex;flex-direction:column;gap:.7rem}
 .chat__gate-lead{font-size:.84rem;color:var(--dim);line-height:1.45}
 .chat__gate-lead a{color:var(--blue);text-decoration:underline}
+.chat__gate-links{display:flex;flex-wrap:wrap;gap:.1rem 1.1rem;margin-top:.1rem}
+.chat__gate-links button{font-family:var(--body);font-size:.76rem;color:var(--blue);text-decoration:underline;padding:.2rem 0}
+.chat__gate-links button:disabled{color:var(--dim);text-decoration:none;cursor:default}
+.chat__gate #chatCode{text-align:center;letter-spacing:.5em;font-family:var(--display);font-weight:800;font-size:1.15rem;padding-inline:.4rem}
+.chat__gate #chatCode::placeholder{letter-spacing:.35em}
 .chat__fd{display:flex;flex-direction:column;gap:.3rem}
 .chat__fd label{font-family:var(--display);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
 .chat__fd label i{font-style:normal;color:var(--blue)}
