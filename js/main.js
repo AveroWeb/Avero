@@ -485,4 +485,399 @@
     });
   }
 
+  /* ─── 11. Chat — assistant Avero ─────────────────────
+     Bulle de discussion en bas à droite, au-dessus de WhatsApp.
+     Deux modes :
+       • « Réponses rapides » — puces pré-remplies, réponses scriptées ;
+       • « Assistant » — saisie libre : une petite base de connaissances
+         locale répond ; à défaut, la demande est transmise à l'équipe.
+     L'accès est conditionné à la saisie de l'e-mail (+ confirmation) et
+     du nom de l'entreprise. Le nouveau contact et les demandes « à
+     recontacter » sont relayés vers contact@averoweb.fr via Web3Forms
+     (même clé qu'à la section 7). Sans clé, tout reste en local.
+  ─────────────────────────────────────────────────────── */
+  (function chatWidget() {
+    var root = $('#chat');
+    if (!root) return;
+
+    var launch   = $('#chatLaunch', root);
+    var panel    = $('#chatPanel', root);
+    var closeB   = $('#chatClose', root);
+    var resetB   = $('#chatReset', root);
+    var swBar    = $('#chatSwitch', root);
+    var swRapid  = $('#chatSwRapid', root);
+    var swAssist = $('#chatSwAssist', root);
+    var scroller = $('#chatScroll', root);
+    var gate     = $('#chatGate', root);
+    var gateMsg  = $('#chatGateMsg', root);
+    var log      = $('#chatLog', root);
+    var quick    = $('#chatQuick', root);
+    var compose  = $('#chatCompose', root);
+    var input    = $('#chatInput', root);
+
+    var K_LEAD  = 'avero.chat.lead';
+    var K_LOG   = 'avero.chat.log';
+    var K_RELAY = 'avero.chat.relay';
+    var MAILRE  = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    var lead = null, history = [], started = false, relaying = false, relayDirty = false;
+    try { lead = JSON.parse(localStorage.getItem(K_LEAD) || 'null'); } catch (e) {}
+    try { history = JSON.parse(localStorage.getItem(K_LOG) || '[]') || []; } catch (e) {}
+    if (!lead || !MAILRE.test(lead.mail || '')) lead = null;
+    if (!Array.isArray(history)) history = [];
+
+    /* — base de connaissances (mode Assistant) — */
+    var KB = [
+      { k: /prix|tarif|co[ûu]te|combien(?!.*(temps|de temps))|budget|pas cher|devis chiffr/i,
+        a: "Nos formules : Essentiel 1 000 € HT (jusqu'à 5 pages, livré en 3 semaines), Premium 2 600 € HT (jusqu'à 10 pages, blog, référencement local renforcé) et E-commerce de 1 500 à 5 000 € HT. Ensuite, maintenance 39 €/mois sans engagement. Paiement en 3 fois sans frais." },
+      { k: /d[ée]lai|dur[ée]e|combien de temps|quand( |-)|d[ée]lais|rapide|vite|livr[ée]/i,
+        a: "Comptez 3 semaines pour un site Essentiel, 4 à 6 semaines pour un Premium, 8 à 10 pour une boutique. Le principal facteur, c'est la vitesse à laquelle vous nous transmettez textes et photos — et on peut s'en charger." },
+      { k: /r[ée]f[ée]rencement|\bseo\b|google|visib|premi[èe]re page|mots?[- ]cl[ée]s/i,
+        a: "Le référencement local est inclus dans chaque projet : base technique propre, pages dédiées à vos villes (Rodez, Millau, Villefranche…) et à vos métiers, fiche Google Business optimisée, collecte d'avis. Les premiers effets se voient entre 6 et 12 semaines." },
+      { k: /appartient|propri[ée]t|nom de domaine|code source|r[ée]cup[ée]rer|otage|location d[ée]guis/i,
+        a: "Le site est à vous à 100 % dès la livraison : nom de domaine à votre nom, accès à l'hébergement, code source livré. Aucune formule de location, aucun fichier retenu." },
+      { k: /paiement|payer|acompte|[ée]chelonn|facture|\btva\b|versement|3 fois/i,
+        a: "Le règlement suit l'avancement : 30 % à la signature, 40 % à la validation des maquettes, 30 % à la mise en ligne. Virement, chèque ou carte, possibilité de 3 fois sans frais. Entreprise immatriculée en Aveyron, facture avec TVA." },
+      { k: /maintenance|h[ée]bergement|sauvegarde|mises? [àa] jour|s[ée]curit|en panne/i,
+        a: "Maintenance 39 €/mois, sans engagement : hébergement en France, sauvegardes quotidiennes, mises à jour, sécurité, et 1 h de modifications incluse chaque mois." },
+      { k: /modifier|autonom|g[ée]rer|\bcms\b|back ?office|moi-m[êe]me|changer (un|le|les)/i,
+        a: "Vous gérez le site vous-même : interface simple, formation d'1 h à la livraison et vidéos de rappel. Changer un horaire, ajouter une photo ou publier une actualité ne demande aucune compétence technique." },
+      { k: /boutique|e-?commerce|vendre|vente en ligne|panier|stock|click.?(and|&|et).?collect|paiement cb/i,
+        a: "Nos boutiques : catalogue et stocks, paiement CB sécurisé, transporteurs et click & collect, factures automatiques, formation gestion de 3 h. Budget de 1 500 à 5 000 € HT selon le catalogue." },
+      { k: /\bzone\b|secteur|rodez|millau|aveyron|villefranche|d[ée]placement|o[ùu] [êe]tes|\bloin\b|distance/i,
+        a: "On est basés à Rodez, présents à Millau, et on couvre toute l'Aveyron et les départements voisins. Les échanges se font à distance — téléphone, e-mail, SMS ou WhatsApp — sans déplacement." },
+      { k: /\blogo\b|identit[ée]|charte|graphi|carte de visite|signal[ée]tique|\bprint\b/i,
+        a: "On fait aussi l'identité visuelle : logo, couleurs, cartes de visite, signalétique, marquage de véhicule. Une image cohérente partout." },
+      { k: /contact|t[ée]l[ée]phone|appeler|joindre|num[ée]ro|rappel|rendez-vous|\brdv\b|whatsapp|mail/i,
+        a: "Par téléphone au 06 12 91 32 66, par e-mail à contact@averoweb.fr, ou sur WhatsApp. On répond à tout le monde sous 24 h ouvrées.", h: true },
+      { k: /bonjour|bonsoir|salut|coucou|hello|\bhey\b/i,
+        a: "Bonjour ! Je peux vous renseigner sur nos offres, les délais, le référencement ou le déroulé d'un projet. Que voulez-vous savoir ?" },
+      { k: /merci|nickel|parfait|super|g[ée]nial|au revoir|bonne journ/i,
+        a: "Avec plaisir ! Je reste là si besoin." }
+    ];
+
+    var DEVIS = "Pour un devis précis : décrivez ici votre projet (activité, pages voulues, délai idéal) et je passe la main à l'équipe. Devis détaillé ligne par ligne sous 72 h, et le prix signé est le prix final.";
+    var FALLBACK = "Je ne suis pas sûr de bien savoir répondre à ça. Je peux transmettre votre question à l'équipe — elle vous recontacte sous 24 h ouvrées.";
+
+    var QUICK = [
+      { q: "Combien coûte un site ?",     t: "Combien coûte un site ?" },
+      { q: "Quels délais ?",              t: "Quels sont vos délais ?" },
+      { q: "Référencement local ?",       t: "Vous faites du référencement local ?" },
+      { q: "À qui appartient le site ?",  t: "À qui appartient le site une fois payé ?" },
+      { q: "Le paiement ?",               t: "Comment se passe le paiement ?" },
+      { q: "Je veux un devis",            t: "Je voudrais un devis", devis: true },
+      { q: "Parler à un conseiller",      handoff: true }
+    ];
+
+    /* — affichage — */
+    function toBottom() { scroller.scrollTop = scroller.scrollHeight; }
+
+    function bubble(who, text) {
+      var el = document.createElement('div');
+      el.className = 'chat__msg chat__msg--' + who;
+      el.textContent = text;
+      log.appendChild(el);
+      toBottom();
+    }
+
+    function record(who, text) {
+      history.push({ w: who, t: text });
+      if (history.length > 60) history = history.slice(-60);
+      try { localStorage.setItem(K_LOG, JSON.stringify(history)); } catch (e) {}
+    }
+
+    function botSay(text)  { bubble('bot', text);  record('bot', text); }
+    function userSay(text) { bubble('user', text); record('user', text); }
+
+    function typing(cb) {
+      var el = document.createElement('div');
+      el.className = 'chat__msg chat__msg--bot chat__typing';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      log.appendChild(el);
+      toBottom();
+      var wait = reduced ? 140 : 380 + Math.random() * 420;
+      setTimeout(function () { el.remove(); cb(); }, wait);
+    }
+
+    function actions(list) {
+      var wrap = document.createElement('div');
+      wrap.className = 'chat__act';
+      list.forEach(function (it) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = it.label;
+        b.addEventListener('click', function () { wrap.remove(); it.run(); });
+        wrap.appendChild(b);
+      });
+      log.appendChild(wrap);
+      toBottom();
+    }
+
+    /* — relais e-mail (Web3Forms) — */
+    function transcript() {
+      return history.map(function (m) {
+        return (m.w === 'user' ? 'Visiteur : ' : 'Assistant : ') + m.t;
+      }).join('\n');
+    }
+
+    function relay(reason, viaBeacon) {
+      if (relaying || !lead) return;
+      var isContact = reason.indexOf('contact') > -1;
+      var st = {};
+      try { st = JSON.parse(sessionStorage.getItem(K_RELAY) || '{}') || {}; } catch (e) {}
+      st.n = st.n || 0;
+      if (st.n >= 6) return;
+      if (!isContact && st.at && Date.now() - st.at < 20000 && !relayDirty) return;
+
+      var payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: 'Chat averoweb.fr — ' + reason + ' : ' + (lead.ent || '—'),
+        from_name: 'Chat averoweb.fr',
+        replyto: lead.mail || DEST,
+        botcheck: false,
+        'Entreprise': lead.ent || '—',
+        'E-mail': lead.mail || '—',
+        'Motif': reason,
+        'Conversation': history.length ? transcript() : '—',
+        'Page': location.href,
+        'Date': new Date().toLocaleString('fr-FR')
+      };
+
+      var seal = function (ok) {
+        relaying = false;
+        st.at = Date.now(); st.n += 1;
+        try { sessionStorage.setItem(K_RELAY, JSON.stringify(st)); } catch (e) {}
+        if (ok) relayDirty = false;
+      };
+
+      if (!hasWeb3) { seal(false); return; }
+      relaying = true;
+
+      if (viaBeacon && navigator.sendBeacon) {
+        try {
+          navigator.sendBeacon(
+            'https://api.web3forms.com/submit',
+            new Blob([JSON.stringify(payload)], { type: 'application/json' })
+          );
+          seal(true);
+        } catch (e) { seal(false); }
+        return;
+      }
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (r) {
+        return r.json().then(function (j) { return j; }, function () { return { success: r.ok }; });
+      }).then(function (j) {
+        seal(j && j.success === true);
+      }).catch(function () { seal(false); });
+    }
+
+    function offerHandoff() {
+      actions([
+        { label: 'Oui, transmettre', run: function () {
+            relayDirty = true;
+            relay('à recontacter');
+            botSay("C'est transmis. L'équipe vous recontacte sous 24 h ouvrées à " + lead.mail + ". Vous pouvez préciser votre besoin ci-dessous, ou appeler le 06 12 91 32 66.");
+            setMode('assist');
+          } },
+        { label: 'Non merci', run: function () {
+            botSay("Pas de souci. Je reste là pour vos questions.");
+          } }
+      ]);
+    }
+
+    /* — moteur de réponse — */
+    function respond(text, forceDevis) {
+      if (forceDevis || /\bdevis\b/i.test(text)) {
+        botSay(DEVIS);
+        botSay("Voulez-vous que je transmette votre demande maintenant ?");
+        offerHandoff();
+        return;
+      }
+      for (var i = 0; i < KB.length; i++) {
+        if (KB[i].k.test(text)) {
+          botSay(KB[i].a);
+          if (KB[i].h) offerHandoff();
+          return;
+        }
+      }
+      botSay(FALLBACK);
+      offerHandoff();
+    }
+
+    /* — puces pré-remplies — */
+    function renderQuick() {
+      quick.innerHTML = '';
+      QUICK.forEach(function (it) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chat__chip';
+        b.textContent = it.q;
+        b.addEventListener('click', function () {
+          if (it.handoff) {
+            userSay("Je souhaite parler à un conseiller");
+            typing(function () {
+              botSay("Bien sûr. Je transmets la conversation à l'équipe ?");
+              offerHandoff();
+            });
+            return;
+          }
+          userSay(it.t);
+          typing(function () { respond(it.t, it.devis); });
+        });
+        quick.appendChild(b);
+      });
+    }
+
+    /* — modes — */
+    function setMode(mode) {
+      root.dataset.mode = mode;
+      swRapid.setAttribute('aria-pressed', String(mode === 'rapid'));
+      swAssist.setAttribute('aria-pressed', String(mode === 'assist'));
+      quick.hidden = mode !== 'rapid';
+      compose.hidden = mode !== 'assist';
+      if (mode === 'assist') setTimeout(function () { input.focus(); }, 60);
+    }
+
+    /* — démarrage de la conversation (après la porte d'accès) — */
+    function startConversation(fresh) {
+      started = true;
+      gate.hidden = true;
+      log.hidden = false;
+      swBar.hidden = false;
+      resetB.hidden = false;
+      log.innerHTML = '';
+
+      if (!fresh && history.length) {
+        history.forEach(function (m) { bubble(m.w, m.t); });
+      } else {
+        botSay("Bonjour ! Je suis l'assistant d'Avero Web. Choisissez une question ci-dessous, ou passez en mode « Assistant » pour écrire librement.");
+      }
+      renderQuick();
+      setMode('rapid');
+      toBottom();
+    }
+
+    /* — porte d'accès — */
+    function fieldErr(el, on) {
+      var fd = el.closest('.chat__fd') || el.closest('.chat__rgpd');
+      if (fd) fd.classList.toggle('err', on);
+    }
+
+    gate.addEventListener('input', function (e) {
+      if (e.target.value || e.target.checked) fieldErr(e.target, false);
+    });
+
+    gate.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (gate.chat_site && gate.chat_site.value) { startConversation(true); return; }
+
+      var m1 = gate.email.value.trim();
+      var m2 = gate.email2.value.trim();
+      var en = gate.entreprise.value.trim();
+      var bad = [];
+
+      if (!MAILRE.test(m1)) bad.push(gate.email);
+      if (!m2 || m2 !== m1) bad.push(gate.email2);
+      if (en.length < 2) bad.push(gate.entreprise);
+      if (!gate.rgpd.checked) bad.push(gate.rgpd);
+
+      [gate.email, gate.email2, gate.entreprise, gate.rgpd].forEach(function (f) {
+        fieldErr(f, bad.indexOf(f) > -1);
+      });
+
+      if (bad.length) {
+        gateMsg.textContent = (m1 && m2 && m1 !== m2)
+          ? "Les deux e-mails ne correspondent pas."
+          : "Il manque une information pour démarrer.";
+        gateMsg.className = 'chat__gate-msg ko';
+        bad[0].focus();
+        return;
+      }
+
+      gateMsg.textContent = '';
+      gateMsg.className = 'chat__gate-msg';
+      lead = { mail: m1, ent: en, ts: Date.now() };
+      try { localStorage.setItem(K_LEAD, JSON.stringify(lead)); } catch (er) {}
+      relay('nouveau contact');
+      startConversation(true);
+    });
+
+    resetB.addEventListener('click', function () {
+      try { localStorage.removeItem(K_LEAD); localStorage.removeItem(K_LOG); } catch (e) {}
+      lead = null; history = []; started = false;
+      log.innerHTML = ''; log.hidden = true;
+      quick.hidden = true; compose.hidden = true;
+      swBar.hidden = true; resetB.hidden = true;
+      gate.hidden = false;
+      gate.reset();
+      var f = $('#chatMail', root);
+      if (f) f.focus();
+    });
+
+    /* — saisie libre — */
+    function autoGrow() {
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 96) + 'px';
+    }
+    function sendCompose() {
+      var v = input.value.trim();
+      if (!v) return;
+      input.value = ''; autoGrow();
+      userSay(v);
+      relayDirty = true;
+      typing(function () { respond(v); });
+    }
+    input.addEventListener('input', autoGrow);
+    input.addEventListener('keydown', function (e) {
+      var enter = e.key === 'Enter' || e.key === 'Return' || e.keyCode === 13;
+      if (enter && !e.shiftKey) { e.preventDefault(); sendCompose(); }
+    });
+    compose.addEventListener('submit', function (e) { e.preventDefault(); sendCompose(); });
+
+    swRapid.addEventListener('click', function () { setMode('rapid'); });
+    swAssist.addEventListener('click', function () { setMode('assist'); });
+
+    /* — ouverture / fermeture — */
+    function setOpen(open) {
+      root.dataset.state = open ? 'open' : 'closed';
+      launch.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+
+      if (open) {
+        if (!lead) {
+          gate.hidden = false;
+          log.hidden = true; swBar.hidden = true; resetB.hidden = true;
+          quick.hidden = true; compose.hidden = true;
+          setTimeout(function () { var f = $('#chatMail', root); if (f) f.focus(); }, 80);
+        } else if (!started) {
+          startConversation(false);
+        } else {
+          setMode(root.dataset.mode || 'rapid');
+        }
+      } else {
+        if (relayDirty) relay('complément de conversation');
+        launch.focus();
+      }
+    }
+
+    launch.addEventListener('click', function () { setOpen(root.dataset.state !== 'open'); });
+    closeB.addEventListener('click', function () { setOpen(false); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && root.dataset.state === 'open') setOpen(false);
+    });
+
+    window.addEventListener('pagehide', function () {
+      if (relayDirty) relay('complément de conversation', true);
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden' && relayDirty) relay('complément de conversation', true);
+    });
+  })();
+
 })();

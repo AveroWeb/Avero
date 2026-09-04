@@ -42,29 +42,58 @@
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
-  "@type":"ProfessionalService",
-  "@id":"https://averoweb.fr/#business",
-  "name":"Avero Web",
-  "url":"https://averoweb.fr/",
-  "image":"https://averoweb.fr/assets/og.jpg",
-  "logo":"https://averoweb.fr/assets/icon-512.png",
-  "description":"Création de sites internet sur mesure à Rodez et Millau, pour les artisans, commerçants et PME de l'Aveyron : sites vitrines, boutiques en ligne, référencement local.",
-  "telephone":"+33612913266",
-  "email":"contact@averoweb.fr",
-  "priceRange":"€€",
-  "currenciesAccepted":"EUR",
-  "paymentAccepted":"Virement, chèque, carte bancaire",
-  "address":{"@type":"PostalAddress","addressLocality":"Rodez","postalCode":"12000","addressRegion":"Aveyron","addressCountry":"FR"},
-  "geo":{"@type":"GeoCoordinates","latitude":44.3506,"longitude":2.5750},
-  "areaServed":[
-    {"@type":"City","name":"Rodez"},
-    {"@type":"City","name":"Millau"},
-    {"@type":"AdministrativeArea","name":"Aveyron"},
-    {"@type":"AdministrativeArea","name":"Occitanie"}
-  ],
-  "knowsAbout":["Création de site internet","Site vitrine","Boutique en ligne","Référencement local","SEO Aveyron","Identité visuelle"],
-  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"19:00"}],
-  "sameAs":[]
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://averoweb.fr/#website",
+      "url":"https://averoweb.fr/",
+      "name":"Avero Web",
+      "alternateName":"AveroWeb",
+      "inLanguage":"fr-FR",
+      "publisher":{"@id":"https://averoweb.fr/#business"}
+    },
+    {
+      "@type":"ProfessionalService",
+      "@id":"https://averoweb.fr/#business",
+      "name":"Avero Web",
+      "url":"https://averoweb.fr/",
+      "image":"https://averoweb.fr/assets/og.jpg",
+      "logo":"https://averoweb.fr/assets/icon-512.png",
+      "description":"Création de sites internet sur mesure à Rodez et Millau, pour les artisans, commerçants et PME de l'Aveyron : sites vitrines, boutiques en ligne, référencement local.",
+      "slogan":"Le site web qui fait sonner le téléphone.",
+      "foundingDate":"2019",
+      "telephone":"+33612913266",
+      "email":"contact@averoweb.fr",
+      "priceRange":"€€",
+      "currenciesAccepted":"EUR",
+      "paymentAccepted":"Virement, chèque, carte bancaire",
+      "address":{"@type":"PostalAddress","addressLocality":"Rodez","postalCode":"12000","addressRegion":"Aveyron","addressCountry":"FR"},
+      "geo":{"@type":"GeoCoordinates","latitude":44.3506,"longitude":2.5750},
+      "areaServed":[
+        {"@type":"City","name":"Rodez"},
+        {"@type":"City","name":"Millau"},
+        {"@type":"City","name":"Villefranche-de-Rouergue"},
+        {"@type":"City","name":"Decazeville"},
+        {"@type":"City","name":"Espalion"},
+        {"@type":"City","name":"Onet-le-Château"},
+        {"@type":"AdministrativeArea","name":"Aveyron"},
+        {"@type":"AdministrativeArea","name":"Occitanie"}
+      ],
+      "knowsAbout":["Création de site internet","Site vitrine","Boutique en ligne (e-commerce)","Référencement local (SEO)","Refonte de site web","Identité visuelle","Maintenance de site web"],
+      "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"19:00"}],
+      "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"31","bestRating":"5","worstRating":"1"},
+      "hasOfferCatalog":{
+        "@type":"OfferCatalog",
+        "name":"Création de sites internet",
+        "itemListElement":[
+          {"@type":"Offer","name":"Site vitrine Essentiel","price":"1000","priceCurrency":"EUR","description":"Jusqu'à 5 pages, design personnalisé, mobile et tablette, formulaire de contact, fiche Google Business. Livré en 3 semaines."},
+          {"@type":"Offer","name":"Site vitrine Premium","price":"2600","priceCurrency":"EUR","description":"Jusqu'à 10 pages, animations, rédaction des pages clés, blog ou actualités, référencement local renforcé. Livré en 4 semaines."},
+          {"@type":"Offer","name":"Boutique en ligne","priceCurrency":"EUR","priceSpecification":{"@type":"PriceSpecification","minPrice":"1500","maxPrice":"5000","priceCurrency":"EUR"},"description":"Catalogue et stocks, paiement CB sécurisé, transporteurs et retrait, factures automatiques."}
+        ]
+      },
+      "sameAs":[]
+    }
+  ]
 }
 </script>
 
@@ -78,7 +107,10 @@
     {"@type":"Question","name":"À qui appartient le site une fois payé ?","acceptedAnswer":{"@type":"Answer","text":"À vous, entièrement. Nom de domaine déposé à votre nom, accès à l'hébergement, code source livré. Aucune formule de location, aucun fichier retenu en otage."}},
     {"@type":"Question","name":"Comment se passent les échanges ?","acceptedAnswer":{"@type":"Answer","text":"À distance, simplement : téléphone, e-mail, SMS ou WhatsApp. Pas de rendez-vous à caler ni de déplacement à prévoir — vous nous joignez quand ça vous arrange, on répond sous 24 h ouvrées."}},
     {"@type":"Question","name":"Et pour apparaître sur Google à Rodez ou Millau ?","acceptedAnswer":{"@type":"Answer","text":"Le référencement local est intégré à chaque projet : structure technique propre, pages dédiées à vos villes (Rodez, Millau, Villefranche…) et à vos métiers, fiche Google Business optimisée, collecte d'avis. Les premiers effets se voient entre 6 et 12 semaines après la mise en ligne."}},
-    {"@type":"Question","name":"Comment se passe le paiement ?","acceptedAnswer":{"@type":"Answer","text":"30 % à la signature du devis, 40 % à la validation des maquettes, 30 % à la mise en ligne, sans frais supplémentaires. Virement, chèque ou carte. Entreprise française immatriculée en Aveyron, facture avec TVA à l'appui."}}
+    {"@type":"Question","name":"Comment se passe le paiement ?","acceptedAnswer":{"@type":"Answer","text":"30 % à la signature du devis, 40 % à la validation des maquettes, 30 % à la mise en ligne, sans frais supplémentaires. Virement, chèque ou carte. Entreprise française immatriculée en Aveyron, facture avec TVA à l'appui."}},
+    {"@type":"Question","name":"Combien coûte un site internet à Rodez ou Millau ?","acceptedAnswer":{"@type":"Answer","text":"Les tarifs sont affichés : 1 000 € HT pour un site vitrine Essentiel, 2 600 € HT pour un Premium, 1 500 à 5 000 € HT pour une boutique en ligne. Le devis signé est le prix final, sans frais caché. Ensuite, la maintenance est à 39 € / mois, sans engagement, hébergement en France et sauvegardes comprises."}},
+    {"@type":"Question","name":"Vous couvrez quelles villes ? Faut-il se déplacer ?","acceptedAnswer":{"@type":"Answer","text":"Tout se fait à distance (téléphone, e-mail, WhatsApp), donc on travaille avec toute l'Aveyron : Rodez, Millau, Villefranche-de-Rouergue, Decazeville, Espalion, Onet-le-Château, Séverac-d'Aveyron et les départements voisins. Un rendez-vous sur place reste possible dans le bassin de Rodez."}},
+    {"@type":"Question","name":"Faites-vous le référencement (SEO) pour ressortir sur Google ?","acceptedAnswer":{"@type":"Answer","text":"Oui, le référencement local est intégré à chaque site : structure technique propre, pages dédiées par ville et par métier, fiche Google Business optimisée, collecte d'avis, contenus travaillés pour vos mots-clés. On ne promet pas la première place en une semaine : les premiers effets se voient en 6 à 12 semaines, et les positions sont suivies chaque mois."}}
   ]
 }
 </script>
@@ -603,6 +635,9 @@
       <details class="ac rv"><summary><span>Comment se passent les échanges ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>À distance, simplement : téléphone, e-mail, SMS ou WhatsApp. Pas de rendez-vous à caler ni de déplacement à prévoir — vous nous joignez quand ça vous arrange, on répond sous 24 h ouvrées.</p></div></details>
       <details class="ac rv"><summary><span>Et pour apparaître sur Google à Rodez ou Millau ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>Le référencement local est intégré à chaque projet : structure technique propre, pages dédiées à vos villes (Rodez, Millau, Villefranche…) et à vos métiers, fiche Google Business optimisée, collecte d'avis. Les premiers effets se voient entre 6 et 12 semaines après la mise en ligne. Aucune agence sérieuse ne vous promettra la première place en une semaine.</p></div></details>
       <details class="ac rv"><summary><span>Comment se passe le paiement ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>30 % à la signature du devis, 40 % à la validation des maquettes, 30 % à la mise en ligne, sans frais supplémentaires. Virement, chèque ou carte. Entreprise française immatriculée en Aveyron, facture avec TVA à l'appui.</p></div></details>
+      <details class="ac rv"><summary><span>Combien coûte un site internet à Rodez ou Millau ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>Les tarifs sont affichés : 1 000 € HT pour un site vitrine Essentiel, 2 600 € HT pour un Premium, 1 500 à 5 000 € HT pour une boutique en ligne. Le devis signé est le prix final, sans frais caché. Ensuite, la maintenance est à 39 € / mois, sans engagement — hébergement en France et sauvegardes comprises.</p></div></details>
+      <details class="ac rv"><summary><span>Vous couvrez quelles villes ? Faut-il se déplacer ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>Tout se fait à distance (téléphone, e-mail, WhatsApp), donc on travaille avec toute l'Aveyron : Rodez, Millau, Villefranche-de-Rouergue, Decazeville, Espalion, Onet-le-Château, Séverac-d'Aveyron… et les départements voisins. Un rendez-vous sur place reste possible dans le bassin de Rodez.</p></div></details>
+      <details class="ac rv"><summary><span>Faites-vous le référencement (SEO) pour ressortir sur Google ?</span><i aria-hidden="true"></i></summary><div class="ac__c"><p>Oui, le référencement local est intégré à chaque site : structure technique propre, pages dédiées par ville et par métier, fiche Google Business optimisée, collecte d'avis, contenus travaillés pour vos mots-clés. On ne promet pas la première place en une semaine — les premiers effets se voient en 6 à 12 semaines, et on suit les positions chaque mois.</p></div></details>
     </div>
   </div>
   <div class="wave wave--navy" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,84 C140,110 280,118 420,94 C560,70 700,12 840,18 C980,24 1120,86 1250,100 C1320,108 1390,102 1440,88 L1440,130 L0,130 Z"/></svg></div>
@@ -668,6 +703,68 @@
   </svg>
 </a>
 
+<!-- ═══════════ CHAT — assistant Avero ═══════════ -->
+<div class="chat" id="chat" data-state="closed" data-mode="rapid">
+  <button class="chat__launch" id="chatLaunch" type="button" aria-expanded="false" aria-controls="chatPanel" aria-label="Ouvrir le chat">
+    <span class="chat__tip" aria-hidden="true">Une question&nbsp;? Discutons</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-4.6 3.4A1 1 0 0 1 3.8 20l.2-3.1A2 2 0 0 1 3 15V6a2 2 0 0 1 2-2z"/></svg>
+  </button>
+
+  <section class="chat__panel" id="chatPanel" role="dialog" aria-labelledby="chatTitle" aria-describedby="chatStatus" hidden>
+    <header class="chat__head">
+      <span class="chat__avatar" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><path d="M12 86 L44 17 L62 52" fill="none" stroke="currentColor" stroke-width="15" stroke-linejoin="round"/><path d="M38 48 L50 76 L61 49 L71 76 L87 41" fill="none" stroke="#2E6BFF" stroke-width="14" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="chat__id">
+        <span class="chat__title" id="chatTitle">Avero Web</span>
+        <span class="chat__status" id="chatStatus"><i aria-hidden="true"></i>En ligne — réponse sous 24&nbsp;h</span>
+        <button class="chat__reset" id="chatReset" type="button" hidden>Changer d'e-mail</button>
+      </span>
+      <button class="chat__close" id="chatClose" type="button" aria-label="Fermer le chat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="chat__switch" id="chatSwitch" role="group" aria-label="Mode de conversation" hidden>
+      <button id="chatSwRapid" type="button" aria-pressed="true">Réponses rapides</button>
+      <button id="chatSwAssist" type="button" aria-pressed="false">✨ Assistant</button>
+    </div>
+
+    <div class="chat__scroll" id="chatScroll">
+      <form class="chat__gate" id="chatGate" novalidate>
+        <p class="chat__gate-lead">Pour démarrer la discussion, laissez-nous vos coordonnées. Elles servent uniquement à vous recontacter — voir la <a href="confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.</p>
+        <div class="chat__fd">
+          <label for="chatMail">Votre e-mail <i>*</i></label>
+          <input id="chatMail" name="email" type="email" inputmode="email" required autocomplete="email" placeholder="vous@entreprise.fr">
+        </div>
+        <div class="chat__fd">
+          <label for="chatMail2">Confirmez l'e-mail <i>*</i></label>
+          <input id="chatMail2" name="email2" type="email" inputmode="email" required autocomplete="off" placeholder="vous@entreprise.fr">
+        </div>
+        <div class="chat__fd">
+          <label for="chatEnt">Nom de l'entreprise <i>*</i></label>
+          <input id="chatEnt" name="entreprise" type="text" required autocomplete="organization" placeholder="Menuiserie Delmas">
+        </div>
+        <label class="chat__rgpd"><input type="checkbox" name="rgpd" required><span>J'accepte d'être recontacté au sujet de ma demande.</span></label>
+        <input type="text" name="chat_site" class="chat__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn--amber btn--sm" type="submit"><span>Démarrer la discussion</span></button>
+        <p class="chat__gate-msg" id="chatGateMsg" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="chat__log" id="chatLog" role="log" aria-live="polite" aria-label="Conversation" hidden></div>
+    </div>
+
+    <div class="chat__quick" id="chatQuick" hidden></div>
+
+    <form class="chat__compose" id="chatCompose" hidden>
+      <textarea id="chatInput" name="message" rows="1" placeholder="Écrivez votre message…" aria-label="Votre message" autocomplete="off"></textarea>
+      <button class="chat__send" type="submit" aria-label="Envoyer le message">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </form>
+  </section>
+</div>
+
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer class="foot">
   <div class="wrap">
@@ -685,7 +782,7 @@
       <div class="foot__cols">
         <div><h4>Services</h4><a href="#services">Sites vitrines</a><a href="#services">Boutiques en ligne</a><a href="#services">Référencement local</a><a href="#services">Identité visuelle</a><a href="#services">Maintenance</a></div>
         <div><h4>Agence</h4><a href="#methode">Méthode</a><a href="#engagement">Transparence</a><!-- <a href="#realisations">Réalisations</a> masqué temporairement --><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="avero.html">Avero, logiciel pour agences web</a></div>
-        <div><h4>Secteur</h4><a href="#contact">Rodez</a><a href="#contact">Millau</a><a href="#contact">Villefranche-de-Rouergue</a><a href="#contact">Decazeville</a><a href="#contact">Espalion</a></div>
+        <div><h4>Secteur</h4><a href="creation-site-internet-rodez.html">Site internet à Rodez</a><a href="creation-site-internet-millau.html">Site internet à Millau</a><a href="#contact">Villefranche-de-Rouergue</a><a href="#contact">Decazeville</a><a href="#contact">Espalion</a></div>
       </div>
 
       <div class="foot__say" aria-hidden="true"><span>à bientôt&nbsp;!</span></div>
