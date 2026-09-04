@@ -732,14 +732,71 @@
       });
     }
 
-    /* — modes — */
+    /* — modes ─────────────────────────────────────────
+       « rapid » : puces pré-remplies, ouvert à tous.
+       « assist » : saisie libre, réservé aux e-mails vérifiés
+       par code (sauf si EmailJS n'est pas configuré). */
     function setMode(mode) {
+      if (mode === 'assist' && hasEmailJS && !verified) {
+        requireVerification();
+        return;
+      }
+      // sortie d'une vérification en cours → retour aux réponses rapides
+      if (!gate.hidden && started) {
+        clearInterval(resendTimer);
+        writeOtp(null);
+        pend = null;
+        var sk = $('#chatSkip', root); if (sk) sk.remove();
+        gate.hidden = true;
+        log.hidden = false;
+        gateInfo('');
+      }
       root.dataset.mode = mode;
       swRapid.setAttribute('aria-pressed', String(mode === 'rapid'));
       swAssist.setAttribute('aria-pressed', String(mode === 'assist'));
       quick.hidden = mode !== 'rapid';
       compose.hidden = mode !== 'assist';
       if (mode === 'assist') setTimeout(function () { input.focus(); }, 60);
+    }
+
+    /* Vérification e-mail exigée pour activer l'assistant. */
+    function requireVerification() {
+      if (!lead) { root.dataset.mode = 'rapid'; return; }
+      pend = { mail: lead.mail, ent: lead.ent };
+      sendFails = 0; resendCount = 0;
+      var sk = $('#chatSkip', root); if (sk) sk.remove();
+      gate.hidden = false;
+      log.hidden = true; quick.hidden = true; compose.hidden = true;
+      gate.dataset.step = 'code';
+      stepId.hidden = true;
+      stepCode.hidden = false;
+      codeDest.textContent = pend.mail;
+      gateInfo('Envoi du code de vérification…');
+      busy(codeBtn, true, 'Envoi…');
+      dispatchCode();
+    }
+
+    /* Code validé → l'assistant s'ouvre (et reste ouvert ensuite). */
+    function verifyOk() {
+      verified = true;
+      if (lead) {
+        lead.verified = true;
+        try { localStorage.setItem(K_LEAD, JSON.stringify(lead)); } catch (e) {}
+      }
+      clearInterval(resendTimer);
+      writeOtp(null);
+      pend = null; sendFails = 0; resendCount = 0;
+      var sk = $('#chatSkip', root); if (sk) sk.remove();
+      gate.hidden = true;
+      log.hidden = false;
+      gateInfo('');
+      root.dataset.mode = 'assist';
+      swRapid.setAttribute('aria-pressed', 'false');
+      swAssist.setAttribute('aria-pressed', 'true');
+      quick.hidden = true;
+      compose.hidden = false;
+      bubble('bot', "Assistant activé. Posez votre question — j'y réponds directement, sinon je transmets à l'équipe.");
+      setTimeout(function () { input.focus(); }, 60);
     }
 
     /* — démarrage de la conversation (après la porte d'accès) — */
@@ -754,7 +811,7 @@
       if (!fresh && history.length) {
         history.forEach(function (m) { bubble(m.w, m.t); });
       } else {
-        botSay("Bonjour ! Je suis l'assistant d'Avero Web. Choisissez une question ci-dessous, ou passez en mode « Assistant » pour écrire librement.");
+        botSay("Bonjour ! Je suis l'assistant d'Avero Web. Choisissez une question ci-dessous, ou passez en mode « Assistant » (vérification par e-mail) pour écrire librement.");
       }
       renderQuick();
       setMode('rapid');
@@ -762,23 +819,25 @@
     }
 
     /* — porte d'accès ─────────────────────────────────
-       Vérification de l'e-mail par code à 6 chiffres, envoyé
-       dans la boîte du visiteur via EmailJS (100 % côté client,
-       aucun serveur à héberger).
+       Ouverture du chat : e-mail + nom d'entreprise (pas de code)
+       → accès aux « réponses rapides ».
+       Passage en mode « Assistant » : vérification de l'e-mail par
+       code à 6 chiffres, envoyé dans la boîte du visiteur via
+       EmailJS (100 % côté client, aucun serveur). Une fois vérifié,
+       l'accès à l'assistant reste ouvert (mémorisé).
 
-       MISE EN SERVICE (une seule fois) :
-         1. créer un compte sur https://www.emailjs.com
-         2. y connecter un service d'envoi (Gmail, OVH, SMTP…)
-         3. créer un modèle : champ « To Email » = {{to_email}},
-            corps contenant le code {{passcode}} (et, au besoin,
-            {{company}} / {{site}})
+       MISE EN SERVICE EmailJS (une seule fois) :
+         1. compte sur https://www.emailjs.com
+         2. y connecter un service d'envoi (SMTP, Gmail…)
+         3. un modèle : « To Email » = {{email}} (ou {{to_email}}),
+            corps avec {{passcode}} et {{time}} — le modèle
+            « One-Time Password » d'EmailJS convient tel quel
          4. reporter les 3 identifiants ci-dessous
-       Tant qu'ils ne sont pas renseignés, la porte demande une
-       simple ressaisie de l'e-mail (aucun envoi). Le code est
-       vérifié côté navigateur : cela bloque les adresses
-       fantaisistes, sans prétendre à l'inviolabilité.
-       Un e-mail transitant par EmailJS, penser à le mentionner
-       dans confidentialite.html.
+       Sans ces identifiants : la porte demande une simple ressaisie
+       de l'e-mail à l'ouverture et l'assistant s'ouvre sans code.
+       Le code est comparé côté navigateur : cela bloque les adresses
+       fantaisistes, sans prétendre à l'inviolabilité. Un e-mail
+       transitant par EmailJS, le mentionner dans confidentialite.html.
     ─────────────────────────────────────────────────────── */
     var EMAILJS = {
       publicKey:  'k8DyViou5RVrc2AaY',
@@ -806,6 +865,7 @@
     var editB    = $('#chatEditMail', root);
 
     var pend = null;           // { mail, ent } en cours de vérification
+    var verified = !!(lead && lead.verified);   // e-mail vérifié → assistant ouvert
     var sendFails = 0, resendCount = 0, resendTimer = null;
 
     function loadEmailJS(cb) {
@@ -933,7 +993,7 @@
       b.className = 'btn btn--out btn--sm';
       b.style.marginTop = '.5rem';
       b.innerHTML = '<span>Continuer sans le code</span>';
-      b.addEventListener('click', function () { finishGate(pend.mail, pend.ent); });
+      b.addEventListener('click', function () { verifyOk(); });
       host.appendChild(b);
     }
 
@@ -951,7 +1011,7 @@
     function verifyStep() {
       var otp = readOtp();
       var v = (codeInp.value || '').replace(/\D/g, '');
-      if (!otp || !pend) { gateInfo("Session expirée, recommencez.", 'ko'); showStep('id'); return; }
+      if (!otp || !pend) { gateInfo("Vérification expirée, réessayez.", 'ko'); setMode('rapid'); return; }
       if (Date.now() > otp.exp) { gateInfo("Code expiré. Demandez-en un nouveau.", 'ko'); return; }
       if (otp.tries >= OTP_MAX) { gateInfo("Trop d'essais. Demandez un nouveau code.", 'ko'); return; }
       if (v.length !== 6 || v !== otp.code) {
@@ -963,21 +1023,17 @@
           : "Trop d'essais. Demandez un nouveau code.", 'ko');
         return;
       }
-      finishGate(pend.mail, pend.ent);
+      verifyOk();
     }
 
-    /* mode dégradé : EmailJS non configuré → ressaisie de l'e-mail */
+    /* EmailJS non configuré : ressaisie de l'e-mail à l'ouverture,
+       assistant ouvert sans code (verified est déjà « vrai » via
+       la garde hasEmailJS de setMode). */
     if (!hasEmailJS) {
       fdMail2.hidden = false;
       gate.dataset.step = 'retype';
-      if (gateBtn) gateBtn.textContent = 'Démarrer la discussion';
     } else {
-      loadEmailJS();
-      var otp0 = readOtp();
-      if (otp0 && otp0.mail && Date.now() < otp0.exp) {
-        pend = { mail: otp0.mail, ent: otp0.ent || '—' };
-        showStep('code');
-      }
+      loadEmailJS();   // précharge le SDK pour la vérification de l'assistant
     }
 
     gate.addEventListener('input', function (e) {
@@ -1021,15 +1077,9 @@
       }
 
       gateInfo('');
-
-      if (step === 'retype') { finishGate(m1, en); return; }
-
-      // étape « id » : on envoie le code (les échecs s'accumulent tant que
-      // l'adresse ne change pas → propose « continuer sans le code » au 2e)
-      if (!pend || pend.mail !== m1) { sendFails = 0; resendCount = 0; }
-      pend = { mail: m1, ent: en };
-      busy(idBtn, true, 'Envoi du code…');
-      dispatchCode();
+      // ouverture : e-mail + entreprise suffisent (le code ne sert qu'à
+      // activer l'assistant, cf. requireVerification)
+      finishGate(m1, en);
     });
 
     resendB.addEventListener('click', function () {
@@ -1040,23 +1090,16 @@
       dispatchCode();
     });
 
-    editB.addEventListener('click', function () {
-      clearInterval(resendTimer);
-      writeOtp(null);
-      pend = null; sendFails = 0; resendCount = 0;
-      var sk = $('#chatSkip', root); if (sk) sk.remove();
-      gateInfo('');
-      showStep(fdMail2.hidden ? 'id' : 'retype');
-      var f = $('#chatMail', root);
-      if (f) f.focus();
-    });
+    // « Annuler » sur l'écran de vérification → retour aux réponses rapides
+    editB.addEventListener('click', function () { setMode('rapid'); });
 
     resetB.addEventListener('click', function () {
       try { localStorage.removeItem(K_LEAD); localStorage.removeItem(K_LOG); } catch (e) {}
       clearInterval(resendTimer);
       writeOtp(null);
-      lead = null; history = []; started = false; pend = null;
+      lead = null; history = []; started = false; pend = null; verified = false;
       sendFails = 0; resendCount = 0;
+      var sk = $('#chatSkip', root); if (sk) sk.remove();
       log.innerHTML = ''; log.hidden = true;
       quick.hidden = true; compose.hidden = true;
       swBar.hidden = true; resetB.hidden = true;

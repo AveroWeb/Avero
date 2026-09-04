@@ -733,9 +733,9 @@
 
     <div class="chat__scroll" id="chatScroll">
       <form class="chat__gate" id="chatGate" data-step="id" novalidate>
-        <!-- Étape 1 — coordonnées -->
+        <!-- Étape 1 — coordonnées (accès aux réponses rapides) -->
         <div class="chat__gate-step" id="chatStepId">
-          <p class="chat__gate-lead">Pour démarrer, indiquez votre e-mail : on vous envoie un code à 6 chiffres pour le vérifier. Vos infos servent uniquement à vous recontacter — voir la <a href="confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.</p>
+          <p class="chat__gate-lead">Pour démarrer, indiquez votre e-mail et votre entreprise. Elles servent uniquement à vous recontacter — voir la <a href="confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.</p>
           <div class="chat__fd">
             <label for="chatMail">Votre e-mail <i>*</i></label>
             <input id="chatMail" name="email" type="email" inputmode="email" required autocomplete="email" placeholder="vous@entreprise.fr">
@@ -748,14 +748,14 @@
             <label for="chatEnt">Nom de l'entreprise <i>*</i></label>
             <input id="chatEnt" name="entreprise" type="text" required autocomplete="organization" placeholder="Menuiserie Delmas">
           </div>
-          <label class="chat__rgpd"><input type="checkbox" name="rgpd" required><span>J'accepte d'être recontacté au sujet de ma demande et de recevoir un code de vérification par e-mail.</span></label>
+          <label class="chat__rgpd"><input type="checkbox" name="rgpd" required><span>J'accepte d'être recontacté au sujet de ma demande.</span></label>
           <input type="text" name="chat_site" class="chat__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button class="btn btn--amber btn--sm" type="submit"><span id="chatGateBtn">Recevoir mon code</span></button>
+          <button class="btn btn--amber btn--sm" type="submit"><span id="chatGateBtn">Démarrer la discussion</span></button>
         </div>
 
-        <!-- Étape 2 — code de vérification -->
+        <!-- Étape 2 — vérification e-mail (pour activer l'assistant) -->
         <div class="chat__gate-step" id="chatStepCode" hidden>
-          <p class="chat__gate-lead">Entrez le code à 6 chiffres envoyé à <b id="chatCodeDest"></b>. Pensez à regarder dans les indésirables.</p>
+          <p class="chat__gate-lead">Pour activer l'assistant, entrez le code à 6 chiffres envoyé à <b id="chatCodeDest"></b>. Pensez à regarder dans les indésirables.</p>
           <div class="chat__fd">
             <label for="chatCode">Code de vérification <i>*</i></label>
             <input id="chatCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="––––––">
@@ -763,7 +763,7 @@
           <button class="btn btn--amber btn--sm" type="submit"><span>Valider le code</span></button>
           <div class="chat__gate-links">
             <button type="button" id="chatResend">Renvoyer le code</button>
-            <button type="button" id="chatEditMail">Modifier l'e-mail</button>
+            <button type="button" id="chatEditMail">Annuler</button>
           </div>
         </div>
 
