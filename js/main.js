@@ -138,88 +138,172 @@
     });
   }
 
-  /* ─── 5. Carrousel des réalisations ─── */
-  var rail = $('#rail');
-  if (rail) {
-    var slides = $$('.wk', rail);
+  /* ─── 5. Réalisations : galerie en éventail 3D ───────
+     Les cartes s'ouvrent en éventail autour de la carte active
+     (rotation, profondeur, inclinaison). Navigation : flèches,
+     points, clic sur une carte voisine, glisser (souris/tactile)
+     et flèches du clavier. Défilement automatique en pause au
+     survol, au focus, hors écran et si l'utilisateur réduit les
+     animations. Un clic sur la carte active ouvre le site. */
+  var fan = $('#fan');
+  if (fan) {
+    var cards = $$('.fan__card', fan);
+    var panels = $$('.fan__panel');
     var dots = $('#dots');
-    var prev = $('#prev');
-    var next = $('#next');
-    var index = 0;
+    var len = cards.length;
+    var active = 0;
+    var AUTO_MS = 4500;
 
-    slides.forEach(function (_, i) {
+    cards.forEach(function (c, i) {
       var b = document.createElement('button');
       b.type = 'button';
-      b.setAttribute('aria-label', 'Aller à la réalisation ' + (i + 1));
-      b.addEventListener('click', function () { go(i); });
+      b.setAttribute('aria-label', 'Voir ' + c.querySelector('strong').textContent);
+      b.addEventListener('click', function () { go(i); restart(); });
       dots.appendChild(b);
     });
     var bullets = $$('button', dots);
 
-    function go(i) {
-      index = clamp(i, 0, slides.length - 1);
-      var s = slides[index];
-      // on centre la carte dans le rail
-      rail.scrollTo({ left: s.offsetLeft - (rail.clientWidth - s.clientWidth) / 2, behavior: reduced ? 'auto' : 'smooth' });
+    // écart signé le plus court entre la carte i et la carte active (boucle)
+    function offset(i) {
+      var raw = i - active;
+      var alt = raw > 0 ? raw - len : raw + len;
+      return Math.abs(alt) < Math.abs(raw) ? alt : raw;
     }
 
-    function sync() {
-      var mid = rail.scrollLeft + rail.clientWidth / 2;
-      var best = 0, bestD = Infinity;
-      slides.forEach(function (s, i) {
-        var d = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid);
-        if (d < bestD) { bestD = d; best = i; }
+    function geometry() {
+      var w = fan.clientWidth;
+      var narrow = w < 720;
+      var cw = narrow ? Math.min(w * 0.76, 380) : clamp(w * 0.42, 300, 540);
+      fan.style.setProperty('--cw', Math.round(cw) + 'px');
+      return {
+        cw: cw,
+        spacing: cw * (narrow ? 0.3 : 0.5),
+        step: narrow ? 6 : 9,     // rotation par cran (deg)
+        depth: narrow ? 90 : 140, // recul par cran (px)
+        tilt: 12,
+        lift: 22,
+        maxOff: 2
+      };
+    }
+    var g = geometry();
+    var dragDx = 0;
+
+    function render() {
+      cards.forEach(function (c, i) {
+        var off = offset(i), abs = Math.abs(off), on = off === 0;
+        var x = off * g.spacing + (on ? dragDx : 0);
+        var y = abs * abs * 12 - (on ? g.lift : 0);
+        var rz = off * g.step + (on ? dragDx / 40 : 0);
+        c.style.transform =
+          'translate3d(' + x.toFixed(1) + 'px,' + y + 'px,' + (-abs * g.depth) + 'px)' +
+          ' rotateZ(' + rz.toFixed(2) + 'deg) rotateX(' + (on ? 0 : g.tilt) + 'deg)' +
+          ' scale(' + (on ? 1.03 : 0.94) + ')';
+        c.style.zIndex = 100 - abs;
+        c.style.opacity = abs > g.maxOff ? 0 : 1;
+        c.style.pointerEvents = abs > g.maxOff ? 'none' : '';
+        c.classList.toggle('is-on', on);
+        c.tabIndex = on ? 0 : -1;
+        c.setAttribute('aria-hidden', abs > g.maxOff ? 'true' : 'false');
       });
-      index = best;
-      bullets.forEach(function (b, i) { b.classList.toggle('on', i === index); });
-      prev.disabled = index === 0;
-      next.disabled = index === slides.length - 1;
+      panels.forEach(function (p, i) {
+        p.classList.toggle('is-on', i === active);
+        p.setAttribute('aria-hidden', i === active ? 'false' : 'true');
+      });
+      bullets.forEach(function (b, i) {
+        b.classList.toggle('on', i === active);
+        if (i === active) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+      });
     }
 
-    prev.addEventListener('click', function () { go(index - 1); });
-    next.addEventListener('click', function () { go(index + 1); });
+    function go(i) {
+      active = ((i % len) + len) % len;
+      render();
+    }
 
-    var st = false;
-    rail.addEventListener('scroll', function () {
-      if (!st) { st = true; requestAnimationFrame(function () { sync(); st = false; }); }
-    }, { passive: true });
-    window.addEventListener('resize', sync);
-    sync();
+    $('#prev').addEventListener('click', function () { go(active - 1); restart(); });
+    $('#next').addEventListener('click', function () { go(active + 1); restart(); });
 
-    // glisser-déposer à la souris (le tactile est déjà natif)
-    var down = false, startX = 0, startL = 0, moved = false;
-    rail.addEventListener('mousedown', function (e) {
+    fan.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); restart(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); restart(); }
+    });
+
+    // glisser la carte active (souris + tactile)
+    var down = false, moved = false, startX = 0, lastX = 0, lastT = 0, vel = 0;
+    fan.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      var card = e.target.closest('.fan__card');
+      if (!card || !card.classList.contains('is-on')) return;
       down = true; moved = false;
-      startX = e.pageX; startL = rail.scrollLeft;
-      rail.style.cursor = 'grabbing';
-      rail.style.scrollSnapType = 'none';
-      rail.style.scrollBehavior = 'auto';
+      startX = lastX = e.clientX; lastT = e.timeStamp; vel = 0;
     });
-    window.addEventListener('mousemove', function (e) {
+    window.addEventListener('pointermove', function (e) {
       if (!down) return;
-      var dx = e.pageX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      rail.scrollLeft = startL - dx;
+      var dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 6) { moved = true; fan.classList.add('is-drag'); }
+      if (!moved) return;
+      var dt = e.timeStamp - lastT;
+      if (dt > 0) vel = (e.clientX - lastX) / dt; // px/ms
+      lastX = e.clientX; lastT = e.timeStamp;
+      dragDx = dx * 0.82;
+      render();
     });
-    window.addEventListener('mouseup', function () {
+    function release() {
       if (!down) return;
       down = false;
-      rail.style.cursor = '';
-      rail.style.scrollSnapType = '';
-      rail.style.scrollBehavior = '';
-      if (moved) go(index);
-    });
-    // un glissement ne doit pas suivre un lien par accident
-    rail.addEventListener('click', function (e) { if (moved) { e.preventDefault(); moved = false; } }, true);
+      fan.classList.remove('is-drag');
+      if (!moved) return;
+      var threshold = Math.min(160, g.cw * 0.22);
+      var dx = dragDx;
+      dragDx = 0;
+      if (dx > threshold || vel > 0.65) go(active - 1);
+      else if (dx < -threshold || vel < -0.65) go(active + 1);
+      else render();
+      restart();
+    }
+    window.addEventListener('pointerup', release);
+    window.addEventListener('pointercancel', release);
 
-    // flèches du clavier quand le rail a le focus
-    rail.setAttribute('tabindex', '0');
-    rail.setAttribute('role', 'region');
-    rail.setAttribute('aria-label', 'Nos réalisations');
-    rail.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
+    // clic : carte voisine = la mettre devant ; carte active = ouvrir le site
+    fan.addEventListener('click', function (e) {
+      var card = e.target.closest('.fan__card');
+      if (!card) return;
+      if (moved) { e.preventDefault(); moved = false; return; }
+      if (!card.classList.contains('is-on')) {
+        e.preventDefault();
+        go(+card.dataset.i);
+        restart();
+      }
     });
+    fan.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+    // défilement automatique
+    var timer = null, hover = false, inView = false;
+    function canAuto() { return !reduced && !hover && inView && !down && document.visibilityState === 'visible'; }
+    function restart() {
+      clearInterval(timer);
+      timer = null;
+      if (canAuto()) timer = setInterval(function () { go(active + 1); }, AUTO_MS);
+    }
+    var zone = fan.closest('.works__pin');
+    zone.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hover = true; restart(); } });
+    zone.addEventListener('pointerleave', function () { hover = false; restart(); });
+    zone.addEventListener('focusin', function () { hover = true; restart(); });
+    zone.addEventListener('focusout', function (e) { if (!zone.contains(e.relatedTarget)) { hover = false; restart(); } });
+    document.addEventListener('visibilitychange', restart);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { inView = en[0].isIntersecting; restart(); }, { threshold: 0.35 }).observe(fan);
+    } else { inView = true; }
+
+    var rz = false;
+    window.addEventListener('resize', function () {
+      if (rz) return;
+      rz = true;
+      requestAnimationFrame(function () { g = geometry(); render(); rz = false; });
+    });
+
+    render();
+    restart();
   }
 
   /* ─── 6. FAQ : une seule ouverte à la fois ─── */
@@ -524,7 +608,7 @@
        La clé API n'est jamais ici : le Worker la garde en secret côté
        serveur. Vide = le mode Assistant répond depuis la base de
        connaissances locale ci-dessous (aucun appel, aucun coût). */
-    var AI_ENDPOINT = '';
+    var AI_ENDPOINT = 'https://avero-chat-proxy.creatorboost.workers.dev';
 
     var lead = null, history = [], started = false, relaying = false, relayDirty = false;
     try { lead = JSON.parse(localStorage.getItem(K_LEAD) || 'null'); } catch (e) {}

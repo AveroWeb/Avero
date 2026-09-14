@@ -126,7 +126,7 @@
   <nav class="hdr__pill hdr__pill--l" aria-label="Navigation principale">
     <a href="#services">Services</a>
     <a href="#avero">Avero</a>
-    <!-- Réalisations masquées temporairement <a href="#realisations">Réalisations</a> -->
+    <a href="#realisations">Réalisations</a>
     <a href="#methode">Méthode</a>
     <a href="#tarifs">Tarifs</a>
   </nav>
@@ -156,7 +156,7 @@
   <nav class="menu__nav" aria-label="Menu">
     <a href="#services">Services</a>
     <a href="#avero">Avero</a>
-    <!-- Réalisations masquées temporairement <a href="#realisations">Réalisations</a> -->
+    <a href="#realisations">Réalisations</a>
     <a href="#methode">Méthode</a>
     <a href="#engagement">Transparence</a>
     <a href="#tarifs">Tarifs</a>
@@ -182,9 +182,9 @@
     <p class="hero__kick"><i></i>Studio web · Rodez &amp; Millau · Aveyron · depuis 2019</p>
 
     <h1 class="hero__h1">
-      <span class="ln"><b>Votre métier</b></span>
-      <span class="ln"><b>mérite un site</b></span>
-      <span class="ln"><b>à sa <em>hauteur</em>.</b></span>
+      <span class="ln"><b>Le site web</b></span>
+      <span class="ln"><b>qui fait sonner</b></span>
+      <span class="ln"><b>le <em>téléphone</em>&nbsp;!</b></span>
     </h1>
 
     <p class="hero__sub">Sites sur mesure pour les artisans, commerçants et PME de l'Aveyron — de Rodez à Millau.<br>Pas de gabarit recyclé. Pas de jargon. Du client en plus.</p>
@@ -193,7 +193,7 @@
       <a class="btn btn--amber btn--lg" href="#contact"><span>Je veux un devis</span></a>
       <!-- Bouton « Voir nos sites » (href="#realisations") retiré tant que les Réalisations sont masquées. -->
       <span class="hand hand--cta">gratuit, et sans blabla
-        <svg viewBox="0 0 70 50" aria-hidden="true"><path d="M64 6 C40 2 12 12 8 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M4 22 L8 35 L20 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 70 50" aria-hidden="true"><path d="M64 6 C40 2 12 12 8 34" pathLength="1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M4 22 L8 35 L20 30" pathLength="1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
     </div>
 
@@ -324,23 +324,53 @@
   <div class="wave wave--cream" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,80 C140,110 280,118 420,96 C560,74 700,14 840,20 C980,26 1120,86 1250,100 C1320,108 1390,102 1440,88 L1440,130 L0,130 Z"/></svg></div>
 </section>
 
-<!-- ═══════════ RÉALISATIONS — carrousel épinglé ═══════════ -->
-<!-- Section masquée temporairement : retirer l'attribut « hidden » pour la réafficher. -->
-<section class="works" id="realisations" hidden>
+<!-- ═══════════ RÉALISATIONS — galerie en éventail 3D ═══════════ -->
+<section class="works" id="realisations">
   <div class="works__pin">
     <header class="head head--tight">
       <h2 class="ttl rv"><span class="tick tick--l"></span>Nos réalisations<span class="tick tick--r"></span></h2>
       <p class="sub rv" data-d="1">De l'Aveyron à la Méditerranée, et jusqu'à Paris.</p>
     </header>
 
-    <div class="works__rail" id="rail">
-      <article class="wk wk--a">
-        <div class="wk__vis">
-          <a class="mock mock--shot" href="https://www.lerelaisadmessaj.fr/" target="_blank" rel="noopener" aria-label="Ouvrir le site Le Relais ADMessaj dans un nouvel onglet">
-            <div class="mock__bar"><i></i><i></i><i></i><b>lerelaisadmessaj.fr</b></div>
-            <img class="mock__shot" src="img/lerelaisadmessaj.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Aperçu du site lerelaisadmessaj.fr : page d'accueil du restaurant Le Relais ADMessaj">
-          </a>
-        </div>
+    <div class="fan" id="fan" tabindex="0" role="region" aria-roledescription="carrousel" aria-label="Nos réalisations — flèches gauche et droite pour naviguer">
+      <div class="fan__glow" aria-hidden="true"></div>
+      <div class="fan__stage">
+        <a class="fan__card" data-i="0" href="https://www.lerelaisadmessaj.fr/" target="_blank" rel="noopener" draggable="false" aria-label="Le Relais ADMessaj — ouvrir le site dans un nouvel onglet">
+          <span class="mock__bar"><i></i><i></i><i></i><b>lerelaisadmessaj.fr</b></span>
+          <img class="fan__img" src="img/lerelaisadmessaj.jpg" width="1200" height="800" loading="lazy" decoding="async" draggable="false" alt="Aperçu du site lerelaisadmessaj.fr : page d'accueil du restaurant Le Relais ADMessaj">
+          <span class="fan__cap"><strong>Le Relais ADMessaj</strong><span>Montrozier — Aveyron</span></span>
+        </a>
+        <a class="fan__card" data-i="1" href="https://www.restaurantchouchouparis.fr/" target="_blank" rel="noopener" draggable="false" aria-label="Restaurant ChouChou — ouvrir le site dans un nouvel onglet">
+          <span class="mock__bar"><i></i><i></i><i></i><b>restaurantchouchouparis.fr</b></span>
+          <img class="fan__img" src="img/restaurantchouchouparis.jpg" width="1200" height="800" loading="lazy" decoding="async" draggable="false" alt="Aperçu du site restaurantchouchouparis.fr : page d'accueil du Restaurant ChouChou">
+          <span class="fan__cap"><strong>Restaurant ChouChou</strong><span>Paris 1ᵉʳ — boulevard de Sébastopol</span></span>
+        </a>
+        <a class="fan__card" data-i="2" href="https://www.delec-06.fr/" target="_blank" rel="noopener" draggable="false" aria-label="D ELEC 06 — ouvrir le site dans un nouvel onglet">
+          <span class="mock__bar"><i></i><i></i><i></i><b>delec-06.fr</b></span>
+          <img class="fan__img" src="img/delec-06.jpg" width="1200" height="800" loading="lazy" decoding="async" draggable="false" alt="Aperçu du site delec-06.fr : page d'accueil de l'électricien D ELEC 06 à Nice">
+          <span class="fan__cap"><strong>D ELEC 06</strong><span>Nice — Alpes-Maritimes</span></span>
+        </a>
+        <a class="fan__card" data-i="3" href="https://autolocation34.fr/" target="_blank" rel="noopener" draggable="false" aria-label="Autolocation34 — ouvrir le site dans un nouvel onglet">
+          <span class="mock__bar"><i></i><i></i><i></i><b>autolocation34.fr</b></span>
+          <img class="fan__img" src="img/autolocation34.jpg" width="1200" height="800" loading="lazy" decoding="async" draggable="false" alt="Aperçu du site autolocation34.fr : page d'accueil du loueur de véhicules Autolocation34">
+          <span class="fan__cap"><strong>Autolocation34</strong><span>Montpellier &amp; Castries — Hérault</span></span>
+        </a>
+        <a class="fan__card" data-i="4" href="https://www.cabinetdauguet.com/" target="_blank" rel="noopener" draggable="false" aria-label="Cabinet DAUGUET Avocats — ouvrir le site dans un nouvel onglet">
+          <span class="mock__bar"><i></i><i></i><i></i><b>cabinetdauguet.com</b></span>
+          <img class="fan__img" src="img/cabinetdauguet.jpg" width="1200" height="800" loading="lazy" decoding="async" draggable="false" alt="Aperçu du site cabinetdauguet.com : page d'accueil du Cabinet DAUGUET Avocats">
+          <span class="fan__cap"><strong>Cabinet DAUGUET Avocats</strong><span>Montpellier — Hérault</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="works__nav">
+      <button class="rnd" id="prev" type="button" aria-label="Réalisation précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg></button>
+      <div class="dots" id="dots"></div>
+      <button class="rnd" id="next" type="button" aria-label="Réalisation suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg></button>
+    </div>
+
+    <div class="fan__info" aria-live="polite">
+      <article class="fan__panel wk--a" data-i="0">
         <div class="wk__txt">
           <span class="wk__y">2026</span>
           <h3><a class="wk__lnk" href="https://www.lerelaisadmessaj.fr/" target="_blank" rel="noopener">Le Relais ADMessaj</a></h3>
@@ -350,14 +380,7 @@
           <span class="wk__r"><span class="cnt" data-cnt="4.5" data-dec="1">0</span> / 5 sur Truckfly</span>
         </div>
       </article>
-
-      <article class="wk wk--b">
-        <div class="wk__vis">
-          <a class="mock mock--shot" href="https://www.restaurantchouchouparis.fr/" target="_blank" rel="noopener" aria-label="Ouvrir le site Restaurant ChouChou dans un nouvel onglet">
-            <div class="mock__bar"><i></i><i></i><i></i><b>restaurantchouchouparis.fr</b></div>
-            <img class="mock__shot" src="img/restaurantchouchouparis.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Aperçu du site restaurantchouchouparis.fr : page d'accueil du Restaurant ChouChou">
-          </a>
-        </div>
+      <article class="fan__panel wk--b" data-i="1">
         <div class="wk__txt">
           <span class="wk__y">2026</span>
           <h3><a class="wk__lnk" href="https://www.restaurantchouchouparis.fr/" target="_blank" rel="noopener">Restaurant ChouChou</a></h3>
@@ -367,14 +390,7 @@
           <span class="wk__r">Service continu 7j/7 · 8 h – 2 h</span>
         </div>
       </article>
-
-      <article class="wk wk--c">
-        <div class="wk__vis">
-          <a class="mock mock--shot" href="https://www.delec-06.fr/" target="_blank" rel="noopener" aria-label="Ouvrir le site D ELEC 06 dans un nouvel onglet">
-            <div class="mock__bar"><i></i><i></i><i></i><b>delec-06.fr</b></div>
-            <img class="mock__shot" src="img/delec-06.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Aperçu du site delec-06.fr : page d'accueil de l'électricien D ELEC 06 à Nice">
-          </a>
-        </div>
+      <article class="fan__panel wk--c" data-i="2">
         <div class="wk__txt">
           <span class="wk__y">2026</span>
           <h3><a class="wk__lnk" href="https://www.delec-06.fr/" target="_blank" rel="noopener">D ELEC 06</a></h3>
@@ -384,14 +400,7 @@
           <span class="wk__r">Demande de devis guidée, en ligne 24h/24</span>
         </div>
       </article>
-
-      <article class="wk wk--d">
-        <div class="wk__vis">
-          <a class="mock mock--shot" href="https://autolocation34.fr/" target="_blank" rel="noopener" aria-label="Ouvrir le site Autolocation34 dans un nouvel onglet">
-            <div class="mock__bar"><i></i><i></i><i></i><b>autolocation34.fr</b></div>
-            <img class="mock__shot" src="img/autolocation34.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Aperçu du site autolocation34.fr : page d'accueil du loueur de véhicules Autolocation34">
-          </a>
-        </div>
+      <article class="fan__panel wk--d" data-i="3">
         <div class="wk__txt">
           <span class="wk__y">2026</span>
           <h3><a class="wk__lnk" href="https://autolocation34.fr/" target="_blank" rel="noopener">Autolocation34</a></h3>
@@ -401,14 +410,7 @@
           <span class="wk__r">Réservation en ligne · dépôt 24h/24</span>
         </div>
       </article>
-
-      <article class="wk wk--e">
-        <div class="wk__vis">
-          <a class="mock mock--shot" href="https://www.cabinetdauguet.com/" target="_blank" rel="noopener" aria-label="Ouvrir le site du Cabinet DAUGUET Avocats dans un nouvel onglet">
-            <div class="mock__bar"><i></i><i></i><i></i><b>cabinetdauguet.com</b></div>
-            <img class="mock__shot" src="img/cabinetdauguet.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Aperçu du site cabinetdauguet.com : page d'accueil du Cabinet DAUGUET Avocats">
-          </a>
-        </div>
+      <article class="fan__panel wk--e" data-i="4">
         <div class="wk__txt">
           <span class="wk__y">2026</span>
           <h3><a class="wk__lnk" href="https://www.cabinetdauguet.com/" target="_blank" rel="noopener">Cabinet DAUGUET Avocats</a></h3>
@@ -418,12 +420,6 @@
           <span class="wk__r">+500 affaires traitées chaque année</span>
         </div>
       </article>
-    </div>
-
-    <div class="works__nav">
-      <button class="rnd" id="prev" aria-label="Réalisation précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg></button>
-      <div class="dots" id="dots" aria-hidden="true"></div>
-      <button class="rnd" id="next" aria-label="Réalisation suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg></button>
     </div>
   </div>
 </section>
@@ -800,7 +796,7 @@
 
       <div class="foot__cols">
         <div><h4>Services</h4><a href="#services">Sites vitrines</a><a href="#services">Boutiques en ligne</a><a href="#services">Référencement local</a><a href="#services">Identité visuelle</a><a href="#services">Maintenance</a></div>
-        <div><h4>Agence</h4><a href="#methode">Méthode</a><a href="#engagement">Transparence</a><!-- <a href="#realisations">Réalisations</a> masqué temporairement --><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="avero.html">Avero, logiciel pour agences web</a></div>
+        <div><h4>Agence</h4><a href="#methode">Méthode</a><a href="#engagement">Transparence</a><a href="#realisations">Réalisations</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="avero.html">Avero, logiciel pour agences web</a></div>
         <div><h4>Secteur</h4><a href="creation-site-internet-rodez.html">Site internet à Rodez</a><a href="creation-site-internet-millau.html">Site internet à Millau</a><a href="#contact">Villefranche-de-Rouergue</a><a href="#contact">Decazeville</a><a href="#contact">Espalion</a></div>
       </div>
 
