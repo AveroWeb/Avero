@@ -39,6 +39,7 @@
 <link rel="preload" href="assets/fonts/figtree.latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/services.css">
 
 <script type="application/ld+json">
 {
@@ -219,66 +220,79 @@
   <div class="wrap">
     <header class="head">
       <h2 class="ttl rv"><span class="tick tick--l"></span>Ce qu'on fabrique<span class="tick tick--r"></span></h2>
-      <p class="sub rv" data-d="1">Cinq prestations. Pas quinze.</p>
+      <p class="sub rv" data-d="1">Cinq façons de rendre votre activité plus visible, plus simple à gérer et plus forte en ligne.</p>
     </header>
 
-    <div class="cards">
-      <article class="card rv">
-        <span class="card__n">01</span>
-        <div class="card__ic">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="12" width="52" height="40" rx="6"/><path d="M6 24h52M14 18.5h3M22 18.5h3"/><path d="M16 33h18M16 40h12"/></svg>
-        </div>
-        <h3>Sites vitrines</h3>
-        <p>5 à 12 pages : votre histoire, vos chantiers, vos horaires. La base solide qui inspire confiance en trois secondes.</p>
-        <ul><li>Design sur mesure</li><li>Rédaction</li><li>Photos</li></ul>
-      </article>
+    <nav class="service-shortcuts rv" aria-label="Explorer les services">
+      <a href="#site-vitrine">Site vitrine</a><a href="#boutique-en-ligne">Boutique en ligne</a><a href="#referencement-local">Référencement local</a><a href="#identite-visuelle">Identité visuelle</a><a href="#maintenance-web">Maintenance</a>
+    </nav>
 
-      <article class="card rv" data-d="1">
-        <span class="card__n">02</span>
-        <div class="card__ic">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 18h40l-4 26H16z"/><path d="M12 18l-3-8H4"/><circle cx="22" cy="53" r="4"/><circle cx="43" cy="53" r="4"/></svg>
-        </div>
-        <h3>Boutiques en ligne</h3>
-        <p>Vendre partout en France sans y passer vos soirées. Stock, livraison, paiement sécurisé, factures automatiques.</p>
-        <ul><li>Click &amp; collect</li><li>Paiement CB</li><li>Transporteurs</li></ul>
-      </article>
+    <div class="service-anchor" id="tarifs" aria-hidden="true"></div>
 
-      <article class="card rv" data-d="2">
-        <span class="card__n">03</span>
-        <div class="card__ic">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="28" cy="28" r="17"/><path d="M40 40l16 16"/><path d="M28 20v16M20 28h16"/></svg>
+    <section class="service-focus" id="site-vitrine" aria-labelledby="vitrine-title">
+      <div class="service-focus__content rv">
+        <span class="service-focus__num">01 / Sites vitrines</span>
+        <h3 id="vitrine-title">On vous cherche en ligne. Qu’est-ce qu’on trouve&nbsp;?</h3>
+        <p class="service-focus__lead">Un site qui explique votre métier, montre votre travail et donne envie de vous appeler. Clair sur mobile, rapide à ouvrir, prêt à inspirer confiance.</p>
+        <ul class="service-focus__features"><li>Un design à votre image, adapté au téléphone</li><li>Vos prestations et coordonnées faciles à trouver</li><li>Une base pensée pour votre visibilité locale</li></ul>
+        <div class="service-focus__footer">
+          <div class="service-focus__price service-focus__price--two"><span><small>Essentiel · jusqu’à 5 pages<br>À partir de</small><strong>800 <span>€ HT</span></strong></span><span><small>Premium · jusqu’à 10 pages<br>À partir de</small><strong>1 800 <span>€ HT</span></strong></span></div>
+          <a class="btn btn--amber" href="#contact"><span>Parler de mon site ↗</span></a>
         </div>
-        <h3>Référencement local</h3>
-        <p>Être le premier résultat quand on tape « votre métier + Rodez » ou « + Millau ». Fiche Google Business, contenu, avis, mots-clés du coin.</p>
-        <ul><li>SEO local</li><li>Google Business</li><li>Suivi mensuel</li></ul>
-      </article>
+      </div>
+      <div class="service-focus__art rv" data-art-number="01" data-d="1" aria-hidden="true"><div class="service-browser"><div class="service-browser__bar"><i></i><i></i><i></i></div><div class="service-browser__hero"><span>Votre métier.<br>Bien présenté.</span><b></b></div><div class="service-browser__tiles"><i></i><i></i><i></i></div></div></div>
+      <div class="service-focus__wave" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,66 C150,116 300,124 460,98 C620,72 760,10 900,14 C1040,18 1180,80 1300,98 C1370,109 1410,104 1440,96 L1440,130 L0,130 Z"/></svg></div>
+    </section>
 
-      <article class="card rv" data-d="1">
-        <span class="card__n">04</span>
-        <div class="card__ic">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50l10-4 24-24a5 5 0 0 0-7-7L17 39z"/><path d="M38 18l8 8"/><path d="M14 50l3-11"/></svg>
-        </div>
-        <h3>Identité visuelle</h3>
-        <p>Logo, couleurs, cartes de visite, signalétique, marquage du camion. Une image cohérente partout.</p>
-        <ul><li>Logo</li><li>Charte</li><li>Print</li></ul>
-      </article>
+    <section class="service-focus service-focus--reverse" id="boutique-en-ligne" aria-labelledby="boutique-title">
+      <div class="service-focus__content rv">
+        <span class="service-focus__num">02 / Boutique en ligne</span>
+        <h3 id="boutique-title">Vos produits se vendent aussi quand la boutique ferme.</h3>
+        <p class="service-focus__lead">Une boutique simple à gérer, où vos clients trouvent, commandent et paient sans devoir vous appeler. Vous gardez la main sur les produits et les stocks.</p>
+        <ul class="service-focus__features"><li>Catalogue et stocks au même endroit</li><li>Paiement CB sécurisé et factures automatiques</li><li>Livraison ou retrait en magasin</li></ul>
+        <div class="service-focus__footer"><div class="service-focus__price"><small>Boutique en ligne · à partir de</small><strong>2 000 <span>€ HT</span></strong></div><a class="btn btn--amber" href="#contact"><span>Lancer ma boutique ↗</span></a></div>
+      </div>
+      <div class="service-focus__art rv" data-art-number="02" data-d="1" aria-hidden="true"><div class="service-shop"><div class="service-shop__head">Votre boutique <span>2</span></div><div class="service-shop__products"><div class="service-shop__product"><i></i><b>Produit 01</b><small>En stock</small></div><div class="service-shop__product"><i></i><b>Produit 02</b><small>En stock</small></div></div></div></div>
+      <div class="service-focus__wave" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,66 C150,116 300,124 460,98 C620,72 760,10 900,14 C1040,18 1180,80 1300,98 C1370,109 1410,104 1440,96 L1440,130 L0,130 Z"/></svg></div>
+    </section>
 
-      <article class="card rv" data-d="2">
-        <span class="card__n">05</span>
-        <div class="card__ic">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6l22 9v16c0 14-9 22-22 27C19 53 10 45 10 31V15z"/><path d="M23 32l7 7 13-14"/></svg>
-        </div>
-        <h3>Maintenance</h3>
-        <p>Sauvegardes, mises à jour, sécurité, serveurs en France. On s'en occupe, vous n'y pensez plus jamais.</p>
-        <ul><li>Serveurs FR</li><li>Sauvegarde /jour</li><li>Support 24 h</li></ul>
-      </article>
+    <section class="service-focus" id="referencement-local" aria-labelledby="seo-title">
+      <div class="service-focus__content rv">
+        <span class="service-focus__num">03 / Référencement local</span>
+        <h3 id="seo-title">Si on ne vous trouve pas, on appelle le voisin.</h3>
+        <p class="service-focus__lead">Quand quelqu’un cherche votre métier à Rodez, Millau ou dans votre secteur, votre entreprise doit être facile à découvrir. On travaille votre présence locale dans la durée.</p>
+        <ul class="service-focus__features"><li>Fiche Google Business et pages locales</li><li>Contenus pensés pour les recherches de vos clients</li><li>Suivi des positions et pistes d’amélioration</li></ul>
+        <div class="service-focus__footer"><div class="service-focus__price"><small>Selon votre zone et vos besoins</small><strong>Sur devis</strong></div><a class="btn btn--amber" href="#contact"><span>Gagner en visibilité ↗</span></a></div>
+      </div>
+      <div class="service-focus__art rv" data-art-number="03" data-d="1" aria-hidden="true"><div class="service-search"><div class="service-search__query">⌕ &nbsp; votre métier + Rodez</div><div class="service-search__result"><small>Votre secteur</small><b>Votre entreprise</b><span>Vos services, vos horaires, votre adresse</span></div><div class="service-search__result"><small>Fiche établissement</small><b>Des infos qui rassurent</b><span>Photos · avis · itinéraire</span></div></div></div>
+      <div class="service-focus__wave" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,66 C150,116 300,124 460,98 C620,72 760,10 900,14 C1040,18 1180,80 1300,98 C1370,109 1410,104 1440,96 L1440,130 L0,130 Z"/></svg></div>
+    </section>
 
-      <article class="card card--cta rv">
-        <h3>Un besoin<br>un peu à part&nbsp;?</h3>
-        <p>Configurateur, espace client, appli métier… Dites-nous, on vous dira franchement si c'est pour nous.</p>
-        <a class="btn btn--amber" href="#contact"><span>En parler</span></a>
-      </article>
-    </div>
+    <section class="service-focus service-focus--reverse" id="identite-visuelle" aria-labelledby="identite-title">
+      <div class="service-focus__content rv">
+        <span class="service-focus__num">04 / Identité visuelle</span>
+        <h3 id="identite-title">On vous reconnaît avant même de lire votre nom.</h3>
+        <p class="service-focus__lead">Une image cohérente, du logo au camion. Vos couleurs et vos supports racontent la même histoire, où que vos clients vous croisent.</p>
+        <ul class="service-focus__features"><li>Logo et palette de couleurs</li><li>Charte graphique facile à utiliser</li><li>Cartes de visite, signalétique et supports imprimés</li></ul>
+        <div class="service-focus__footer"><div class="service-focus__price"><small>Selon les supports souhaités</small><strong>Sur devis</strong></div><a class="btn btn--amber" href="#contact"><span>Créer mon identité ↗</span></a></div>
+      </div>
+      <div class="service-focus__art rv" data-art-number="04" data-d="1" aria-hidden="true"><div class="service-brand"><span>VOTRE<br>MARQUE</span><span>Aa</span><span>● ◔</span><span>Bleu.<br>Jaune.<br>Vous.</span></div></div>
+      <div class="service-focus__wave" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,66 C150,116 300,124 460,98 C620,72 760,10 900,14 C1040,18 1180,80 1300,98 C1370,109 1410,104 1440,96 L1440,130 L0,130 Z"/></svg></div>
+    </section>
+
+    <section class="service-focus service-focus--dark service-focus--maintenance" id="maintenance-web" aria-labelledby="maintenance-title">
+      <div class="service-focus__content rv">
+        <span class="service-focus__num">05 / Maintenance</span>
+        <h3 id="maintenance-title">Votre site travaille. On veille.</h3>
+        <p class="service-focus__lead">Un site à jour, sauvegardé et hébergé en France. Vous avez quelqu’un à appeler quand il faut changer un texte ou régler un souci.</p>
+        <ul class="service-focus__features"><li>Hébergement en France et sauvegardes quotidiennes</li><li>Mises à jour et sécurité suivies</li><li>Une heure de modifications incluse chaque mois</li></ul>
+        <div class="service-focus__footer"><div class="service-focus__price"><small>Sans engagement</small><strong>39 € <span>/ mois</span></strong></div><a class="btn btn--amber" href="#contact"><span>Protéger mon site ↗</span></a></div>
+      </div>
+      <div class="service-focus__art rv" data-art-number="05" data-d="1" aria-hidden="true"><div class="service-status"><div class="service-status__head">Votre site <b>● En ligne</b></div><div class="service-status__row"><span>Sauvegarde</span><span>✓ Chaque jour</span></div><div class="service-status__row"><span>Mises à jour</span><span>✓ Suivies</span></div><div class="service-status__row"><span>Hébergement</span><span>✓ En France</span></div></div></div>
+      <div class="service-focus__wave" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,66 C150,116 300,124 460,98 C620,72 760,10 900,14 C1040,18 1180,80 1300,98 C1370,109 1410,104 1440,96 L1440,130 L0,130 Z"/></svg></div>
+    </section>
+    <p class="services-note rv">Ces prix sont des points de départ. Le montant final figure dans votre devis détaillé, avant tout engagement.</p>
+    <div class="service-tail rv"><div><span>Et si votre idée sort du cadre ?</span><h3>On aime aussi les projets à part.</h3><p>Configurateur, espace client ou application métier : racontez-nous ce qu’il vous faut.</p></div><a class="btn btn--amber" href="#contact"><span>En parler ↗</span></a></div>
   </div>
   <div class="wave wave--blue" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,96 C120,104 260,112 400,92 C540,72 680,16 820,18 C960,20 1100,78 1240,96 C1310,105 1380,104 1440,92 L1440,130 L0,130 Z"/></svg></div>
 </section>
@@ -576,48 +590,6 @@
   </div>
 </section>
 
-<!-- ═══════════ TARIFS ═══════════ -->
-<section class="sec sec--cream" id="tarifs">
-  <div class="wrap">
-    <header class="head">
-      <h2 class="ttl rv"><span class="tick tick--l"></span>Nos tarifs<span class="tick tick--r"></span></h2>
-      <p class="sub rv" data-d="1">Affichés. Comme chez le boucher.</p>
-    </header>
-
-    <div class="plans">
-      <article class="plan rv">
-        <span class="sticker">votre choix</span>
-        <h3>Essentiel</h3>
-        <p class="plan__for">Pour exister proprement, et vite.</p>
-        <div class="plan__p"><i>À partir de</i><b>800</b><i>€ HT</i></div>
-        <ul><li>Jusqu'à 5 pages</li><li>Design personnalisé</li><li>Mobile &amp; tablette</li><li>Formulaire de contact</li><li>Fiche Google Business</li><li>Livré en 3 semaines</li></ul>
-        <a class="btn btn--out" href="#contact"><span>Choisir Essentiel</span></a>
-      </article>
-
-      <article class="plan plan--hi rv" data-d="1">
-        <span class="sticker">le plus choisi</span>
-        <h3>Premium</h3>
-        <p class="plan__for">Pour aller plus loin que la vitrine.</p>
-        <div class="plan__p"><i>À partir de</i><b>1&nbsp;800</b><i>€ HT</i></div>
-        <ul><li>Jusqu'à 10 pages</li><li>Design personnalisé + animations</li><li>Rédaction des pages clés</li><li>Blog ou actualités</li><li>Référencement local renforcé</li><li>Livré en 4 semaines</li></ul>
-        <a class="btn btn--out" href="#contact"><span>Choisir Premium</span></a>
-      </article>
-
-      <article class="plan rv" data-d="2">
-        <span class="sticker">votre choix</span>
-        <h3>E-commerce</h3>
-        <p class="plan__for">Pour vendre en ligne pour de vrai.</p>
-        <div class="plan__p"><i>À partir de</i><b>2&nbsp;000</b><i>€ HT</i></div>
-        <ul><li>Tout « Premium »</li><li>Catalogue &amp; stocks</li><li>Paiement CB sécurisé</li><li>Transporteurs &amp; retrait</li><li>Factures automatiques</li><li>Formation gestion 3 h</li></ul>
-        <a class="btn btn--out" href="#contact"><span>Choisir E-commerce</span></a>
-      </article>
-    </div>
-
-    <p class="plans__f rv">Et après ? <b>Maintenance 39 € / mois</b> — hébergement en France, sauvegardes quotidiennes, mises à jour et une heure de modifications incluse. Sans engagement.</p>
-    <p class="hand hand--price">paiement en 3 fois, sans frais</p>
-  </div>
-</section>
-
 <!-- ═══════════ FAQ ═══════════ -->
 <section class="sec sec--cream faq" id="faq">
   <div class="wrap">
@@ -795,7 +767,7 @@
       </a>
 
       <div class="foot__cols">
-        <div><h4>Services</h4><a href="#services">Sites vitrines</a><a href="#services">Boutiques en ligne</a><a href="#services">Référencement local</a><a href="#services">Identité visuelle</a><a href="#services">Maintenance</a></div>
+        <div><h4>Services</h4><a href="#site-vitrine">Sites vitrines</a><a href="#boutique-en-ligne">Boutiques en ligne</a><a href="#referencement-local">Référencement local</a><a href="#identite-visuelle">Identité visuelle</a><a href="#maintenance-web">Maintenance</a></div>
         <div><h4>Agence</h4><a href="#methode">Méthode</a><a href="#engagement">Transparence</a><a href="#realisations">Réalisations</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="avero.html">Avero, logiciel pour agences web</a></div>
         <div><h4>Secteur</h4><a href="creation-site-internet-rodez.html">Site internet à Rodez</a><a href="creation-site-internet-millau.html">Site internet à Millau</a><a href="#contact">Villefranche-de-Rouergue</a><a href="#contact">Decazeville</a><a href="#contact">Espalion</a></div>
       </div>
