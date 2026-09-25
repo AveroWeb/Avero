@@ -619,7 +619,7 @@
     /* — base de connaissances (mode Assistant) — */
     var KB = [
       { k: /prix|tarif|co[ûu]te|combien(?!.*(temps|de temps))|budget|pas cher|devis chiffr/i,
-        a: "Nos formules : Essentiel 1 000 € HT (jusqu'à 5 pages, livré en 3 semaines), Premium 2 600 € HT (jusqu'à 10 pages, blog, référencement local renforcé) et E-commerce de 1 500 à 5 000 € HT. Ensuite, maintenance 39 €/mois sans engagement. Paiement en 3 fois sans frais." },
+        a: "Nos formules : Essentiel à partir de 800 € HT (jusqu'à 5 pages, livré en 3 semaines), Premium à partir de 1 800 € HT (jusqu'à 10 pages, blog, référencement local renforcé) et E-commerce à partir de 2 000 € HT. Ensuite, maintenance 39 €/mois sans engagement. Paiement en 3 fois sans frais." },
       { k: /d[ée]lai|dur[ée]e|combien de temps|quand( |-)|d[ée]lais|rapide|vite|livr[ée]/i,
         a: "Comptez 3 semaines pour un site Essentiel, 4 à 6 semaines pour un Premium, 8 à 10 pour une boutique. Le principal facteur, c'est la vitesse à laquelle vous nous transmettez textes et photos — et on peut s'en charger." },
       { k: /r[ée]f[ée]rencement|\bseo\b|google|visib|premi[èe]re page|mots?[- ]cl[ée]s/i,
@@ -633,7 +633,7 @@
       { k: /modifier|autonom|g[ée]rer|\bcms\b|back ?office|moi-m[êe]me|changer (un|le|les)/i,
         a: "Vous gérez le site vous-même : interface simple, formation d'1 h à la livraison et vidéos de rappel. Changer un horaire, ajouter une photo ou publier une actualité ne demande aucune compétence technique." },
       { k: /boutique|e-?commerce|vendre|vente en ligne|panier|stock|click.?(and|&|et).?collect|paiement cb/i,
-        a: "Nos boutiques : catalogue et stocks, paiement CB sécurisé, transporteurs et click & collect, factures automatiques, formation gestion de 3 h. Budget de 1 500 à 5 000 € HT selon le catalogue." },
+        a: "Nos boutiques : catalogue et stocks, paiement CB sécurisé, transporteurs et click & collect, factures automatiques, formation gestion de 3 h. Budget à partir de 2 000 € HT selon le catalogue." },
       { k: /\bzone\b|secteur|rodez|millau|aveyron|villefranche|d[ée]placement|o[ùu] [êe]tes|\bloin\b|distance/i,
         a: "On est basés à Rodez, présents à Millau, et on couvre toute l'Aveyron et les départements voisins. Les échanges se font à distance — téléphone, e-mail, SMS ou WhatsApp — sans déplacement." },
       { k: /\blogo\b|identit[ée]|charte|graphi|carte de visite|signal[ée]tique|\bprint\b/i,
